@@ -1,0 +1,2296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed ElMahdy — Platform/DevOps Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: rgba(20, 20, 35, 0.8);
+            --text-primary: #e8e8f0;
+            --text-secondary: #8b8ba0;
+            --accent-blue: #00d4ff;
+            --accent-purple: #a855f7;
+            --accent-green: #10b981;
+            --accent-orange: #f59e0b;
+            --accent-pink: #ec4899;
+            --gradient-main: linear-gradient(135deg, #00d4ff, #a855f7, #ec4899);
+            --gradient-card: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(168,85,247,0.1));
+            --glass: rgba(255,255,255,0.03);
+            --glass-border: rgba(255,255,255,0.08);
+            --glow-blue: 0 0 20px rgba(0,212,255,0.3);
+            --glow-purple: 0 0 20px rgba(168,85,247,0.3);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* ═══════════════ ANIMATED BACKGROUND ═══════════════ */
+        .bg-grid {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image:
+                linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .bg-grid::after {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(ellipse at 50% 0%, rgba(0,212,255,0.08) 0%, transparent 60%),
+                        radial-gradient(ellipse at 80% 50%, rgba(168,85,247,0.05) 0%, transparent 50%),
+                        radial-gradient(ellipse at 20% 80%, rgba(16,185,129,0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .content-wrapper { position: relative; z-index: 1; }
+
+        /* ═══════════════ NAVIGATION ═══════════════ */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            padding: 16px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(20px);
+            background: rgba(10,10,15,0.8);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+        .nav-logo {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 16px;
+            color: var(--accent-blue);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+        .nav-logo span { color: var(--text-secondary); }
+        .nav-links { display: flex; gap: 28px; }
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--accent-blue); }
+
+        /* ═══════════════ HERO SECTION ═══════════════ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 120px 20px 80px;
+            position: relative;
+        }
+        .hero-orb {
+            position: absolute;
+            width: 500px; height: 500px;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.4;
+            animation: orbFloat 20s ease-in-out infinite;
+        }
+        .hero-orb-1 { background: rgba(0,212,255,0.15); top: 10%; left: 10%; }
+        .hero-orb-2 { background: rgba(168,85,247,0.12); bottom: 10%; right: 10%; animation-delay: -7s; }
+        .hero-orb-3 { background: rgba(16,185,129,0.1); top: 50%; left: 60%; animation-delay: -14s; }
+        @keyframes orbFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(30px, -30px) scale(1.05); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+            background: var(--glass);
+            font-size: 13px;
+            color: var(--accent-green);
+            margin-bottom: 32px;
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+        .hero-badge::before {
+            content: '';
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: var(--accent-green);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.5); }
+        }
+
+        .hero h1 {
+            font-size: clamp(3em, 8vw, 5.5em);
+            font-weight: 900;
+            letter-spacing: -3px;
+            line-height: 1;
+            margin-bottom: 16px;
+            position: relative;
+        }
+        .gradient-text {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero .role {
+            font-size: clamp(1.2em, 3vw, 1.8em);
+            font-weight: 300;
+            color: var(--text-secondary);
+            margin-bottom: 24px;
+            letter-spacing: -0.5px;
+        }
+        .hero .role strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+        .hero .summary {
+            max-width: 680px;
+            font-size: 16px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 48px;
+        }
+        .btn {
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-primary {
+            background: var(--gradient-main);
+            color: white;
+            box-shadow: 0 4px 20px rgba(0,212,255,0.3);
+        }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,212,255,0.4); }
+        .btn-ghost {
+            background: var(--glass);
+            color: var(--text-primary);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+        .btn-ghost:hover { border-color: var(--accent-blue); background: rgba(0,212,255,0.05); }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+            padding-top: 48px;
+            border-top: 1px solid var(--glass-border);
+        }
+        .hero-stat { text-align: center; }
+        .hero-stat-num {
+            font-size: 2.5em;
+            font-weight: 800;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-stat-label { font-size: 12px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+
+        /* ═══════════════ SECTION STYLES ═══════════════ */
+        .section {
+            padding: 120px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+        .section-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 16px;
+            display: block;
+        }
+        .section-title {
+            font-size: clamp(2em, 4vw, 3em);
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+        .section-title .highlight {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ═══════════════ COMPETENCY CARDS ═══════════════ */
+        .competency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 24px;
+        }
+        .comp-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 36px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s;
+            backdrop-filter: blur(10px);
+        }
+        .comp-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 3px;
+            background: var(--gradient-main);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .comp-card:hover { border-color: rgba(0,212,255,0.3); transform: translateY(-4px); }
+        .comp-card:hover::before { opacity: 1; }
+        .comp-card-icon {
+            width: 48px; height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+            background: var(--gradient-card);
+            border: 1px solid var(--glass-border);
+        }
+        .comp-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+        .comp-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; }
+
+        /* ═══════════════ TECH STACK ═══════════════ */
+        .tech-section { padding: 120px 20px; }
+        .tech-container { max-width: 1200px; margin: 0 auto; }
+        .tech-categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .tech-cat {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 28px;
+            backdrop-filter: blur(10px);
+        }
+        .tech-cat h4 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--accent-blue);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .tech-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+        .tech-pill {
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 500;
+            background: rgba(0,212,255,0.08);
+            border: 1px solid rgba(0,212,255,0.15);
+            color: var(--accent-blue);
+            transition: all 0.2s;
+        }
+        .tech-pill:hover { background: rgba(0,212,255,0.15); transform: translateY(-1px); }
+        .tech-pill.purple { background: rgba(168,85,247,0.08); border-color: rgba(168,85,247,0.15); color: var(--accent-purple); }
+        .tech-pill.purple:hover { background: rgba(168,85,247,0.15); }
+        .tech-pill.green { background: rgba(16,185,129,0.08); border-color: rgba(16,185,129,0.15); color: var(--accent-green); }
+        .tech-pill.green:hover { background: rgba(16,185,129,0.15); }
+        .tech-pill.orange { background: rgba(245,158,11,0.08); border-color: rgba(245,158,11,0.15); color: var(--accent-orange); }
+        .tech-pill.orange:hover { background: rgba(245,158,11,0.15); }
+
+        /* ═══════════════ CERTIFICATIONS ═══════════════ */
+        .certs-section { padding: 120px 20px; }
+        .certs-container { max-width: 1200px; margin: 0 auto; }
+        .cert-tier { margin-bottom: 60px; }
+        .cert-tier-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            padding-left: 16px;
+            border-left: 3px solid var(--accent-green);
+        }
+        .cert-tier-label.exam-ready { border-color: var(--accent-purple); color: var(--accent-purple); }
+        .cert-tier-label.training { border-color: var(--text-secondary); color: var(--text-secondary); }
+        .cert-tier-label.official { color: var(--accent-green); }
+        .certs-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+        .cert-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        .cert-card:hover { border-color: rgba(0,212,255,0.3); transform: translateY(-2px); }
+        .cert-card.glow { border-color: rgba(16,185,129,0.3); box-shadow: 0 0 20px rgba(16,185,129,0.1); }
+        .cert-icon { font-size: 2em; flex-shrink: 0; }
+        .cert-info h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+        .cert-info .issuer { font-size: 12px; color: var(--text-secondary); }
+        .cert-info .date { font-size: 11px; color: var(--accent-blue); margin-top: 4px; font-family: 'JetBrains Mono', monospace; }
+
+        /* ═══════════════ EXPERIENCE TIMELINE ═══════════════ */
+        .exp-section { padding: 120px 20px; }
+        .exp-container { max-width: 900px; margin: 0 auto; }
+        .exp-item {
+            position: relative;
+            padding: 36px;
+            margin-bottom: 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+        .exp-item:hover { border-color: rgba(0,212,255,0.2); }
+        .exp-item.current { border-left: 3px solid var(--accent-green); }
+        .exp-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: 16px; }
+        .exp-role { font-size: 20px; font-weight: 700; }
+        .exp-company { font-size: 14px; color: var(--accent-blue); font-weight: 500; }
+        .exp-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--text-secondary);
+            padding: 4px 12px;
+            background: var(--glass);
+            border-radius: 6px;
+            border: 1px solid var(--glass-border);
+        }
+        .exp-bullets { list-style: none; padding: 0; }
+        .exp-bullets li {
+            padding: 6px 0 6px 20px;
+            position: relative;
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .exp-bullets li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--accent-blue);
+            font-weight: bold;
+        }
+        .exp-tech { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--glass-border); }
+        .exp-tech span {
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(0,212,255,0.08);
+            color: var(--accent-blue);
+            border: 1px solid rgba(0,212,255,0.15);
+        }
+
+        /* ═══════════════ PROJECTS ═══════════════ */
+        .projects-section { padding: 120px 20px; }
+        .projects-container { max-width: 1200px; margin: 0 auto; }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px; }
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        .project-card:hover { border-color: rgba(168,85,247,0.3); transform: translateY(-4px); }
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: -50%; right: -50%;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle, rgba(168,85,247,0.05) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .project-year {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--accent-purple);
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        .project-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; position: relative; }
+        .project-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; position: relative; }
+        .project-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; position: relative; }
+        .project-tags span {
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            background: rgba(168,85,247,0.1);
+            color: var(--accent-purple);
+            border: 1px solid rgba(168,85,247,0.2);
+        }
+
+        /* ═══════════════ EDUCATION ═══════════════ */
+        /* ═══════════════ ARCHITECTURE DIAGRAMS ═══════════════ */
+        .arch-section { padding: 120px 20px; }
+        .arch-container { max-width: 1200px; margin: 0 auto; }
+        .arch-grid { display: flex; flex-direction: column; gap: 48px; }
+        .arch-item {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+        .arch-item:hover { border-color: rgba(0,212,255,0.2); box-shadow: 0 8px 40px rgba(0,0,0,0.3); }
+        .arch-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 32px 36px 20px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .arch-item-title { font-size: 20px; font-weight: 700; }
+        .arch-item-subtitle { font-size: 13px; color: var(--text-secondary); margin-top: 4px; }
+        .arch-item-badge {
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 10px;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .arch-badge-azure { background: rgba(0,120,212,0.15); color: #3b9cff; border: 1px solid rgba(0,120,212,0.3); }
+        .arch-badge-aws { background: rgba(255,153,0,0.12); color: #ff9900; border: 1px solid rgba(255,153,0,0.3); }
+        .arch-badge-cicd { background: rgba(168,85,247,0.12); color: var(--accent-purple); border: 1px solid rgba(168,85,247,0.25); }
+        .arch-diagram-wrap {
+            background: #1a1a2e;
+            margin: 0 20px 20px;
+            border-radius: 16px;
+            padding: 24px;
+            overflow-x: auto;
+            border: 1px solid rgba(99,102,241,0.2);
+        }
+        .arch-diagram-wrap svg { width: 100%; min-width: 760px; height: auto; display: block; }
+        .arch-footer {
+            padding: 16px 36px 28px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+        }
+        .arch-tech-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            flex: 1;
+        }
+        .arch-tech-row span {
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(0,212,255,0.08);
+            color: var(--accent-blue);
+            border: 1px solid rgba(0,212,255,0.15);
+        }
+        .arch-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent-blue);
+            text-decoration: none;
+            border: 1px solid rgba(0,212,255,0.2);
+            transition: all 0.2s;
+        }
+        .arch-link:hover { background: rgba(0,212,255,0.08); border-color: rgba(0,212,255,0.4); }
+
+        .edu-section { padding: 120px 20px; }
+        .edu-container { max-width: 900px; margin: 0 auto; }
+        .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 24px; }
+        .edu-card {
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 32px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+        .edu-card:hover { border-color: rgba(0,212,255,0.2); }
+        .edu-card .icon { font-size: 3em; margin-bottom: 16px; }
+        .edu-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+        .edu-card .school { color: var(--text-secondary); font-size: 14px; }
+        .edu-card .year { color: var(--accent-blue); font-size: 13px; margin-top: 8px; font-family: 'JetBrains Mono', monospace; }
+
+        /* ═══════════════ CONTACT / CTA ═══════════════ */
+        .contact-section {
+            padding: 120px 20px;
+            text-align: center;
+            position: relative;
+        }
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(0,212,255,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .contact-title {
+            font-size: clamp(2.5em, 5vw, 4em);
+            font-weight: 900;
+            letter-spacing: -2px;
+            margin-bottom: 16px;
+            position: relative;
+        }
+        .contact-sub { color: var(--text-secondary); font-size: 16px; margin-bottom: 8px; position: relative; }
+        .contact-links {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+            position: relative;
+        }
+        .contact-link {
+            padding: 14px 28px;
+            border-radius: 12px;
+            background: var(--bg-card);
+            border: 1px solid var(--glass-border);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        .contact-link:hover { border-color: var(--accent-blue); color: var(--accent-blue); transform: translateY(-2px); }
+
+        /* ═══════════════ FOOTER ═══════════════ */
+        .footer {
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+        }
+        .footer p { font-size: 13px; color: var(--text-secondary); }
+        .footer .terminal-text {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent-blue);
+            font-size: 12px;
+            margin-top: 8px;
+        }
+
+        /* ═══════════════ SCROLL ANIMATIONS ═══════════════ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ═══════════════ RESPONSIVE ═══════════════ */
+        @media (max-width: 768px) {
+            .nav { padding: 12px 20px; }
+            .nav-links { display: none; }
+            .hero-stats { flex-direction: column; gap: 20px; }
+            .hero h1 { letter-spacing: -1px; }
+            .competency-grid { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .section { padding: 80px 20px; }
+            .exp-header { flex-direction: column; }
+        }
+
+        /* ═══════════════ ANIMATIONS ═══════════════ */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate { animation: fadeUp 0.8s ease forwards; }
+        .delay-1 { animation-delay: 0.1s; opacity: 0; }
+        .delay-2 { animation-delay: 0.2s; opacity: 0; }
+        .delay-3 { animation-delay: 0.3s; opacity: 0; }
+        .delay-4 { animation-delay: 0.4s; opacity: 0; }
+        .delay-5 { animation-delay: 0.5s; opacity: 0; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-primary); }
+        ::-webkit-scrollbar-thumb { background: rgba(0,212,255,0.3); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(0,212,255,0.5); }
+    </style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+
+<div class="content-wrapper">
+
+<!-- Navigation -->
+<nav class="nav">
+    <a href="#" class="nav-logo">ahmed<span>.devops</span></a>
+    <div class="nav-links">
+        <a href="#skills">Skills</a>
+        <a href="#tech">Stack</a>
+        <a href="#certs">Certs</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#contact">Contact</a>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+
+    <div class="hero-badge animate delay-1">Available for opportunities</div>
+
+    <h1 class="animate delay-2">
+        <span class="gradient-text">Ahmed ElMahdy</span>
+    </h1>
+    <div class="role animate delay-3">
+        <strong>Platform</strong> / <strong>DevOps</strong> Engineer
+    </div>
+    <p class="summary animate delay-4">
+        Cloud &amp; DevOps Engineer with 5+ years building production platforms on Azure &amp; AWS.
+        I ship infrastructure as code, orchestrate Kubernetes at scale, and build CI/CD pipelines
+        that deploy microservices across multi-environment clusters — reliably and securely.
+    </p>
+
+    <div class="hero-cta animate delay-5">
+        <a href="mailto:a.elmahdy.mail@gmail.com" class="btn btn-primary">Let's Talk →</a>
+        <a href="https://github.com/ahmed-el-mahdy" target="_blank" class="btn btn-ghost">View GitHub</a>
+        <a href="https://linkedin.com/in/ahmed-el-mahdy-007" target="_blank" class="btn btn-ghost">LinkedIn</a>
+    </div>
+
+    <div class="hero-stats animate delay-5">
+        <div class="hero-stat">
+            <div class="hero-stat-num">5+</div>
+            <div class="hero-stat-label">Years Cloud/DevOps</div>
+        </div>
+        <div class="hero-stat">
+            <div class="hero-stat-num">4</div>
+            <div class="hero-stat-label">AKS Clusters</div>
+        </div>
+        <div class="hero-stat">
+            <div class="hero-stat-num">7</div>
+            <div class="hero-stat-label">Microservices</div>
+        </div>
+        <div class="hero-stat">
+            <div class="hero-stat-num">3+</div>
+            <div class="hero-stat-label">Certifications</div>
+        </div>
+    </div>
+</section>
+
+<!-- Core Competencies -->
+<section class="section" id="skills">
+    <div class="section-header reveal">
+        <span class="section-tag">// what I do</span>
+        <h2 class="section-title">Core <span class="highlight">Competencies</span></h2>
+    </div>
+    <div class="competency-grid">
+        <div class="comp-card reveal">
+            <div class="comp-card-icon">☁️</div>
+            <h3>Cloud &amp; Infrastructure</h3>
+            <p>Azure (SC-300 certified, AZ-104 trained) &amp; AWS (SAA certified). AKS, APIM, App Gateway, Firewall, Key Vault, Entra ID, EC2, Lambda, VPC. Multi-subscription platform design &amp; recovery.</p>
+        </div>
+        <div class="comp-card reveal">
+            <div class="comp-card-icon">⚙️</div>
+            <h3>Containers &amp; Orchestration</h3>
+            <p>CKA exam-ready. Production Kubernetes: Helm, Argo CD, Kustomize. Multi-environment AKS deployments, autoscaling, capacity right-sizing, secure workload delivery.</p>
+        </div>
+        <div class="comp-card reveal">
+            <div class="comp-card-icon">🏗️</div>
+            <h3>Infrastructure as Code</h3>
+            <p>Terraform modules, state management, drift analysis, environment alignment. CloudFormation for AWS. Platform recovery through IaC stabilization.</p>
+        </div>
+        <div class="comp-card reveal">
+            <div class="comp-card-icon">🔄</div>
+            <h3>CI/CD &amp; Automation</h3>
+            <p>GitHub Actions (GitLab migration), Jenkins, CircleCI. DRY reusable workflows, secret-dependent pipelines, multi-branch deployments, automated APIM imports.</p>
+        </div>
+        <div class="comp-card reveal">
+            <div class="comp-card-icon">🔒</div>
+            <h3>Identity &amp; Security</h3>
+            <p>Azure Entra ID, RBAC, Key Vault governance, WAF policies, network segmentation, pod security. SC-300 certified identity &amp; access specialist.</p>
+        </div>
+        <div class="comp-card reveal">
+            <div class="comp-card-icon">📊</div>
+            <h3>Observability &amp; Operations</h3>
+            <p>Prometheus, Grafana, CloudWatch, Application Insights, Azure Monitor. Alert rules, SLO tracking, runbooks, and incident response.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Tech Stack -->
+<section class="tech-section" id="tech">
+    <div class="tech-container">
+        <div class="section-header reveal">
+            <span class="section-tag">// tools &amp; technologies</span>
+            <h2 class="section-title">Technology <span class="highlight">Arsenal</span></h2>
+        </div>
+        <div class="tech-categories">
+            <div class="tech-cat reveal">
+                <h4>Cloud Platforms</h4>
+                <div class="tech-pills">
+                    <span class="tech-pill">Azure</span>
+                    <span class="tech-pill">AWS</span>
+                    <span class="tech-pill">AKS</span>
+                    <span class="tech-pill">EKS</span>
+                    <span class="tech-pill">APIM</span>
+                    <span class="tech-pill">App Gateway</span>
+                    <span class="tech-pill">Key Vault</span>
+                    <span class="tech-pill">Entra ID</span>
+                    <span class="tech-pill">Lambda</span>
+                    <span class="tech-pill">S3</span>
+                </div>
+            </div>
+            <div class="tech-cat reveal">
+                <h4>DevOps &amp; IaC</h4>
+                <div class="tech-pills">
+                    <span class="tech-pill purple">Terraform</span>
+                    <span class="tech-pill purple">Kubernetes</span>
+                    <span class="tech-pill purple">Helm</span>
+                    <span class="tech-pill purple">Argo CD</span>
+                    <span class="tech-pill purple">Kustomize</span>
+                    <span class="tech-pill purple">Docker</span>
+                    <span class="tech-pill purple">CloudFormation</span>
+                </div>
+            </div>
+            <div class="tech-cat reveal">
+                <h4>CI/CD &amp; Automation</h4>
+                <div class="tech-pills">
+                    <span class="tech-pill green">GitHub Actions</span>
+                    <span class="tech-pill green">Jenkins</span>
+                    <span class="tech-pill green">CircleCI</span>
+                    <span class="tech-pill green">GitLab CI</span>
+                    <span class="tech-pill green">Ansible</span>
+                </div>
+            </div>
+            <div class="tech-cat reveal">
+                <h4>Languages</h4>
+                <div class="tech-pills">
+                    <span class="tech-pill orange">Bash/Shell</span>
+                    <span class="tech-pill orange">Python</span>
+                    <span class="tech-pill orange">HCL</span>
+                    <span class="tech-pill orange">C# / .NET 8</span>
+                    <span class="tech-pill orange">TypeScript</span>
+                    <span class="tech-pill orange">YAML</span>
+                </div>
+            </div>
+            <div class="tech-cat reveal">
+                <h4>Monitoring</h4>
+                <div class="tech-pills">
+                    <span class="tech-pill">Prometheus</span>
+                    <span class="tech-pill">Grafana</span>
+                    <span class="tech-pill">CloudWatch</span>
+                    <span class="tech-pill">App Insights</span>
+                    <span class="tech-pill">Azure Monitor</span>
+                </div>
+            </div>
+            <div class="tech-cat reveal">
+                <h4>Systems &amp; Networking</h4>
+                <div class="tech-pills">
+                    <span class="tech-pill purple">Linux</span>
+                    <span class="tech-pill purple">Windows Server</span>
+                    <span class="tech-pill purple">Active Directory</span>
+                    <span class="tech-pill purple">Nginx</span>
+                    <span class="tech-pill purple">VPN</span>
+                    <span class="tech-pill purple">Proxmox</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Certifications -->
+<section class="certs-section" id="certs">
+    <div class="certs-container">
+        <div class="section-header reveal">
+            <span class="section-tag">// verified credentials</span>
+            <h2 class="section-title">Certifications &amp; <span class="highlight">Credentials</span></h2>
+        </div>
+
+        <div class="cert-tier reveal">
+            <div class="cert-tier-label official">Official — Exams Passed</div>
+            <div class="certs-row">
+                <div class="cert-card glow">
+                    <div class="cert-icon">🏗️</div>
+                    <div class="cert-info">
+                        <h4>AWS Solutions Architect – Associate</h4>
+                        <div class="issuer">Amazon Web Services</div>
+                        <div class="date">2025 → Sep 2028</div>
+                    </div>
+                </div>
+                <div class="cert-card glow">
+                    <div class="cert-icon">☁️</div>
+                    <div class="cert-info">
+                        <h4>AWS Cloud Practitioner</h4>
+                        <div class="issuer">Amazon Web Services</div>
+                        <div class="date">2025 → Sep 2028</div>
+                    </div>
+                </div>
+                <div class="cert-card glow">
+                    <div class="cert-icon">🔐</div>
+                    <div class="cert-info">
+                        <h4>SC-300 Identity &amp; Access Admin</h4>
+                        <div class="issuer">Microsoft</div>
+                        <div class="date">November 2025</div>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">🎯</div>
+                    <div class="cert-info">
+                        <h4>McKinsey Forward Program</h4>
+                        <div class="issuer">McKinsey.org</div>
+                        <div class="date">2025</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cert-tier reveal">
+            <div class="cert-tier-label exam-ready">Exam-Ready — Training Completed</div>
+            <div class="certs-row">
+                <div class="cert-card">
+                    <div class="cert-icon">☸️</div>
+                    <div class="cert-info">
+                        <h4>CKA — Kubernetes Administrator</h4>
+                        <div class="issuer">KodeKloud (Mumshad Mannambeth)</div>
+                        <div class="date">March 2025 • CNCF exam ready</div>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">☁️</div>
+                    <div class="cert-info">
+                        <h4>AZ-104 — Azure Administrator</h4>
+                        <div class="issuer">Manara</div>
+                        <div class="date">Nov 2025 • Microsoft exam ready</div>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">🎓</div>
+                    <div class="cert-info">
+                        <h4>Advanced Cloud DevOps Nanodegree</h4>
+                        <div class="issuer">Udacity &amp; MCIT</div>
+                        <div class="date">2023</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cert-tier reveal">
+            <div class="cert-tier-label training">Additional Training</div>
+            <div class="certs-row">
+                <div class="cert-card">
+                    <div class="cert-icon">🔐</div>
+                    <div class="cert-info">
+                        <h4>IT Security Foundations</h4>
+                        <div class="issuer">LinkedIn Learning</div>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">🌐</div>
+                    <div class="cert-info">
+                        <h4>Network Virtualization Concepts</h4>
+                        <div class="issuer">VMware IT Academy</div>
+                        <div class="date">May 2022</div>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">💨</div>
+                    <div class="cert-info">
+                        <h4>Cloud &amp; Virtualization Concepts</h4>
+                        <div class="issuer">VMware IT Academy</div>
+                        <div class="date">May 2022</div>
+                    </div>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">💾</div>
+                    <div class="cert-info">
+                        <h4>Software Defined Storage</h4>
+                        <div class="issuer">VMware IT Academy</div>
+                        <div class="date">May 2022</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Experience -->
+<section class="exp-section" id="experience">
+    <div class="exp-container">
+        <div class="section-header reveal">
+            <span class="section-tag">// career path</span>
+            <h2 class="section-title">Professional <span class="highlight">Experience</span></h2>
+        </div>
+
+        <div class="exp-item current reveal">
+            <div class="exp-header">
+                <div>
+                    <div class="exp-role">Platform/DevOps Engineer</div>
+                    <div class="exp-company">Julfar Consultancy Services</div>
+                </div>
+                <div class="exp-date">Jan 2026 → Present</div>
+            </div>
+            <ul class="exp-bullets">
+                <li>Stabilized inherited Azure/Terraform platforms across DEV, STAGING, and PROD — resolved drift, state, and configuration risks</li>
+                <li>End-to-end microservice onboarding for ActionAI platform: GitHub repos, CI/CD, Helm deployments, Argo CD automation</li>
+                <li>Integrated secure delivery: Azure Key Vault, Terraform-based secret governance, Entra group-based RBAC</li>
+                <li>Migrated CI/CD from GitLab to GitHub Actions with validated workflow reliability</li>
+                <li>Platform efficiency through Kubernetes autoscaling, capacity right-sizing, and cost analysis</li>
+            </ul>
+            <div class="exp-tech">
+                <span>Azure</span><span>Terraform</span><span>Kubernetes</span><span>Helm</span><span>Argo CD</span><span>GitHub Actions</span><span>APIM</span><span>Key Vault</span>
+            </div>
+        </div>
+
+        <div class="exp-item current reveal">
+            <div class="exp-header">
+                <div>
+                    <div class="exp-role">Cloud &amp; DevOps Engineer</div>
+                    <div class="exp-company">Mosadad (Recovery Claims Platform)</div>
+                </div>
+                <div class="exp-date">Jan 2026 → Present</div>
+            </div>
+            <ul class="exp-bullets">
+                <li>Recovered and stabilized inherited Azure/Terraform environments across 4 environments (DEV, QA, STAGING, PROD)</li>
+                <li>Operate 4 AKS clusters with 7 .NET 8 microservices and 2 Angular 19 frontends</li>
+                <li>Kustomize-based multi-environment deployment with NGINX ingress and CSI secret provider</li>
+                <li>DRY GitHub Actions CI/CD: Docker → ACR → AKS → APIM import</li>
+                <li>Production security: WAF, Azure Firewall, APIM rate limiting, Key Vault CSI, B2C auth</li>
+                <li>Grafana + Prometheus monitoring with Application Insights APM</li>
+            </ul>
+            <div class="exp-tech">
+                <span>Azure AKS</span><span>Terraform</span><span>.NET 8</span><span>Angular</span><span>Kustomize</span><span>MongoDB</span><span>Redis</span><span>GitHub Actions</span>
+            </div>
+        </div>
+
+        <div class="exp-item reveal">
+            <div class="exp-header">
+                <div>
+                    <div class="exp-role">System Administrator</div>
+                    <div class="exp-company">Julfar Consultancy Services</div>
+                </div>
+                <div class="exp-date">Oct 2021 → Dec 2025</div>
+            </div>
+            <ul class="exp-bullets">
+                <li>Administered Windows/Linux servers, AWS CloudFormation stacks, VDI environments</li>
+                <li>Spearheaded DevOps practices: IaC, CI/CD pipeline automation</li>
+                <li>Automated configuration &amp; provisioning using Bash and Python</li>
+                <li>Reduced manual configuration errors by 20% through automation</li>
+                <li>Maintained 99.9% uptime through proactive monitoring</li>
+            </ul>
+            <div class="exp-tech">
+                <span>AWS</span><span>Linux</span><span>Windows Server</span><span>CloudFormation</span><span>Bash</span><span>Python</span>
+            </div>
+        </div>
+
+        <div class="exp-item reveal">
+            <div class="exp-header">
+                <div>
+                    <div class="exp-role">DevOps Engineer</div>
+                    <div class="exp-company">DEPI — MCIT Egypt</div>
+                </div>
+                <div class="exp-date">Apr 2024 → Jan 2025</div>
+            </div>
+            <ul class="exp-bullets">
+                <li>Full DevOps lifecycle: Git, Ansible, Docker, Jenkins, Kubernetes, Prometheus</li>
+                <li>AWS Cloud architecture, Terraform for infrastructure as code</li>
+                <li>Real-world projects covering CI/CD, IaC, and monitoring</li>
+            </ul>
+            <div class="exp-tech">
+                <span>Docker</span><span>Kubernetes</span><span>Jenkins</span><span>Terraform</span><span>AWS</span><span>Prometheus</span>
+            </div>
+        </div>
+
+        <div class="exp-item reveal">
+            <div class="exp-header">
+                <div>
+                    <div class="exp-role">DevOps Trainee</div>
+                    <div class="exp-company">Ministry of Communications &amp; IT (MCIT)</div>
+                </div>
+                <div class="exp-date">Nov 2023 → Apr 2024</div>
+            </div>
+            <ul class="exp-bullets">
+                <li>Intensive program: AWS, CI/CD pipelines, IaC with Terraform &amp; CloudFormation</li>
+                <li>Deployed websites on AWS, designed automated pipelines, integrated monitoring</li>
+            </ul>
+        </div>
+
+        <div class="exp-item reveal">
+            <div class="exp-header">
+                <div>
+                    <div class="exp-role">Infrastructure &amp; Systems Engineer</div>
+                    <div class="exp-company">Shatta Company</div>
+                </div>
+                <div class="exp-date">Mar 2019 → Feb 2020</div>
+            </div>
+            <ul class="exp-bullets">
+                <li>Multi-OS environments, Proxmox clusters, VLANs, firewalls</li>
+                <li>VPN for secure multi-site connectivity</li>
+                <li>DNS, DHCP, Active Directory, security systems</li>
+                <li>99.9% uptime through proactive monitoring</li>
+            </ul>
+            <div class="exp-tech">
+                <span>Proxmox</span><span>VLANs</span><span>Firewalls</span><span>VPN</span><span>Active Directory</span><span>Linux</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects -->
+<section class="projects-section" id="projects">
+    <div class="projects-container">
+        <div class="section-header reveal">
+            <span class="section-tag">// shipped work</span>
+            <h2 class="section-title">Featured <span class="highlight">Projects</span></h2>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card reveal">
+                <div class="project-year">2026</div>
+                <h3>Mosadad Recovery Platform</h3>
+                <p>7 microservices, 4 AKS clusters, 4 environments. GitLab→GitHub Actions migration. Kubernetes autoscaling &amp; cost optimization.</p>
+                <div class="project-tags">
+                    <span>AKS</span><span>Terraform</span><span>Kustomize</span><span>.NET 8</span><span>MongoDB</span>
+                </div>
+            </div>
+            <div class="project-card reveal">
+                <div class="project-year">2026</div>
+                <h3>ActionAI Platform Enablement</h3>
+                <p>End-to-end microservice onboarding: GitHub Actions CI/CD, Helm deployments, Argo CD post-sync, APIM auto-registration, Key Vault + Entra RBAC.</p>
+                <div class="project-tags">
+                    <span>Azure</span><span>Helm</span><span>Argo CD</span><span>APIM</span><span>Key Vault</span>
+                </div>
+            </div>
+            <div class="project-card reveal">
+                <div class="project-year">2025</div>
+                <h3>Serverless Image Processing</h3>
+                <p>S3 + Lambda pipeline reducing operational overhead by 40%. Event-driven architecture with CloudFormation.</p>
+                <div class="project-tags">
+                    <span>Lambda</span><span>S3</span><span>Python</span><span>CloudFormation</span>
+                </div>
+            </div>
+            <div class="project-card reveal">
+                <div class="project-year">2025</div>
+                <h3>N8N Automation Platform</h3>
+                <p>Containerized workflow automation with Nginx reverse proxy, SSL, and automated ngrok URL sync for webhook continuity.</p>
+                <div class="project-tags">
+                    <span>Docker</span><span>Nginx</span><span>Ngrok</span><span>Shell</span><span>n8n</span>
+                </div>
+            </div>
+            <div class="project-card reveal">
+                <div class="project-year">2024</div>
+                <h3>3-Tier App on EKS</h3>
+                <p>Automated deployment with Jenkins, Terraform, EKS. Auto-scaling and high availability.</p>
+                <div class="project-tags">
+                    <span>Jenkins</span><span>Terraform</span><span>EKS</span><span>AWS</span>
+                </div>
+            </div>
+            <div class="project-card reveal">
+                <div class="project-year">2023</div>
+                <h3>UdaPeople CI/CD</h3>
+                <p>CloudFormation + CircleCI + AWS. Final graduation project for the DevOps Nanodegree.</p>
+                <div class="project-tags">
+                    <span>CircleCI</span><span>CloudFormation</span><span>Ansible</span><span>Prometheus</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Architecture Diagrams -->
+<section class="arch-section" id="architecture">
+    <div class="arch-container">
+        <div class="section-header reveal">
+            <span class="section-tag">// system design</span>
+            <h2 class="section-title">Architecture <span class="highlight">Diagrams</span></h2>
+        </div>
+        <div class="arch-grid">
+
+            <!-- Platform 1: InsureTech Platform -->
+            <div class="arch-item reveal">
+                <div class="arch-item-header">
+                    <div>
+                        <div class="arch-item-title">InsureTech Platform</div>
+                        <div class="arch-item-subtitle">Multi-environment insurance claims platform — 7 microservices, 4 Kubernetes clusters, enterprise security</div>
+                    </div>
+                    <div class="arch-item-badge arch-badge-azure">Azure Production</div>
+                </div>
+                <div class="arch-diagram-wrap">
+                    <svg viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg" style="font-family: 'Segoe UI', sans-serif;">
+                        <rect width="1000" height="700" fill="#1a1a2e"/>
+
+                        <defs>
+                            <marker id="arrBlue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#3b9cff"/></marker>
+                            <marker id="arrGray" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#888"/></marker>
+                            <marker id="arrOrange" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#ff9900"/></marker>
+                            <marker id="arrPurple" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#a855f7"/></marker>
+                        </defs>
+
+                        <text x="500" y="28" text-anchor="middle" fill="#e2e8f0" font-size="15" font-weight="700">Production Architecture — Azure Cloud Platform</text>
+                        <text x="500" y="48" text-anchor="middle" fill="#94a3b8" font-size="10">4 Environments (DEV / QA / STAGING / PROD)</text>
+
+                        <!-- Users Icon -->
+                        <g transform="translate(448,60)">
+                            <rect width="44" height="44" rx="6" fill="#0078d4"/>
+                            <circle cx="22" cy="16" r="7" fill="none" stroke="#fff" stroke-width="2"/>
+                            <path d="M10 38 Q10 28 22 28 Q34 28 34 38" fill="none" stroke="#fff" stroke-width="2"/>
+                        </g>
+                        <text x="470" y="118" text-anchor="middle" fill="#cbd5e1" font-size="10" font-weight="600">End Users</text>
+
+                        <path d="M470 120 L470 140" stroke="#3b9cff" stroke-width="2" marker-end="url(#arrBlue)"/>
+
+                        <!-- App Gateway + WAF + DNS -->
+                        <g transform="translate(350,145)">
+                            <rect width="44" height="44" rx="6" fill="#0078d4"/>
+                            <path d="M12 22 L22 12 L32 22 L32 32 L12 32 Z" fill="none" stroke="#fff" stroke-width="2"/>
+                            <line x1="22" y1="22" x2="22" y2="32" stroke="#fff" stroke-width="2"/>
+                        </g>
+                        <text x="372" y="202" text-anchor="middle" fill="#cbd5e1" font-size="9" font-weight="600">App Gateway</text>
+
+                        <g transform="translate(430,145)">
+                            <rect width="44" height="44" rx="6" fill="#e3342f"/>
+                            <path d="M22 10 L12 16 L12 28 Q12 36 22 38 Q32 36 32 28 L32 16 Z" fill="none" stroke="#fff" stroke-width="2"/>
+                            <path d="M18 24 L21 27 L28 20" fill="none" stroke="#fff" stroke-width="2"/>
+                        </g>
+                        <text x="452" y="202" text-anchor="middle" fill="#cbd5e1" font-size="9" font-weight="600">WAF_v2</text>
+
+                        <g transform="translate(510,145)">
+                            <rect width="44" height="44" rx="6" fill="#0078d4"/>
+                            <circle cx="22" cy="22" r="12" fill="none" stroke="#fff" stroke-width="1.8"/>
+                            <ellipse cx="22" cy="22" rx="6" ry="12" fill="none" stroke="#fff" stroke-width="1.2"/>
+                            <line x1="10" y1="22" x2="34" y2="22" stroke="#fff" stroke-width="1.2"/>
+                        </g>
+                        <text x="532" y="202" text-anchor="middle" fill="#cbd5e1" font-size="9" font-weight="600">DNS + TLS</text>
+
+                        <!-- Arrows split -->
+                        <path d="M400 195 L250 230" stroke="#888" stroke-width="1.5" marker-end="url(#arrGray)"/>
+                        <path d="M520 195 L620 230" stroke="#3b9cff" stroke-width="1.5" marker-end="url(#arrBlue)"/>
+
+                        <!-- App Service (Portals) -->
+                        <g transform="translate(150,235)">
+                            <rect width="240" height="70" rx="8" fill="#16213e" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="4"/>
+                            <g transform="translate(15,13)">
+                                <rect width="40" height="40" rx="6" fill="#0078d4"/>
+                                <rect x="10" y="8" width="20" height="24" rx="3" fill="none" stroke="#fff" stroke-width="2"/>
+                                <line x1="14" y1="14" x2="26" y2="14" stroke="#fff" stroke-width="1.5"/>
+                                <line x1="14" y1="19" x2="22" y2="19" stroke="#fff" stroke-width="1.5"/>
+                            </g>
+                            <text x="75" y="30" fill="#e2e8f0" font-size="10" font-weight="700">Admin Portal</text>
+                            <text x="75" y="44" fill="#94a3b8" font-size="8">Angular 19</text>
+                            <g transform="translate(130,13)">
+                                <rect width="40" height="40" rx="6" fill="#0078d4"/>
+                                <rect x="10" y="8" width="20" height="24" rx="3" fill="none" stroke="#fff" stroke-width="2"/>
+                                <line x1="14" y1="14" x2="26" y2="14" stroke="#fff" stroke-width="1.5"/>
+                                <line x1="14" y1="19" x2="22" y2="19" stroke="#fff" stroke-width="1.5"/>
+                            </g>
+                            <text x="190" y="30" fill="#e2e8f0" font-size="10" font-weight="700">Entity Portal</text>
+                            <text x="190" y="44" fill="#94a3b8" font-size="8">Angular 19</text>
+                            <text x="120" y="65" text-anchor="middle" fill="#16a34a" font-size="8" font-weight="600">Azure App Service</text>
+                        </g>
+
+                        <!-- APIM -->
+                        <g transform="translate(520,235)">
+                            <rect width="340" height="70" rx="8" fill="#16213e" stroke="#6b4fbb" stroke-width="1.5"/>
+                            <g transform="translate(15,15)">
+                                <rect width="40" height="40" rx="6" fill="#6b4fbb"/>
+                                <rect x="8" y="12" width="24" height="16" rx="3" fill="none" stroke="#fff" stroke-width="1.8"/>
+                                <text x="20" y="24" text-anchor="middle" fill="#fff" font-size="8" font-weight="700">API</text>
+                            </g>
+                            <text x="75" y="32" fill="#e2e8f0" font-size="10" font-weight="700">API Management (StandardV2)</text>
+                            <text x="75" y="46" fill="#94a3b8" font-size="9">7 APIs • Rate Limiting • CORS • TLS 1.2+</text>
+                            <text x="75" y="60" fill="#94a3b8" font-size="8">Subscription Keys • Security Headers • OpenAPI Import</text>
+                        </g>
+
+                        <!-- Arrow to AKS -->
+                        <path d="M690 305 L550 330" stroke="#3b9cff" stroke-width="2" marker-end="url(#arrBlue)"/>
+
+                        <!-- AKS Cluster Box -->
+                        <g transform="translate(60,330)">
+                            <rect width="880" height="210" rx="10" fill="#0f172a" stroke="#326ce5" stroke-width="2"/>
+                            <g transform="translate(10,8)">
+                                <rect width="40" height="40" rx="6" fill="#326ce5"/>
+                                <circle cx="20" cy="20" r="10" fill="none" stroke="#fff" stroke-width="2"/>
+                                <circle cx="20" cy="20" r="3.5" fill="#fff"/>
+                                <line x1="20" y1="10" x2="20" y2="14" stroke="#fff" stroke-width="2"/>
+                                <line x1="20" y1="26" x2="20" y2="30" stroke="#fff" stroke-width="2"/>
+                                <line x1="11" y1="15" x2="14.5" y2="17" stroke="#fff" stroke-width="2"/>
+                                <line x1="25.5" y1="23" x2="29" y2="25" stroke="#fff" stroke-width="2"/>
+                                <line x1="11" y1="25" x2="14.5" y2="23" stroke="#fff" stroke-width="2"/>
+                                <line x1="25.5" y1="17" x2="29" y2="15" stroke="#fff" stroke-width="2"/>
+                            </g>
+                            <text x="60" y="24" fill="#60a5fa" font-size="12" font-weight="700">Azure Kubernetes Service (AKS)</text>
+                            <text x="60" y="40" fill="#94a3b8" font-size="9">2× Standard_D4ds_v5 • Kubernetes 1.28+ • NGINX Ingress</text>
+
+                            <!-- Ingress bar -->
+                            <rect x="15" y="52" width="850" height="24" rx="5" fill="#1e293b" stroke="#326ce5" stroke-width="1"/>
+                            <text x="440" y="68" text-anchor="middle" fill="#60a5fa" font-size="9" font-weight="600">NGINX Ingress → Path Routing: /claims  /tenant  /quotation  /invoice  /settlement  /inthub</text>
+
+                            <!-- Microservice pods -->
+                            <g transform="translate(15,86)">
+                                <rect width="130" height="56" rx="6" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.3"/>
+                                <g transform="translate(8,6)">
+                                    <rect width="28" height="22" rx="3" fill="#5b5fc7"/>
+                                    <rect x="4" y="4" width="8" height="6" rx="1" fill="#fff"/>
+                                    <rect x="14" y="4" width="8" height="6" rx="1" fill="#fff"/>
+                                    <rect x="4" y="12" width="8" height="6" rx="1" fill="#fff"/>
+                                    <rect x="14" y="12" width="8" height="6" rx="1" fill="#fff"/>
+                                </g>
+                                <text x="85" y="22" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="700">Claims</text>
+                                <text x="85" y="40" text-anchor="middle" fill="#94a3b8" font-size="8">.NET 8 API</text>
+                            </g>
+                            <g transform="translate(158,86)">
+                                <rect width="130" height="56" rx="6" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.3"/>
+                                <g transform="translate(8,6)">
+                                    <rect width="28" height="22" rx="3" fill="#5b5fc7"/>
+                                    <rect x="4" y="4" width="8" height="6" rx="1" fill="#fff"/>
+                                    <rect x="14" y="4" width="8" height="6" rx="1" fill="#fff"/>
+                                    <rect x="4" y="12" width="8" height="6" rx="1" fill="#fff"/>
+                                    <rect x="14" y="12" width="8" height="6" rx="1" fill="#fff"/>
+                                </g>
+                                <text x="85" y="22" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="700">Tenant</text>
+                                <text x="85" y="40" text-anchor="middle" fill="#94a3b8" font-size="8">.NET 8 API</text>
+                            </g>
+                            <g transform="translate(301,86)">
+                                <rect width="130" height="56" rx="6" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.3"/>
+                                <g transform="translate(8,6)">
+                                    <rect width="28" height="22" rx="3" fill="#5b5fc7"/>
+                                    <rect x="4" y="4" width="8" height="6" rx="1" fill="#fff"/>
+                                    <rect x="14" y="4" width="8" height="6" rx="1" fill="#fff"/>
+                                    <rect x="4" y="12" width="8" height="6" rx="1" fill="#fff"/>
+                                    <rect x="14" y="12" width="8" height="6" rx="1" fill="#fff"/>
+                                </g>
+                                <text x="85" y="22" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="700">Quotation</text>
+                                <text x="85" y="40" text-anchor="middle" fill="#94a3b8" font-size="8">.NET 8 API</text>
+                            </g>
+                            <g transform="translate(444,86)">
+                                <rect width="130" height="56" rx="6" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.3"/>
+                                <g transform="translate(8,6)">
+                                    <rect width="28" height="22" rx="3" fill="#5b5fc7"/>
+                                    <rect x="4" y="4" width="8" height="6" rx="1" fill="#fff"/>
+                                    <rect x="14" y="4" width="8" height="6" rx="1" fill="#fff"/>
+                                    <rect x="4" y="12" width="8" height="6" rx="1" fill="#fff"/>
+                                    <rect x="14" y="12" width="8" height="6" rx="1" fill="#fff"/>
+                                </g>
+                                <text x="85" y="22" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="700">Invoice</text>
+                                <text x="85" y="40" text-anchor="middle" fill="#94a3b8" font-size="8">.NET 8 API</text>
+                            </g>
+                            <g transform="translate(587,86)">
+                                <rect width="130" height="56" rx="6" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.3"/>
+                                <g transform="translate(8,6)">
+                                    <rect width="28" height="22" rx="3" fill="#5b5fc7"/>
+                                    <rect x="4" y="4" width="8" height="6" rx="1" fill="#fff"/>
+                                    <rect x="14" y="4" width="8" height="6" rx="1" fill="#fff"/>
+                                    <rect x="4" y="12" width="8" height="6" rx="1" fill="#fff"/>
+                                    <rect x="14" y="12" width="8" height="6" rx="1" fill="#fff"/>
+                                </g>
+                                <text x="85" y="22" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="700">Settlement</text>
+                                <text x="85" y="40" text-anchor="middle" fill="#94a3b8" font-size="8">.NET 8 API</text>
+                            </g>
+                            <g transform="translate(730,86)">
+                                <rect width="130" height="56" rx="6" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.3"/>
+                                <g transform="translate(8,6)">
+                                    <rect width="28" height="22" rx="3" fill="#5b5fc7"/>
+                                    <rect x="4" y="4" width="8" height="6" rx="1" fill="#fff"/>
+                                    <rect x="14" y="4" width="8" height="6" rx="1" fill="#fff"/>
+                                    <rect x="4" y="12" width="8" height="6" rx="1" fill="#fff"/>
+                                    <rect x="14" y="12" width="8" height="6" rx="1" fill="#fff"/>
+                                </g>
+                                <text x="85" y="22" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="700">IntHub</text>
+                                <text x="85" y="40" text-anchor="middle" fill="#94a3b8" font-size="8">.NET 8 API</text>
+                            </g>
+
+                            <!-- Bottom row: Key Vault + Functions + Monitoring -->
+                            <g transform="translate(15,155)">
+                                <rect width="36" height="36" rx="5" fill="#f5a623"/>
+                                <circle cx="14" cy="16" r="5" fill="none" stroke="#fff" stroke-width="2"/>
+                                <line x1="19" y1="16" x2="30" y2="16" stroke="#fff" stroke-width="2"/>
+                                <line x1="26" y1="13" x2="26" y2="19" stroke="#fff" stroke-width="1.5"/>
+                            </g>
+                            <text x="60" y="178" fill="#e2e8f0" font-size="9" font-weight="600">Key Vault CSI</text>
+
+                            <g transform="translate(160,155)">
+                                <rect width="36" height="36" rx="5" fill="#f5a623"/>
+                                <path d="M20 8 L13 20 H20 L15 28" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+                            </g>
+                            <text x="205" y="178" fill="#e2e8f0" font-size="9" font-weight="600">Azure Functions</text>
+
+                            <g transform="translate(320,155)">
+                                <rect width="36" height="36" rx="5" fill="#68217a"/>
+                                <circle cx="18" cy="18" r="8" fill="none" stroke="#fff" stroke-width="2"/>
+                                <path d="M12 22 L16 16 L20 20 L26 12" fill="none" stroke="#fff" stroke-width="1.8"/>
+                            </g>
+                            <text x="365" y="178" fill="#e2e8f0" font-size="9" font-weight="600">App Insights</text>
+
+                            <g transform="translate(480,155)">
+                                <rect width="36" height="36" rx="5" fill="#e6522c"/>
+                                <circle cx="18" cy="18" r="9" fill="none" stroke="#fff" stroke-width="2"/>
+                                <path d="M12 18 L15 14 L18 18 L21 12 L24 16" fill="none" stroke="#fff" stroke-width="1.5"/>
+                            </g>
+                            <text x="530" y="178" fill="#e2e8f0" font-size="9" font-weight="600">Prometheus + Grafana</text>
+
+                            <g transform="translate(680,155)">
+                                <rect width="36" height="36" rx="5" fill="#0078d4"/>
+                                <rect x="8" y="10" width="20" height="16" rx="2" fill="none" stroke="#fff" stroke-width="2"/>
+                                <rect x="10" y="12" width="7" height="5" rx="1" fill="#fff"/>
+                                <rect x="19" y="12" width="7" height="5" rx="1" fill="#fff"/>
+                                <rect x="10" y="19" width="7" height="5" rx="1" fill="#fff"/>
+                            </g>
+                            <text x="730" y="178" fill="#e2e8f0" font-size="9" font-weight="600">Container Registry</text>
+                        </g>
+
+                        <!-- Data Layer -->
+                        <g transform="translate(60,555)">
+                            <rect width="880" height="70" rx="8" fill="#16213e" stroke="#d97706" stroke-width="1.5"/>
+                            <text x="15" y="18" fill="#fbbf24" font-size="10" font-weight="700">Data Layer</text>
+
+                            <g transform="translate(15,26)">
+                                <rect width="36" height="36" rx="5" fill="#13aa52"/>
+                                <path d="M18 8 C18 8 12 14 12 20 C12 26 18 30 18 30 C18 30 24 26 24 20 C24 14 18 8 18 8Z" fill="none" stroke="#fff" stroke-width="1.8"/>
+                                <line x1="18" y1="12" x2="18" y2="28" stroke="#fff" stroke-width="1.5"/>
+                            </g>
+                            <text x="60" y="50" fill="#e2e8f0" font-size="9" font-weight="600">MongoDB</text>
+
+                            <g transform="translate(140,26)">
+                                <rect width="36" height="36" rx="5" fill="#dc382d"/>
+                                <rect x="8" y="14" width="20" height="12" rx="3" fill="none" stroke="#fff" stroke-width="2"/>
+                                <line x1="10" y1="20" x2="26" y2="20" stroke="#fff" stroke-width="1.5"/>
+                                <circle cx="22" cy="17" r="2" fill="#fff"/>
+                            </g>
+                            <text x="167" y="50" fill="#e2e8f0" font-size="9" font-weight="600">Redis Cache</text>
+
+                            <g transform="translate(275,26)">
+                                <rect width="36" height="36" rx="5" fill="#0078d4"/>
+                                <rect x="10" y="8" width="16" height="20" rx="2" fill="none" stroke="#fff" stroke-width="1.8"/>
+                                <path d="M10 14 L26 14" stroke="#fff" stroke-width="1.5"/>
+                                <circle cx="18" cy="22" r="3" fill="none" stroke="#fff" stroke-width="1.5"/>
+                            </g>
+                            <text x="302" y="50" fill="#e2e8f0" font-size="9" font-weight="600">Blob Storage</text>
+
+                            <g transform="translate(410,26)">
+                                <rect width="36" height="36" rx="5" fill="#0078d4"/>
+                                <circle cx="18" cy="18" r="10" fill="none" stroke="#fff" stroke-width="1.5"/>
+                                <ellipse cx="18" cy="18" rx="5" ry="10" fill="none" stroke="#fff" stroke-width="1"/>
+                                <line x1="8" y1="18" x2="28" y2="18" stroke="#fff" stroke-width="1"/>
+                            </g>
+                            <text x="437" y="50" fill="#e2e8f0" font-size="9" font-weight="600">CosmosDB</text>
+
+                            <g transform="translate(545,26)">
+                                <rect width="36" height="36" rx="5" fill="#0078d4"/>
+                                <circle cx="18" cy="13" r="5" fill="none" stroke="#fff" stroke-width="1.8"/>
+                                <path d="M8 32 Q8 24 18 24 Q28 24 28 32" fill="none" stroke="#fff" stroke-width="1.8"/>
+                            </g>
+                            <text x="572" y="50" fill="#e2e8f0" font-size="9" font-weight="600">Azure B2C</text>
+
+                            <g transform="translate(680,26)">
+                                <rect width="36" height="36" rx="5" fill="#e3342f"/>
+                                <rect x="8" y="12" width="20" height="16" rx="2" fill="none" stroke="#fff" stroke-width="1.8"/>
+                                <path d="M14 16 L14 24 M18 14 L18 24 M22 16 L22 24" stroke="#fff" stroke-width="1.5"/>
+                            </g>
+                            <text x="707" y="50" fill="#e2e8f0" font-size="9" font-weight="600">Firewall</text>
+
+                            <g transform="translate(800,26)">
+                                <rect width="36" height="36" rx="5" fill="#0078d4"/>
+                                <rect x="11" y="16" width="14" height="12" rx="2" fill="none" stroke="#fff" stroke-width="1.8"/>
+                                <path d="M13 16 L13 12 Q13 8 18 8 Q23 8 23 12 L23 16" fill="none" stroke="#fff" stroke-width="1.8"/>
+                                <circle cx="18" cy="22" r="2" fill="#fff"/>
+                            </g>
+                            <text x="827" y="50" fill="#e2e8f0" font-size="9" font-weight="600">Bastion</text>
+                        </g>
+
+                        <!-- IaC Footer -->
+                        <g transform="translate(60,640)">
+                            <rect width="880" height="40" rx="6" fill="#1e1b4b" stroke="#6b4fbb" stroke-width="1"/>
+                            <g transform="translate(10,4)">
+                                <rect width="32" height="32" rx="5" fill="#6b4fbb"/>
+                                <text x="16" y="21" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">TF</text>
+                            </g>
+                            <text x="55" y="20" fill="#a78bfa" font-size="10" font-weight="700">Terraform (Modular IaC)</text>
+                            <text x="55" y="34" fill="#94a3b8" font-size="9">Modules: aks • api_management • app_service • key_vault • networking • monitoring</text>
+                            <g transform="translate(700,4)">
+                                <rect width="32" height="32" rx="5" fill="#24292e"/>
+                                <circle cx="16" cy="16" r="10" fill="none" stroke="#fff" stroke-width="1.5"/>
+                                <circle cx="16" cy="16" r="4" fill="#fff"/>
+                                <path d="M16 6 L16 10 M16 22 L16 26 M6 16 L10 16 M22 16 L26 16" stroke="#fff" stroke-width="1.5"/>
+                            </g>
+                            <text x="745" y="24" fill="#e2e8f0" font-size="9" font-weight="600">GitHub Actions CI/CD</text>
+                        </g>
+                    </svg>
+                </div>
+                <div class="arch-footer">
+                    <div class="arch-tech-row">
+                        <span>Azure AKS</span><span>Terraform</span><span>Kustomize</span><span>APIM</span><span>WAF_v2</span><span>Key Vault CSI</span><span>.NET 8</span><span>MongoDB</span><span>Redis</span><span>GitHub Actions</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Platform 2: Automation Workflows with AI Agents Platform (ActionAI/GenOr) -->
+            <div class="arch-item reveal">
+                <div class="arch-item-header">
+                    <div>
+                        <div class="arch-item-title">Automation Workflows with AI Agents Platform</div>
+                        <div class="arch-item-subtitle">Enterprise AI configuration engine — 12 microservices, Helm umbrella chart, Argo CD GitOps, Kafka event streaming, Front Door CDN</div>
+                    </div>
+                    <div class="arch-item-badge arch-badge-azure">Azure + GitOps</div>
+                </div>
+                <div class="arch-diagram-wrap">
+                    <svg viewBox="0 0 1000 720" xmlns="http://www.w3.org/2000/svg" style="font-family: 'Segoe UI', sans-serif;">
+                        <rect width="1000" height="720" fill="#1a1a2e"/>
+
+                        <text x="500" y="28" text-anchor="middle" fill="#e2e8f0" font-size="15" font-weight="700">AI Agents Platform — Azure AKS + Argo CD GitOps</text>
+                        <text x="500" y="48" text-anchor="middle" fill="#94a3b8" font-size="10">3 Environments (DEV / UAT / PROD) • Helm Umbrella Chart • Event-Driven Architecture</text>
+
+                        <!-- Front Door CDN -->
+                        <g transform="translate(420,60)">
+                            <rect width="48" height="48" rx="6" fill="#0078d4"/>
+                            <circle cx="24" cy="24" r="12" fill="none" stroke="#fff" stroke-width="2"/>
+                            <circle cx="24" cy="24" r="5" fill="#fff"/>
+                            <path d="M18 14 Q24 10 30 14" fill="none" stroke="#fff" stroke-width="1.5"/>
+                            <path d="M18 34 Q24 38 30 34" fill="none" stroke="#fff" stroke-width="1.5"/>
+                        </g>
+                        <text x="444" y="122" text-anchor="middle" fill="#cbd5e1" font-size="10" font-weight="600">Azure Front Door</text>
+                        <text x="444" y="135" text-anchor="middle" fill="#94a3b8" font-size="8">CDN + Private Link to Storage</text>
+
+                        <!-- VPN Gateway -->
+                        <g transform="translate(600,60)">
+                            <rect width="48" height="48" rx="6" fill="#0078d4"/>
+                            <rect x="10" y="14" width="28" height="20" rx="3" fill="none" stroke="#fff" stroke-width="1.8"/>
+                            <path d="M18 24 L24 18 L30 24" fill="none" stroke="#fff" stroke-width="2"/>
+                            <line x1="24" y1="18" x2="24" y2="32" stroke="#fff" stroke-width="2"/>
+                        </g>
+                        <text x="624" y="122" text-anchor="middle" fill="#cbd5e1" font-size="10" font-weight="600">VPN Gateway</text>
+
+                        <!-- APIM -->
+                        <g transform="translate(250,60)">
+                            <rect width="48" height="48" rx="6" fill="#6b4fbb"/>
+                            <rect x="10" y="14" width="28" height="18" rx="3" fill="none" stroke="#fff" stroke-width="1.8"/>
+                            <text x="24" y="27" text-anchor="middle" fill="#fff" font-size="8" font-weight="700">API</text>
+                        </g>
+                        <text x="274" y="122" text-anchor="middle" fill="#cbd5e1" font-size="10" font-weight="600">Azure APIM</text>
+                        <text x="274" y="135" text-anchor="middle" fill="#94a3b8" font-size="8">Auto-Registration</text>
+
+                        <!-- Arrows down -->
+                        <path d="M274 110 L274 155" stroke="#6b4fbb" stroke-width="1.5" marker-end="url(#arrPurple)"/>
+                        <path d="M444 110 L444 155" stroke="#3b9cff" stroke-width="1.5" marker-end="url(#arrBlue)"/>
+
+                        <!-- Argo CD Box -->
+                        <g transform="translate(60,155)">
+                            <rect width="380" height="70" rx="8" fill="#16213e" stroke="#ef7b4d" stroke-width="1.5"/>
+                            <g transform="translate(15,15)">
+                                <rect width="40" height="40" rx="20" fill="#ef7b4d"/>
+                                <circle cx="20" cy="20" r="10" fill="none" stroke="#fff" stroke-width="2"/>
+                                <path d="M15 20 L20 15 L25 20 M20 15 L20 28" fill="none" stroke="#fff" stroke-width="2"/>
+                            </g>
+                            <text x="70" y="32" fill="#e2e8f0" font-size="11" font-weight="700">Argo CD (GitOps)</text>
+                            <text x="70" y="48" fill="#94a3b8" font-size="9">App-of-Apps Pattern • Auto Prune • Self-Heal • Server-Side Apply</text>
+                            <!-- Helm icon -->
+                            <g transform="translate(300,15)">
+                                <rect width="40" height="40" rx="6" fill="#0f1689"/>
+                                <circle cx="20" cy="20" r="10" fill="none" stroke="#fff" stroke-width="2"/>
+                                <path d="M16 16 L20 12 L24 16 M16 24 L20 28 L24 24" fill="none" stroke="#fff" stroke-width="1.5"/>
+                            </g>
+                            <text x="345" y="60" fill="#94a3b8" font-size="8">Helm Umbrella</text>
+                        </g>
+
+                        <!-- GitHub Actions -->
+                        <g transform="translate(500,155)">
+                            <rect width="180" height="70" rx="8" fill="#16213e" stroke="#24292e" stroke-width="1.5"/>
+                            <g transform="translate(15,15)">
+                                <rect width="40" height="40" rx="6" fill="#24292e"/>
+                                <circle cx="20" cy="20" r="12" fill="none" stroke="#fff" stroke-width="1.8"/>
+                                <circle cx="20" cy="20" r="4" fill="#fff"/>
+                                <path d="M20 8 L20 12 M20 28 L20 32 M8 20 L12 20 M28 20 L32 20" stroke="#fff" stroke-width="1.8"/>
+                            </g>
+                            <text x="70" y="32" fill="#e2e8f0" font-size="10" font-weight="700">GitHub Actions</text>
+                            <text x="70" y="48" fill="#94a3b8" font-size="9">Build → Push ACR → Sync Argo</text>
+                        </g>
+
+                        <!-- Key Vault -->
+                        <g transform="translate(730,155)">
+                            <rect width="180" height="70" rx="8" fill="#16213e" stroke="#f5a623" stroke-width="1.5"/>
+                            <g transform="translate(15,15)">
+                                <rect width="40" height="40" rx="6" fill="#f5a623"/>
+                                <circle cx="16" cy="18" r="6" fill="none" stroke="#fff" stroke-width="2"/>
+                                <line x1="22" y1="18" x2="34" y2="18" stroke="#fff" stroke-width="2"/>
+                                <line x1="30" y1="15" x2="30" y2="21" stroke="#fff" stroke-width="1.5"/>
+                            </g>
+                            <text x="70" y="32" fill="#e2e8f0" font-size="10" font-weight="700">Key Vault</text>
+                            <text x="70" y="48" fill="#94a3b8" font-size="9">Entra RBAC • CSI Driver</text>
+                        </g>
+
+                        <!-- AKS Cluster -->
+                        <g transform="translate(60,250)">
+                            <rect width="880" height="280" rx="10" fill="#0f172a" stroke="#326ce5" stroke-width="2"/>
+                            <g transform="translate(10,8)">
+                                <rect width="40" height="40" rx="6" fill="#326ce5"/>
+                                <circle cx="20" cy="20" r="10" fill="none" stroke="#fff" stroke-width="2"/>
+                                <circle cx="20" cy="20" r="3.5" fill="#fff"/>
+                                <line x1="20" y1="10" x2="20" y2="14" stroke="#fff" stroke-width="2"/>
+                                <line x1="20" y1="26" x2="20" y2="30" stroke="#fff" stroke-width="2"/>
+                                <line x1="11" y1="15" x2="14.5" y2="17" stroke="#fff" stroke-width="2"/>
+                                <line x1="25.5" y1="23" x2="29" y2="25" stroke="#fff" stroke-width="2"/>
+                            </g>
+                            <text x="60" y="24" fill="#60a5fa" font-size="12" font-weight="700">Azure Kubernetes Service (AKS)</text>
+                            <text x="60" y="40" fill="#94a3b8" font-size="9">Standard_D4s_v3 • Envoy Sidecar mTLS • Namespace Isolation</text>
+
+                            <!-- Ingress bar -->
+                            <rect x="15" y="52" width="850" height="24" rx="5" fill="#1e293b" stroke="#326ce5" stroke-width="1"/>
+                            <text x="440" y="68" text-anchor="middle" fill="#60a5fa" font-size="9" font-weight="600">NGINX Ingress + Envoy mTLS → /engine /eval /config /notify /scheduler /accounts /security /genone /logs /socket /wrappers</text>
+
+                            <!-- Row 1 microservices -->
+                            <g transform="translate(15,86)">
+                                <rect width="138" height="50" rx="5" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.2"/>
+                                <g transform="translate(6,5)">
+                                    <rect width="24" height="18" rx="3" fill="#5b5fc7"/>
+                                    <rect x="3" y="3" width="7" height="5" rx="1" fill="#fff"/>
+                                    <rect x="12" y="3" width="7" height="5" rx="1" fill="#fff"/>
+                                    <rect x="3" y="10" width="7" height="5" rx="1" fill="#fff"/>
+                                </g>
+                                <text x="80" y="20" text-anchor="middle" fill="#e2e8f0" font-size="9" font-weight="700">PlatformEngine</text>
+                                <text x="80" y="36" text-anchor="middle" fill="#94a3b8" font-size="7">.NET 8 • Core Logic</text>
+                            </g>
+                            <g transform="translate(163,86)">
+                                <rect width="138" height="50" rx="5" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.2"/>
+                                <g transform="translate(6,5)">
+                                    <rect width="24" height="18" rx="3" fill="#5b5fc7"/>
+                                    <rect x="3" y="3" width="7" height="5" rx="1" fill="#fff"/>
+                                    <rect x="12" y="3" width="7" height="5" rx="1" fill="#fff"/>
+                                    <rect x="3" y="10" width="7" height="5" rx="1" fill="#fff"/>
+                                </g>
+                                <text x="80" y="20" text-anchor="middle" fill="#e2e8f0" font-size="9" font-weight="700">Evaluation</text>
+                                <text x="80" y="36" text-anchor="middle" fill="#94a3b8" font-size="7">.NET 8 • AI Scoring</text>
+                            </g>
+                            <g transform="translate(311,86)">
+                                <rect width="138" height="50" rx="5" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.2"/>
+                                <g transform="translate(6,5)">
+                                    <rect width="24" height="18" rx="3" fill="#5b5fc7"/>
+                                    <rect x="3" y="3" width="7" height="5" rx="1" fill="#fff"/>
+                                    <rect x="12" y="3" width="7" height="5" rx="1" fill="#fff"/>
+                                    <rect x="3" y="10" width="7" height="5" rx="1" fill="#fff"/>
+                                </g>
+                                <text x="80" y="20" text-anchor="middle" fill="#e2e8f0" font-size="9" font-weight="700">Configurations</text>
+                                <text x="80" y="36" text-anchor="middle" fill="#94a3b8" font-size="7">.NET 8 • Rules Engine</text>
+                            </g>
+                            <g transform="translate(459,86)">
+                                <rect width="138" height="50" rx="5" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.2"/>
+                                <g transform="translate(6,5)">
+                                    <rect width="24" height="18" rx="3" fill="#5b5fc7"/>
+                                    <rect x="3" y="3" width="7" height="5" rx="1" fill="#fff"/>
+                                    <rect x="12" y="3" width="7" height="5" rx="1" fill="#fff"/>
+                                    <rect x="3" y="10" width="7" height="5" rx="1" fill="#fff"/>
+                                </g>
+                                <text x="80" y="20" text-anchor="middle" fill="#e2e8f0" font-size="9" font-weight="700">Notifications</text>
+                                <text x="80" y="36" text-anchor="middle" fill="#94a3b8" font-size="7">.NET 8 • Push/Email</text>
+                            </g>
+                            <g transform="translate(607,86)">
+                                <rect width="138" height="50" rx="5" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.2"/>
+                                <g transform="translate(6,5)">
+                                    <rect width="24" height="18" rx="3" fill="#5b5fc7"/>
+                                    <rect x="3" y="3" width="7" height="5" rx="1" fill="#fff"/>
+                                    <rect x="12" y="3" width="7" height="5" rx="1" fill="#fff"/>
+                                    <rect x="3" y="10" width="7" height="5" rx="1" fill="#fff"/>
+                                </g>
+                                <text x="80" y="20" text-anchor="middle" fill="#e2e8f0" font-size="9" font-weight="700">Scheduler</text>
+                                <text x="80" y="36" text-anchor="middle" fill="#94a3b8" font-size="7">.NET 8 • Jobs</text>
+                            </g>
+                            <g transform="translate(755,86)">
+                                <rect width="108" height="50" rx="5" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.2"/>
+                                <g transform="translate(6,5)">
+                                    <rect width="24" height="18" rx="3" fill="#5b5fc7"/>
+                                    <rect x="3" y="3" width="7" height="5" rx="1" fill="#fff"/>
+                                    <rect x="12" y="3" width="7" height="5" rx="1" fill="#fff"/>
+                                    <rect x="3" y="10" width="7" height="5" rx="1" fill="#fff"/>
+                                </g>
+                                <text x="60" y="20" text-anchor="middle" fill="#e2e8f0" font-size="9" font-weight="700">GenOne</text>
+                                <text x="60" y="36" text-anchor="middle" fill="#94a3b8" font-size="7">AI Agent</text>
+                            </g>
+
+                            <!-- Row 2 microservices -->
+                            <g transform="translate(15,146)">
+                                <rect width="138" height="50" rx="5" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.2"/>
+                                <g transform="translate(6,5)">
+                                    <rect width="24" height="18" rx="3" fill="#5b5fc7"/>
+                                    <rect x="3" y="3" width="7" height="5" rx="1" fill="#fff"/>
+                                    <rect x="12" y="3" width="7" height="5" rx="1" fill="#fff"/>
+                                    <rect x="3" y="10" width="7" height="5" rx="1" fill="#fff"/>
+                                </g>
+                                <text x="80" y="20" text-anchor="middle" fill="#e2e8f0" font-size="9" font-weight="700">Accounts</text>
+                                <text x="80" y="36" text-anchor="middle" fill="#94a3b8" font-size="7">.NET 8 • Auth</text>
+                            </g>
+                            <g transform="translate(163,146)">
+                                <rect width="138" height="50" rx="5" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.2"/>
+                                <g transform="translate(6,5)">
+                                    <rect width="24" height="18" rx="3" fill="#5b5fc7"/>
+                                    <rect x="3" y="3" width="7" height="5" rx="1" fill="#fff"/>
+                                    <rect x="12" y="3" width="7" height="5" rx="1" fill="#fff"/>
+                                    <rect x="3" y="10" width="7" height="5" rx="1" fill="#fff"/>
+                                </g>
+                                <text x="80" y="20" text-anchor="middle" fill="#e2e8f0" font-size="9" font-weight="700">Security</text>
+                                <text x="80" y="36" text-anchor="middle" fill="#94a3b8" font-size="7">.NET 8 • RBAC</text>
+                            </g>
+                            <g transform="translate(311,146)">
+                                <rect width="138" height="50" rx="5" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.2"/>
+                                <g transform="translate(6,5)">
+                                    <rect width="24" height="18" rx="3" fill="#5b5fc7"/>
+                                    <rect x="3" y="3" width="7" height="5" rx="1" fill="#fff"/>
+                                    <rect x="12" y="3" width="7" height="5" rx="1" fill="#fff"/>
+                                    <rect x="3" y="10" width="7" height="5" rx="1" fill="#fff"/>
+                                </g>
+                                <text x="80" y="20" text-anchor="middle" fill="#e2e8f0" font-size="9" font-weight="700">Logs</text>
+                                <text x="80" y="36" text-anchor="middle" fill="#94a3b8" font-size="7">.NET 8 • Telemetry</text>
+                            </g>
+                            <g transform="translate(459,146)">
+                                <rect width="138" height="50" rx="5" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.2"/>
+                                <g transform="translate(6,5)">
+                                    <rect width="24" height="18" rx="3" fill="#5b5fc7"/>
+                                    <rect x="3" y="3" width="7" height="5" rx="1" fill="#fff"/>
+                                    <rect x="12" y="3" width="7" height="5" rx="1" fill="#fff"/>
+                                    <rect x="3" y="10" width="7" height="5" rx="1" fill="#fff"/>
+                                </g>
+                                <text x="80" y="20" text-anchor="middle" fill="#e2e8f0" font-size="9" font-weight="700">ConfigSocket</text>
+                                <text x="80" y="36" text-anchor="middle" fill="#94a3b8" font-size="7">.NET 8 • WebSocket</text>
+                            </g>
+                            <g transform="translate(607,146)">
+                                <rect width="138" height="50" rx="5" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.2"/>
+                                <g transform="translate(6,5)">
+                                    <rect width="24" height="18" rx="3" fill="#5b5fc7"/>
+                                    <rect x="3" y="3" width="7" height="5" rx="1" fill="#fff"/>
+                                    <rect x="12" y="3" width="7" height="5" rx="1" fill="#fff"/>
+                                    <rect x="3" y="10" width="7" height="5" rx="1" fill="#fff"/>
+                                </g>
+                                <text x="80" y="20" text-anchor="middle" fill="#e2e8f0" font-size="9" font-weight="700">Wrappers</text>
+                                <text x="80" y="36" text-anchor="middle" fill="#94a3b8" font-size="7">.NET 8 • Integration</text>
+                            </g>
+
+                            <!-- Kafka bar -->
+                            <g transform="translate(15,210)">
+                                <rect width="848" height="50" rx="6" fill="#1e293b" stroke="#231f20" stroke-width="1.5"/>
+                                <g transform="translate(10,5)">
+                                    <rect width="40" height="40" rx="6" fill="#231f20"/>
+                                    <text x="20" y="16" text-anchor="middle" fill="#fff" font-size="6" font-weight="700">KAFKA</text>
+                                    <path d="M15 22 L25 22 M15 28 L25 28 M15 34 L25 34" stroke="#fff" stroke-width="1.5"/>
+                                </g>
+                                <text x="65" y="26" fill="#e2e8f0" font-size="10" font-weight="700">Apache Kafka (Strimzi Operator)</text>
+                                <text x="65" y="42" fill="#94a3b8" font-size="9">Event Streaming • Topic-per-Service • Consumer Groups • Schema Registry</text>
+                                <!-- Monitoring icon -->
+                                <g transform="translate(750,5)">
+                                    <rect width="36" height="36" rx="5" fill="#e6522c"/>
+                                    <circle cx="18" cy="18" r="9" fill="none" stroke="#fff" stroke-width="2"/>
+                                    <path d="M12 18 L15 14 L18 18 L21 12 L24 16" fill="none" stroke="#fff" stroke-width="1.5"/>
+                                </g>
+                                <text x="810" y="30" fill="#e2e8f0" font-size="8" font-weight="600">Prometheus</text>
+                            </g>
+                        </g>
+
+                        <!-- Data & Storage Layer -->
+                        <g transform="translate(60,548)">
+                            <rect width="880" height="70" rx="8" fill="#16213e" stroke="#0078d4" stroke-width="1.5"/>
+                            <text x="15" y="18" fill="#60a5fa" font-size="10" font-weight="700">Data &amp; Storage</text>
+
+                            <!-- MongoDB -->
+                            <g transform="translate(15,26)">
+                                <rect width="36" height="36" rx="5" fill="#13aa52"/>
+                                <path d="M18 8 C18 8 12 14 12 20 C12 26 18 30 18 30 C18 30 24 26 24 20 C24 14 18 8 18 8Z" fill="none" stroke="#fff" stroke-width="1.8"/>
+                                <line x1="18" y1="12" x2="18" y2="28" stroke="#fff" stroke-width="1.5"/>
+                            </g>
+                            <text x="60" y="50" fill="#e2e8f0" font-size="9" font-weight="600">MongoDB Atlas</text>
+
+                            <!-- Blob Storage -->
+                            <g transform="translate(165,26)">
+                                <rect width="36" height="36" rx="5" fill="#0078d4"/>
+                                <rect x="10" y="8" width="16" height="20" rx="2" fill="none" stroke="#fff" stroke-width="1.8"/>
+                                <path d="M10 14 L26 14" stroke="#fff" stroke-width="1.5"/>
+                                <circle cx="18" cy="22" r="3" fill="none" stroke="#fff" stroke-width="1.5"/>
+                            </g>
+                            <text x="192" y="50" fill="#e2e8f0" font-size="9" font-weight="600">Blob Storage</text>
+
+                            <!-- Redis -->
+                            <g transform="translate(305,26)">
+                                <rect width="36" height="36" rx="5" fill="#dc382d"/>
+                                <rect x="8" y="14" width="20" height="12" rx="3" fill="none" stroke="#fff" stroke-width="2"/>
+                                <line x1="10" y1="20" x2="26" y2="20" stroke="#fff" stroke-width="1.5"/>
+                                <circle cx="22" cy="17" r="2" fill="#fff"/>
+                            </g>
+                            <text x="332" y="50" fill="#e2e8f0" font-size="9" font-weight="600">Redis Cache</text>
+
+                            <!-- Entra ID -->
+                            <g transform="translate(445,26)">
+                                <rect width="36" height="36" rx="5" fill="#0078d4"/>
+                                <circle cx="18" cy="13" r="5" fill="none" stroke="#fff" stroke-width="1.8"/>
+                                <path d="M8 32 Q8 24 18 24 Q28 24 28 32" fill="none" stroke="#fff" stroke-width="1.8"/>
+                            </g>
+                            <text x="472" y="50" fill="#e2e8f0" font-size="9" font-weight="600">Entra ID</text>
+
+                            <!-- SonarQube -->
+                            <g transform="translate(575,26)">
+                                <rect width="36" height="36" rx="5" fill="#4e9bcd"/>
+                                <text x="18" y="22" text-anchor="middle" fill="#fff" font-size="8" font-weight="700">SQ</text>
+                            </g>
+                            <text x="602" y="50" fill="#e2e8f0" font-size="9" font-weight="600">SonarQube</text>
+
+                            <!-- ACR -->
+                            <g transform="translate(700,26)">
+                                <rect width="36" height="36" rx="5" fill="#0078d4"/>
+                                <rect x="8" y="10" width="20" height="16" rx="2" fill="none" stroke="#fff" stroke-width="2"/>
+                                <rect x="10" y="12" width="7" height="5" rx="1" fill="#fff"/>
+                                <rect x="19" y="12" width="7" height="5" rx="1" fill="#fff"/>
+                                <rect x="10" y="19" width="7" height="5" rx="1" fill="#fff"/>
+                            </g>
+                            <text x="745" y="50" fill="#e2e8f0" font-size="9" font-weight="600">Container Registry</text>
+                        </g>
+
+                        <!-- Terraform footer -->
+                        <g transform="translate(60,635)">
+                            <rect width="880" height="40" rx="6" fill="#1e1b4b" stroke="#6b4fbb" stroke-width="1"/>
+                            <g transform="translate(10,4)">
+                                <rect width="32" height="32" rx="5" fill="#6b4fbb"/>
+                                <text x="16" y="21" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">TF</text>
+                            </g>
+                            <text x="55" y="20" fill="#a78bfa" font-size="10" font-weight="700">Terraform (Modular IaC)</text>
+                            <text x="55" y="34" fill="#94a3b8" font-size="9">Modules: compute • networking • front_door • security • monitoring • integration • certificates</text>
+                            <g transform="translate(700,4)">
+                                <rect width="32" height="32" rx="5" fill="#ef7b4d"/>
+                                <circle cx="16" cy="16" r="10" fill="none" stroke="#fff" stroke-width="1.5"/>
+                                <path d="M11 16 L16 11 L21 16 M16 11 L16 24" fill="none" stroke="#fff" stroke-width="1.8"/>
+                            </g>
+                            <text x="745" y="24" fill="#e2e8f0" font-size="9" font-weight="600">Argo CD Sync</text>
+                        </g>
+                    </svg>
+                </div>
+                <div class="arch-footer">
+                    <div class="arch-tech-row">
+                        <span>Azure AKS</span><span>Argo CD</span><span>Helm</span><span>Kafka Strimzi</span><span>Envoy mTLS</span><span>Front Door</span><span>APIM</span><span>Terraform</span><span>Key Vault</span><span>Entra ID</span><span>.NET 8</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Serverless Image Processing Pipeline -->
+            <div class="arch-item reveal">
+                <div class="arch-item-header">
+                    <div>
+                        <div class="arch-item-title">Serverless Image Processing Pipeline</div>
+                        <div class="arch-item-subtitle">Event-driven architecture — S3 triggers, Lambda compute, DynamoDB metadata tracking</div>
+                    </div>
+                    <div class="arch-item-badge arch-badge-aws">AWS Serverless</div>
+                </div>
+                <div class="arch-diagram-wrap">
+                    <svg viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg" style="font-family: 'Segoe UI', sans-serif;">
+                        <rect width="900" height="320" fill="#1a1a2e"/>
+
+                        <!-- AWS Cloud boundary -->
+                        <rect x="130" y="15" width="740" height="260" rx="8" fill="none" stroke="#ff9900" stroke-width="1.5" stroke-dasharray="6"/>
+                        <g transform="translate(140,20)">
+                            <rect width="32" height="20" rx="3" fill="#232f3e"/>
+                            <text x="16" y="14" text-anchor="middle" fill="#ff9900" font-size="7" font-weight="700">AWS</text>
+                        </g>
+                        <text x="185" y="33" fill="#ff9900" font-size="9" font-weight="600">AWS Cloud</text>
+
+                        <!-- User -->
+                        <g transform="translate(25,100)">
+                            <circle cx="30" cy="18" r="14" fill="none" stroke="#94a3b8" stroke-width="2"/>
+                            <circle cx="30" cy="14" r="5" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+                            <path d="M20 30 Q20 24 30 24 Q40 24 40 30" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <text x="55" y="148" text-anchor="middle" fill="#cbd5e1" font-size="10" font-weight="600">User</text>
+                        <text x="55" y="162" text-anchor="middle" fill="#94a3b8" font-size="8">Upload Image</text>
+
+                        <path d="M88 125 L150 125" stroke="#3f8624" stroke-width="2" marker-end="url(#arrGray)"/>
+
+                        <!-- S3 Input Bucket -->
+                        <g transform="translate(155,90)">
+                            <rect width="48" height="48" rx="6" fill="#3f8624"/>
+                            <ellipse cx="24" cy="14" rx="12" ry="4" fill="none" stroke="#fff" stroke-width="1.8"/>
+                            <path d="M12 14 L12 34 Q12 38 24 38 Q36 38 36 34 L36 14" fill="none" stroke="#fff" stroke-width="1.8"/>
+                            <text x="24" y="30" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">S3</text>
+                        </g>
+                        <text x="179" y="152" text-anchor="middle" fill="#cbd5e1" font-size="9" font-weight="600">Input Bucket</text>
+                        <text x="179" y="165" text-anchor="middle" fill="#94a3b8" font-size="8">Original Images</text>
+
+                        <path d="M203 115 L250 115" stroke="#ff9900" stroke-width="2" marker-end="url(#arrOrange)"/>
+                        <text x="226" y="107" text-anchor="middle" fill="#ff9900" font-size="7" font-weight="600">S3 Event</text>
+
+                        <!-- IAM Role -->
+                        <g transform="translate(245,55)">
+                            <rect width="40" height="40" rx="5" fill="#dd344c"/>
+                            <path d="M20 10 L12 14 L12 22 Q12 28 20 30 Q28 28 28 22 L28 14 Z" fill="none" stroke="#fff" stroke-width="1.8"/>
+                            <circle cx="20" cy="18" r="3" fill="#fff"/>
+                            <rect x="18" y="21" width="4" height="5" rx="1" fill="#fff"/>
+                        </g>
+                        <text x="265" y="105" text-anchor="middle" fill="#cbd5e1" font-size="8">IAM Role</text>
+
+                        <!-- Lambda -->
+                        <g transform="translate(310,85)">
+                            <rect width="60" height="60" rx="8" fill="#ff9900"/>
+                            <text x="30" y="40" text-anchor="middle" fill="#fff" font-size="30" font-weight="700">λ</text>
+                        </g>
+                        <text x="340" y="162" text-anchor="middle" fill="#cbd5e1" font-size="10" font-weight="700">Lambda</text>
+                        <text x="340" y="176" text-anchor="middle" fill="#94a3b8" font-size="8">Image Processor</text>
+                        <text x="340" y="188" text-anchor="middle" fill="#94a3b8" font-size="8">Python 3.9</text>
+
+                        <path d="M370 115 L440 115" stroke="#3f8624" stroke-width="2" marker-end="url(#arrGray)"/>
+                        <text x="405" y="107" text-anchor="middle" fill="#94a3b8" font-size="7">Processed</text>
+
+                        <!-- S3 Output Bucket -->
+                        <g transform="translate(445,90)">
+                            <rect width="48" height="48" rx="6" fill="#3f8624"/>
+                            <ellipse cx="24" cy="14" rx="12" ry="4" fill="none" stroke="#fff" stroke-width="1.8"/>
+                            <path d="M12 14 L12 34 Q12 38 24 38 Q36 38 36 34 L36 14" fill="none" stroke="#fff" stroke-width="1.8"/>
+                            <text x="24" y="30" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">S3</text>
+                        </g>
+                        <text x="469" y="152" text-anchor="middle" fill="#cbd5e1" font-size="9" font-weight="600">Output Bucket</text>
+                        <text x="469" y="165" text-anchor="middle" fill="#94a3b8" font-size="8">Processed Images</text>
+
+                        <!-- DynamoDB -->
+                        <path d="M340 188 L340 210" stroke="#4053d6" stroke-width="1.5" stroke-dasharray="4"/>
+                        <g transform="translate(316,215)">
+                            <rect width="48" height="48" rx="6" fill="#4053d6"/>
+                            <rect x="10" y="10" width="28" height="4" rx="1" fill="#fff"/>
+                            <rect x="10" y="18" width="28" height="4" rx="1" fill="#fff" opacity="0.8"/>
+                            <rect x="10" y="26" width="28" height="4" rx="1" fill="#fff" opacity="0.6"/>
+                            <rect x="10" y="34" width="28" height="4" rx="1" fill="#fff" opacity="0.4"/>
+                        </g>
+                        <text x="340" y="278" text-anchor="middle" fill="#cbd5e1" font-size="9" font-weight="600">DynamoDB</text>
+                        <text x="340" y="292" text-anchor="middle" fill="#94a3b8" font-size="8">Image Metadata</text>
+
+                        <!-- CloudWatch -->
+                        <g transform="translate(560,80)">
+                            <rect width="48" height="48" rx="6" fill="#ff4f8b"/>
+                            <rect x="10" y="10" width="28" height="22" rx="2" fill="none" stroke="#fff" stroke-width="1.8"/>
+                            <path d="M14 26 L18 20 L22 24 L26 16 L30 18" fill="none" stroke="#fff" stroke-width="2"/>
+                            <circle cx="24" cy="38" r="2" fill="#fff"/>
+                        </g>
+                        <text x="584" y="142" text-anchor="middle" fill="#cbd5e1" font-size="9" font-weight="600">CloudWatch</text>
+                        <text x="584" y="155" text-anchor="middle" fill="#94a3b8" font-size="8">Logs &amp; Metrics</text>
+                        <path d="M370 100 L560 100" stroke="#ff4f8b" stroke-width="1" stroke-dasharray="4"/>
+
+                        <!-- CloudFormation -->
+                        <g transform="translate(680,80)">
+                            <rect width="48" height="48" rx="6" fill="#e7157b"/>
+                            <rect x="12" y="10" width="24" height="28" rx="2" fill="none" stroke="#fff" stroke-width="1.8"/>
+                            <line x1="16" y1="16" x2="32" y2="16" stroke="#fff" stroke-width="1.5"/>
+                            <line x1="16" y1="22" x2="28" y2="22" stroke="#fff" stroke-width="1.5"/>
+                            <line x1="16" y1="28" x2="30" y2="28" stroke="#fff" stroke-width="1.5"/>
+                            <line x1="16" y1="34" x2="24" y2="34" stroke="#fff" stroke-width="1.5"/>
+                        </g>
+                        <text x="704" y="142" text-anchor="middle" fill="#cbd5e1" font-size="9" font-weight="600">CloudFormation</text>
+                        <text x="704" y="155" text-anchor="middle" fill="#94a3b8" font-size="8">IaC Deployment</text>
+
+                        <!-- GitHub Actions -->
+                        <g transform="translate(800,80)">
+                            <rect width="48" height="48" rx="6" fill="#24292e"/>
+                            <circle cx="24" cy="24" r="12" fill="none" stroke="#fff" stroke-width="1.8"/>
+                            <circle cx="24" cy="24" r="4" fill="#fff"/>
+                            <path d="M24 12 L24 16 M24 32 L24 36 M12 24 L16 24 M32 24 L36 24" stroke="#fff" stroke-width="1.8"/>
+                        </g>
+                        <text x="824" y="142" text-anchor="middle" fill="#cbd5e1" font-size="9" font-weight="600">GitHub Actions</text>
+                        <text x="824" y="155" text-anchor="middle" fill="#94a3b8" font-size="8">CI/CD</text>
+                    </svg>
+                </div>
+                <div class="arch-footer">
+                    <div class="arch-tech-row">
+                        <span>AWS Lambda</span><span>S3</span><span>DynamoDB</span><span>CloudWatch</span><span>IAM</span><span>CloudFormation</span><span>Python</span>
+                    </div>
+                    <a href="https://github.com/ahmed-el-mahdy/Serverless-Image-Processing-with-S3-and-Lambda" target="_blank" class="arch-link">→ GitHub</a>
+                </div>
+            </div>
+
+            <!-- High Availability Web App (CloudFormation) -->
+            <div class="arch-item reveal">
+                <div class="arch-item-header">
+                    <div>
+                        <div class="arch-item-title">High Availability Web App (CloudFormation)</div>
+                        <div class="arch-item-subtitle">Multi-AZ architecture with ALB, Auto Scaling, Jumpbox, NAT Gateway, and S3 hosting</div>
+                    </div>
+                    <div class="arch-item-badge arch-badge-aws">AWS IaC</div>
+                </div>
+                <div class="arch-diagram-wrap">
+                    <svg viewBox="0 0 880 420" xmlns="http://www.w3.org/2000/svg" style="font-family: 'Segoe UI', sans-serif;">
+                        <rect width="880" height="420" fill="#1a1a2e"/>
+
+                        <!-- AWS Cloud boundary -->
+                        <rect x="120" y="10" width="720" height="395" rx="8" fill="none" stroke="#ff9900" stroke-width="1.5"/>
+                        <g transform="translate(130,14)">
+                            <rect width="32" height="18" rx="3" fill="#232f3e"/>
+                            <text x="16" y="13" text-anchor="middle" fill="#ff9900" font-size="7" font-weight="700">AWS</text>
+                        </g>
+                        <text x="172" y="27" fill="#ff9900" font-size="9" font-weight="600">AWS Cloud</text>
+
+                        <!-- Users -->
+                        <g transform="translate(25,160)">
+                            <circle cx="30" cy="16" r="12" fill="none" stroke="#94a3b8" stroke-width="1.8"/>
+                            <circle cx="30" cy="13" r="5" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+                            <path d="M20 26 Q20 22 30 22 Q40 22 40 26" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+                        </g>
+                        <text x="55" y="200" text-anchor="middle" fill="#cbd5e1" font-size="9" font-weight="600">Users</text>
+
+                        <!-- Internet Gateway -->
+                        <path d="M88 176 L130 176" stroke="#8c4fff" stroke-width="1.5" marker-end="url(#arrPurple)"/>
+                        <g transform="translate(135,156)">
+                            <rect width="40" height="40" rx="5" fill="#8c4fff"/>
+                            <circle cx="20" cy="20" r="10" fill="none" stroke="#fff" stroke-width="2"/>
+                            <path d="M14 20 L26 20 M20 14 L20 26" stroke="#fff" stroke-width="2"/>
+                        </g>
+                        <text x="155" y="208" text-anchor="middle" fill="#cbd5e1" font-size="8" font-weight="600">Internet GW</text>
+
+                        <!-- ALB -->
+                        <path d="M175 176 L210 176" stroke="#8c4fff" stroke-width="1.5" marker-end="url(#arrPurple)"/>
+                        <g transform="translate(215,156)">
+                            <rect width="44" height="44" rx="5" fill="#8c4fff"/>
+                            <circle cx="22" cy="22" r="11" fill="none" stroke="#fff" stroke-width="2"/>
+                            <path d="M16 22 L22 16 L28 22 M16 22 L22 28 L28 22" fill="none" stroke="#fff" stroke-width="1.5"/>
+                        </g>
+                        <text x="237" y="213" text-anchor="middle" fill="#cbd5e1" font-size="8" font-weight="600">Application</text>
+                        <text x="237" y="224" text-anchor="middle" fill="#cbd5e1" font-size="8" font-weight="600">Load Balancer</text>
+
+                        <!-- VPC Box -->
+                        <rect x="285" y="40" width="535" height="355" rx="6" fill="none" stroke="#16a34a" stroke-width="2" stroke-dasharray="6"/>
+                        <text x="300" y="58" fill="#4ade80" font-size="9" font-weight="600">VPC 10.0.0.0/16</text>
+
+                        <!-- Availability Zone 1 -->
+                        <rect x="300" y="65" width="245" height="165" rx="6" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4"/>
+                        <text x="380" y="80" text-anchor="middle" fill="#38bdf8" font-size="9" font-weight="600">Availability Zone 1</text>
+
+                        <!-- Public Subnet 1 -->
+                        <rect x="310" y="88" width="110" height="130" rx="4" fill="rgba(74,222,128,0.08)" stroke="#16a34a" stroke-width="1"/>
+                        <text x="365" y="102" text-anchor="middle" fill="#4ade80" font-size="8" font-weight="600">Public Subnet 1</text>
+                        <g transform="translate(330,107)">
+                            <rect width="32" height="32" rx="4" fill="#ff9900"/>
+                            <rect x="8" y="8" width="16" height="12" rx="2" fill="none" stroke="#fff" stroke-width="1.5"/>
+                            <rect x="12" y="22" width="8" height="4" fill="#fff"/>
+                        </g>
+                        <text x="346" y="148" text-anchor="middle" fill="#cbd5e1" font-size="7">Jumpbox</text>
+                        <g transform="translate(330,155)">
+                            <rect width="32" height="32" rx="4" fill="#8c4fff"/>
+                            <text x="16" y="20" text-anchor="middle" fill="#fff" font-size="8" font-weight="700">NAT</text>
+                        </g>
+                        <text x="346" y="196" text-anchor="middle" fill="#cbd5e1" font-size="7">NAT GW</text>
+                        <text x="365" y="213" text-anchor="middle" fill="#94a3b8" font-size="7">10.0.0.0/24</text>
+
+                        <!-- Private Subnet 1 -->
+                        <rect x="430" y="88" width="105" height="130" rx="4" fill="rgba(96,165,250,0.08)" stroke="#3b82f6" stroke-width="1"/>
+                        <text x="483" y="102" text-anchor="middle" fill="#60a5fa" font-size="8" font-weight="600">Private Subnet 1</text>
+                        <rect x="445" y="110" width="75" height="55" rx="3" fill="none" stroke="#ff9900" stroke-width="1" stroke-dasharray="3"/>
+                        <text x="483" y="122" text-anchor="middle" fill="#ff9900" font-size="7" font-weight="600">Auto Scaling</text>
+                        <g transform="translate(460,126)">
+                            <rect width="28" height="28" rx="4" fill="#ff9900"/>
+                            <rect x="6" y="6" width="16" height="12" rx="2" fill="none" stroke="#fff" stroke-width="1.5"/>
+                            <rect x="10" y="20" width="8" height="3" fill="#fff"/>
+                        </g>
+                        <text x="474" y="163" text-anchor="middle" fill="#cbd5e1" font-size="7">EC2 (WWW)</text>
+                        <text x="483" y="213" text-anchor="middle" fill="#94a3b8" font-size="7">10.0.2.0/24</text>
+
+                        <!-- Availability Zone 2 -->
+                        <rect x="300" y="240" width="245" height="145" rx="6" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4"/>
+                        <text x="380" y="255" text-anchor="middle" fill="#38bdf8" font-size="9" font-weight="600">Availability Zone 2</text>
+
+                        <!-- Public Subnet 2 -->
+                        <rect x="310" y="263" width="110" height="110" rx="4" fill="rgba(74,222,128,0.08)" stroke="#16a34a" stroke-width="1"/>
+                        <text x="365" y="277" text-anchor="middle" fill="#4ade80" font-size="8" font-weight="600">Public Subnet 2</text>
+                        <g transform="translate(330,285)">
+                            <rect width="32" height="32" rx="4" fill="#8c4fff"/>
+                            <text x="16" y="20" text-anchor="middle" fill="#fff" font-size="8" font-weight="700">NAT</text>
+                        </g>
+                        <text x="346" y="325" text-anchor="middle" fill="#cbd5e1" font-size="7">NAT GW</text>
+                        <text x="365" y="368" text-anchor="middle" fill="#94a3b8" font-size="7">10.0.1.0/24</text>
+
+                        <!-- Private Subnet 2 -->
+                        <rect x="430" y="263" width="105" height="110" rx="4" fill="rgba(96,165,250,0.08)" stroke="#3b82f6" stroke-width="1"/>
+                        <text x="483" y="277" text-anchor="middle" fill="#60a5fa" font-size="8" font-weight="600">Private Subnet 2</text>
+                        <rect x="445" y="285" width="75" height="55" rx="3" fill="none" stroke="#ff9900" stroke-width="1" stroke-dasharray="3"/>
+                        <text x="483" y="297" text-anchor="middle" fill="#ff9900" font-size="7" font-weight="600">Auto Scaling</text>
+                        <g transform="translate(460,301)">
+                            <rect width="28" height="28" rx="4" fill="#ff9900"/>
+                            <rect x="6" y="6" width="16" height="12" rx="2" fill="none" stroke="#fff" stroke-width="1.5"/>
+                            <rect x="10" y="20" width="8" height="3" fill="#fff"/>
+                        </g>
+                        <text x="474" y="338" text-anchor="middle" fill="#cbd5e1" font-size="7">EC2 (WWW)</text>
+                        <text x="483" y="368" text-anchor="middle" fill="#94a3b8" font-size="7">10.0.3.0/24</text>
+
+                        <!-- S3 Bucket -->
+                        <g transform="translate(700,140)">
+                            <rect width="48" height="48" rx="6" fill="#3f8624"/>
+                            <ellipse cx="24" cy="14" rx="12" ry="4" fill="none" stroke="#fff" stroke-width="1.8"/>
+                            <path d="M12 14 L12 34 Q12 38 24 38 Q36 38 36 34 L36 14" fill="none" stroke="#fff" stroke-width="1.8"/>
+                            <text x="24" y="30" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">S3</text>
+                        </g>
+                        <text x="724" y="200" text-anchor="middle" fill="#cbd5e1" font-size="9" font-weight="600">S3 Bucket</text>
+                        <text x="724" y="213" text-anchor="middle" fill="#94a3b8" font-size="8">Static Assets</text>
+
+                        <!-- Connections -->
+                        <path d="M259 178 L310 155" stroke="#8c4fff" stroke-width="1.5"/>
+                        <path d="M259 178 L310 310" stroke="#8c4fff" stroke-width="1.5"/>
+                        <path d="M535 155 L700 164" stroke="#888" stroke-width="1" stroke-dasharray="4"/>
+                    </svg>
+                </div>
+                <div class="arch-footer">
+                    <div class="arch-tech-row">
+                        <span>CloudFormation</span><span>VPC</span><span>ALB</span><span>EC2</span><span>Auto Scaling</span><span>Multi-AZ</span><span>NAT Gateway</span><span>S3</span>
+                    </div>
+                    <a href="https://github.com/ahmed-el-mahdy/CloudFormation-Project2" target="_blank" class="arch-link">→ GitHub</a>
+                </div>
+            </div>
+
+            <!-- CI/CD Pipeline & Infrastructure -->
+            <div class="arch-item reveal">
+                <div class="arch-item-header">
+                    <div>
+                        <div class="arch-item-title">CI/CD Pipeline &amp; Infrastructure</div>
+                        <div class="arch-item-subtitle">CircleCI pipeline with CloudFormation infrastructure, Ansible deploy, Prometheus monitoring</div>
+                    </div>
+                    <div class="arch-item-badge arch-badge-cicd">CI/CD Pipeline</div>
+                </div>
+                <div class="arch-diagram-wrap">
+                    <svg viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg" style="font-family: 'Segoe UI', sans-serif;">
+                        <rect width="900" height="340" fill="#1a1a2e"/>
+
+                        <text x="450" y="22" text-anchor="middle" fill="#e2e8f0" font-size="13" font-weight="700">Infrastructure as Code + CI/CD Pipeline</text>
+
+                        <!-- CircleCI box -->
+                        <g transform="translate(20,40)">
+                            <rect width="250" height="80" rx="8" fill="#16213e" stroke="#343434" stroke-width="1.5"/>
+                            <g transform="translate(10,20)">
+                                <rect width="40" height="40" rx="20" fill="#343434"/>
+                                <circle cx="20" cy="20" r="10" fill="none" stroke="#fff" stroke-width="2.5"/>
+                                <circle cx="20" cy="20" r="3" fill="#fff"/>
+                            </g>
+                            <text x="65" y="38" fill="#e2e8f0" font-size="10" font-weight="700">CircleCI</text>
+                            <text x="65" y="54" fill="#94a3b8" font-size="8">Build → Test → Scan → Deploy</text>
+                            <text x="65" y="66" fill="#94a3b8" font-size="8">Rollback on failure</text>
+                            <g transform="translate(170,18)">
+                                <rect width="18" height="24" rx="2" fill="#4b5563"/>
+                                <rect x="4" y="3" width="10" height="3" fill="#fff" opacity="0.5"/>
+                                <rect x="4" y="8" width="10" height="3" fill="#fff" opacity="0.5"/>
+                                <rect x="4" y="13" width="10" height="3" fill="#fff" opacity="0.5"/>
+                            </g>
+                            <g transform="translate(195,18)">
+                                <rect width="18" height="24" rx="2" fill="#4b5563"/>
+                                <rect x="4" y="3" width="10" height="3" fill="#fff" opacity="0.5"/>
+                                <rect x="4" y="8" width="10" height="3" fill="#fff" opacity="0.5"/>
+                            </g>
+                            <g transform="translate(220,18)">
+                                <rect width="18" height="24" rx="2" fill="#4b5563"/>
+                                <rect x="4" y="3" width="10" height="3" fill="#fff" opacity="0.5"/>
+                            </g>
+                            <text x="200" y="55" text-anchor="middle" fill="#94a3b8" font-size="7">Servers</text>
+                        </g>
+
+                        <text x="155" y="132" text-anchor="middle" fill="#cbd5e1" font-size="8">CircleCI Traffic:</text>
+                        <text x="155" y="143" text-anchor="middle" fill="#94a3b8" font-size="7">- Creating / Deleting / Updating Resources</text>
+                        <text x="155" y="154" text-anchor="middle" fill="#94a3b8" font-size="7">- Performing DB Migrations</text>
+
+                        <!-- AWS Cloud box -->
+                        <rect x="300" y="40" width="580" height="285" rx="8" fill="none" stroke="#ff9900" stroke-width="1.5"/>
+                        <g transform="translate(310,44)">
+                            <rect width="32" height="18" rx="3" fill="#232f3e"/>
+                            <text x="16" y="13" text-anchor="middle" fill="#ff9900" font-size="7" font-weight="700">AWS</text>
+                        </g>
+                        <text x="355" y="56" fill="#ff9900" font-size="9" font-weight="600">US East 1 - N. Virginia</text>
+
+                        <!-- VPC -->
+                        <rect x="320" y="65" width="540" height="245" rx="6" fill="none" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="5"/>
+                        <text x="340" y="80" fill="#4ade80" font-size="8" font-weight="600">Default VPC</text>
+
+                        <!-- Public Subnet -->
+                        <rect x="335" y="90" width="220" height="110" rx="4" fill="rgba(74,222,128,0.06)" stroke="#16a34a" stroke-width="1"/>
+                        <text x="345" y="104" fill="#4ade80" font-size="8" font-weight="600">Public Subnet 1</text>
+
+                        <!-- Prometheus Node -->
+                        <g transform="translate(345,112)">
+                            <rect width="32" height="32" rx="4" fill="#e6522c"/>
+                            <circle cx="16" cy="16" r="9" fill="none" stroke="#fff" stroke-width="1.8"/>
+                            <path d="M10 16 L14 12 L18 16 L22 10" fill="none" stroke="#fff" stroke-width="1.5"/>
+                        </g>
+                        <text x="361" y="153" text-anchor="middle" fill="#cbd5e1" font-size="7">Prometheus</text>
+
+                        <!-- Backend Security Group -->
+                        <rect x="400" y="110" width="140" height="80" rx="4" fill="rgba(255,153,0,0.06)" stroke="#ff9900" stroke-width="1" stroke-dasharray="3"/>
+                        <text x="470" y="124" text-anchor="middle" fill="#ff9900" font-size="7" font-weight="600">Backend Sec Grp</text>
+                        <g transform="translate(440,130)">
+                            <rect width="32" height="32" rx="4" fill="#ff9900"/>
+                            <rect x="6" y="6" width="20" height="14" rx="2" fill="none" stroke="#fff" stroke-width="1.5"/>
+                            <rect x="10" y="22" width="12" height="4" fill="#fff"/>
+                        </g>
+                        <text x="456" y="172" text-anchor="middle" fill="#cbd5e1" font-size="7">Backend EC2</text>
+
+                        <!-- Frontend S3 + CloudFront -->
+                        <g transform="translate(600,90)">
+                            <rect width="48" height="48" rx="6" fill="#3f8624"/>
+                            <ellipse cx="24" cy="14" rx="12" ry="4" fill="none" stroke="#fff" stroke-width="1.8"/>
+                            <path d="M12 14 L12 34 Q12 38 24 38 Q36 38 36 34 L36 14" fill="none" stroke="#fff" stroke-width="1.8"/>
+                            <text x="24" y="30" text-anchor="middle" fill="#fff" font-size="7" font-weight="700">S3</text>
+                        </g>
+                        <text x="624" y="150" text-anchor="middle" fill="#cbd5e1" font-size="8" font-weight="600">Frontend Bucket</text>
+
+                        <!-- CloudFront -->
+                        <g transform="translate(720,90)">
+                            <rect width="48" height="48" rx="6" fill="#8c4fff"/>
+                            <circle cx="24" cy="24" r="12" fill="none" stroke="#fff" stroke-width="2"/>
+                            <circle cx="24" cy="24" r="5" fill="#fff"/>
+                            <path d="M18 14 Q24 10 30 14" fill="none" stroke="#fff" stroke-width="1.5"/>
+                        </g>
+                        <text x="744" y="150" text-anchor="middle" fill="#cbd5e1" font-size="8" font-weight="600">CloudFront</text>
+                        <text x="744" y="162" text-anchor="middle" fill="#94a3b8" font-size="7">Distribution</text>
+                        <text x="685" y="118" text-anchor="middle" fill="#94a3b8" font-size="7">Origin</text>
+                        <path d="M648 114 L720 114" stroke="#888" stroke-width="1" marker-end="url(#arrGray)"/>
+
+                        <!-- RDS Database -->
+                        <g transform="translate(450,220)">
+                            <rect width="48" height="48" rx="6" fill="#3b48cc"/>
+                            <ellipse cx="24" cy="14" rx="12" ry="5" fill="none" stroke="#fff" stroke-width="1.8"/>
+                            <path d="M12 14 L12 34" stroke="#fff" stroke-width="1.8"/>
+                            <path d="M36 14 L36 34" stroke="#fff" stroke-width="1.8"/>
+                            <ellipse cx="24" cy="34" rx="12" ry="5" fill="none" stroke="#fff" stroke-width="1.8"/>
+                        </g>
+                        <text x="474" y="280" text-anchor="middle" fill="#cbd5e1" font-size="8" font-weight="600">RDS PostgreSQL</text>
+
+                        <!-- Connections -->
+                        <path d="M270 80 L300 80" stroke="#888" stroke-width="1.5" marker-end="url(#arrGray)"/>
+                    </svg>
+                </div>
+                <div class="arch-footer">
+                    <div class="arch-tech-row">
+                        <span>CircleCI</span><span>CloudFormation</span><span>Ansible</span><span>EC2</span><span>RDS</span><span>Prometheus</span><span>CloudFront</span><span>S3</span>
+                    </div>
+                    <a href="https://github.com/ahmed-el-mahdy/udapeople-cicd" target="_blank" class="arch-link">→ GitHub</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- Education -->
+<section class="edu-section">
+    <div class="edu-container">
+        <div class="section-header reveal">
+            <span class="section-tag">// foundations</span>
+            <h2 class="section-title">Education</h2>
+        </div>
+        <div class="edu-grid">
+            <div class="edu-card reveal">
+                <div class="icon">🎓</div>
+                <h3>B.Sc. Computer Science</h3>
+                <div class="school">Delta University for Science &amp; Technology</div>
+                <div class="year">2014–2018 | GPA: 3.7</div>
+            </div>
+            <div class="edu-card reveal">
+                <div class="icon">🏛️</div>
+                <h3>ITI Diploma — Network &amp; System Admin</h3>
+                <div class="school">Information Technology Institute</div>
+                <div class="year">Oct 2018 – Jan 2019</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section class="contact-section" id="contact">
+    <h2 class="contact-title reveal">Let's <span class="gradient-text">Build</span> Together</h2>
+    <p class="contact-sub reveal">Open to Senior DevOps / Platform Engineer / Cloud Architect roles</p>
+    <p class="contact-sub reveal" style="font-size:14px; opacity:0.6;">Remote • UAE • KSA • Egypt</p>
+    <div class="contact-links reveal">
+        <a href="mailto:a.elmahdy.mail@gmail.com" class="contact-link">📧 a.elmahdy.mail@gmail.com</a>
+        <a href="https://github.com/ahmed-el-mahdy" target="_blank" class="contact-link">GitHub</a>
+        <a href="https://linkedin.com/in/ahmed-el-mahdy-007" target="_blank" class="contact-link">LinkedIn</a>
+        <a href="https://www.credly.com/users/ahmed-el-mahdy-mohammad/badges" target="_blank" class="contact-link">Credly</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <p>© 2026 Ahmed ElMahdy — Platform Engineer</p>
+    <div class="terminal-text">$ echo "AWS SAA • SC-300 • CKA-Ready • AZ-104-Ready"</div>
+</footer>
+
+</div>
+
+<!-- Scroll Reveal Script -->
+<script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Navbar scroll effect
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+        const nav = document.querySelector('.nav');
+        const currentScroll = window.pageYOffset;
+        if (currentScroll > 100) {
+            nav.style.background = 'rgba(10,10,15,0.95)';
+        } else {
+            nav.style.background = 'rgba(10,10,15,0.8)';
+        }
+        lastScroll = currentScroll;
+    });
+</script>
+
+</body>
+</html>
