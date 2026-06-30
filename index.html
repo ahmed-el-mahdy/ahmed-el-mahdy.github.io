@@ -231,6 +231,27 @@
         }
         .hero-stat-label { font-size: 12px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
 
+        .impact-strip {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .impact-pill {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            color: var(--text-primary);
+            background: rgba(0, 212, 255, 0.08);
+            border: 1px solid rgba(0, 212, 255, 0.25);
+            border-radius: 999px;
+            padding: 8px 12px;
+            white-space: nowrap;
+        }
+        .impact-pill strong {
+            color: var(--accent-blue);
+            font-weight: 700;
+        }
+
         /* ═══════════════ SECTION STYLES ═══════════════ */
         .section {
             padding: 120px 20px;
@@ -649,6 +670,8 @@
             .nav { padding: 12px 20px; }
             .nav-links { display: none; }
             .hero-stats { flex-direction: column; gap: 20px; }
+            .impact-strip { margin-top: 16px; }
+            .impact-pill { width: 100%; text-align: center; white-space: normal; }
             .hero h1 { letter-spacing: -1px; }
             .competency-grid { grid-template-columns: 1fr; }
             .projects-grid { grid-template-columns: 1fr; }
@@ -738,6 +761,12 @@
             <div class="hero-stat-num">3+</div>
             <div class="hero-stat-label">Certifications</div>
         </div>
+    </div>
+
+    <div class="impact-strip animate delay-5" aria-label="Impact snapshot">
+        <div class="impact-pill"><strong>24</strong> HPA policies across 4 environments</div>
+        <div class="impact-pill"><strong>0</strong> staging IaC drift</div>
+        <div class="impact-pill"><strong>4</strong> alert rules + <strong>3</strong> availability tests</div>
     </div>
 </section>
 
@@ -994,11 +1023,11 @@
                 <div class="exp-date">Jan 2026 → Present</div>
             </div>
             <ul class="exp-bullets">
-                <li>Stabilized inherited Azure/Terraform platforms across DEV, STAGING, and PROD — resolved drift, state, and configuration risks</li>
-                <li>End-to-end microservice onboarding for ActionAI platform: GitHub repos, CI/CD, Helm deployments, Argo CD automation</li>
+                <li>Stabilized inherited Azure/Terraform platforms across DEV, STAGING, and PROD — reducing infra drift and deployment risk</li>
+                <li>End-to-end microservice onboarding for ActionAI platform: GitHub repos, CI/CD, Helm deployments, Argo CD automation for 12 services</li>
                 <li>Integrated secure delivery: Azure Key Vault, Terraform-based secret governance, Entra group-based RBAC</li>
                 <li>Migrated CI/CD from GitLab to GitHub Actions with validated workflow reliability</li>
-                <li>Platform efficiency through Kubernetes autoscaling, capacity right-sizing, and cost analysis</li>
+                <li>Implemented autoscaling patterns and capacity right-sizing across environments to improve resiliency under load</li>
             </ul>
             <div class="exp-tech">
                 <span>Azure</span><span>Terraform</span><span>Kubernetes</span><span>Helm</span><span>Argo CD</span><span>GitHub Actions</span><span>APIM</span><span>Key Vault</span>
@@ -1018,8 +1047,10 @@
                 <li>Operate 4 AKS clusters with 7 .NET 8 microservices and 2 Angular 19 frontends</li>
                 <li>Kustomize-based multi-environment deployment with NGINX ingress and CSI secret provider</li>
                 <li>DRY GitHub Actions CI/CD: Docker → ACR → AKS → APIM import</li>
+                <li>Implemented 24 HPA policies (6 services × 4 environments) with environment-specific scaling guardrails</li>
+                <li>Optimized Claims workload sizing to 1 vCPU / 2Gi limits to improve heavy PDF and processing stability</li>
                 <li>Production security: WAF, Azure Firewall, APIM rate limiting, Key Vault CSI, B2C auth</li>
-                <li>Grafana + Prometheus monitoring with Application Insights APM</li>
+                <li>Grafana + Prometheus monitoring with Application Insights APM and 4 alert rules + 3 availability tests</li>
             </ul>
             <div class="exp-tech">
                 <span>Azure AKS</span><span>Terraform</span><span>.NET 8</span><span>Angular</span><span>Kustomize</span><span>MongoDB</span><span>Redis</span><span>GitHub Actions</span>
@@ -1110,7 +1141,7 @@
             <div class="project-card reveal">
                 <div class="project-year">2026</div>
                 <h3>Mosadad Recovery Platform</h3>
-                <p>7 microservices, 4 AKS clusters, 4 environments. GitLab→GitHub Actions migration. Kubernetes autoscaling &amp; cost optimization.</p>
+                <p>7 microservices across 4 AKS clusters and 4 environments. Delivered 24 HPA policies, standardized routing/config, and improved IaC alignment to reduce release risk.</p>
                 <div class="project-tags">
                     <span>AKS</span><span>Terraform</span><span>Kustomize</span><span>.NET 8</span><span>MongoDB</span>
                 </div>
@@ -1167,663 +1198,6 @@
             <h2 class="section-title">Architecture <span class="highlight">Diagrams</span></h2>
         </div>
         <div class="arch-grid">
-
-            <!-- Platform 1: InsureTech Platform -->
-            <div class="arch-item reveal">
-                <div class="arch-item-header">
-                    <div>
-                        <div class="arch-item-title">InsureTech Platform</div>
-                        <div class="arch-item-subtitle">Multi-environment insurance claims platform — 7 microservices, 4 Kubernetes clusters, enterprise security</div>
-                    </div>
-                    <div class="arch-item-badge arch-badge-azure">Azure Production</div>
-                </div>
-                <div class="arch-diagram-wrap">
-                    <svg viewBox="0 0 1000 700" xmlns="http://www.w3.org/2000/svg" style="font-family: 'Segoe UI', sans-serif;">
-                        <rect width="1000" height="700" fill="#1a1a2e"/>
-
-                        <defs>
-                            <marker id="arrBlue" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#3b9cff"/></marker>
-                            <marker id="arrGray" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#888"/></marker>
-                            <marker id="arrOrange" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#ff9900"/></marker>
-                            <marker id="arrPurple" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6" fill="#a855f7"/></marker>
-                        </defs>
-
-                        <text x="500" y="28" text-anchor="middle" fill="#e2e8f0" font-size="15" font-weight="700">Production Architecture — Azure Cloud Platform</text>
-                        <text x="500" y="48" text-anchor="middle" fill="#94a3b8" font-size="10">4 Environments (DEV / QA / STAGING / PROD)</text>
-
-                        <!-- Users Icon -->
-                        <g transform="translate(448,60)">
-                            <rect width="44" height="44" rx="6" fill="#0078d4"/>
-                            <circle cx="22" cy="16" r="7" fill="none" stroke="#fff" stroke-width="2"/>
-                            <path d="M10 38 Q10 28 22 28 Q34 28 34 38" fill="none" stroke="#fff" stroke-width="2"/>
-                        </g>
-                        <text x="470" y="118" text-anchor="middle" fill="#cbd5e1" font-size="10" font-weight="600">End Users</text>
-
-                        <path d="M470 120 L470 140" stroke="#3b9cff" stroke-width="2" marker-end="url(#arrBlue)"/>
-
-                        <!-- App Gateway + WAF + DNS -->
-                        <g transform="translate(350,145)">
-                            <rect width="44" height="44" rx="6" fill="#0078d4"/>
-                            <path d="M12 22 L22 12 L32 22 L32 32 L12 32 Z" fill="none" stroke="#fff" stroke-width="2"/>
-                            <line x1="22" y1="22" x2="22" y2="32" stroke="#fff" stroke-width="2"/>
-                        </g>
-                        <text x="372" y="202" text-anchor="middle" fill="#cbd5e1" font-size="9" font-weight="600">App Gateway</text>
-
-                        <g transform="translate(430,145)">
-                            <rect width="44" height="44" rx="6" fill="#e3342f"/>
-                            <path d="M22 10 L12 16 L12 28 Q12 36 22 38 Q32 36 32 28 L32 16 Z" fill="none" stroke="#fff" stroke-width="2"/>
-                            <path d="M18 24 L21 27 L28 20" fill="none" stroke="#fff" stroke-width="2"/>
-                        </g>
-                        <text x="452" y="202" text-anchor="middle" fill="#cbd5e1" font-size="9" font-weight="600">WAF_v2</text>
-
-                        <g transform="translate(510,145)">
-                            <rect width="44" height="44" rx="6" fill="#0078d4"/>
-                            <circle cx="22" cy="22" r="12" fill="none" stroke="#fff" stroke-width="1.8"/>
-                            <ellipse cx="22" cy="22" rx="6" ry="12" fill="none" stroke="#fff" stroke-width="1.2"/>
-                            <line x1="10" y1="22" x2="34" y2="22" stroke="#fff" stroke-width="1.2"/>
-                        </g>
-                        <text x="532" y="202" text-anchor="middle" fill="#cbd5e1" font-size="9" font-weight="600">DNS + TLS</text>
-
-                        <!-- Arrows split -->
-                        <path d="M400 195 L250 230" stroke="#888" stroke-width="1.5" marker-end="url(#arrGray)"/>
-                        <path d="M520 195 L620 230" stroke="#3b9cff" stroke-width="1.5" marker-end="url(#arrBlue)"/>
-
-                        <!-- App Service (Portals) -->
-                        <g transform="translate(150,235)">
-                            <rect width="240" height="70" rx="8" fill="#16213e" stroke="#16a34a" stroke-width="1.5" stroke-dasharray="4"/>
-                            <g transform="translate(15,13)">
-                                <rect width="40" height="40" rx="6" fill="#0078d4"/>
-                                <rect x="10" y="8" width="20" height="24" rx="3" fill="none" stroke="#fff" stroke-width="2"/>
-                                <line x1="14" y1="14" x2="26" y2="14" stroke="#fff" stroke-width="1.5"/>
-                                <line x1="14" y1="19" x2="22" y2="19" stroke="#fff" stroke-width="1.5"/>
-                            </g>
-                            <text x="75" y="30" fill="#e2e8f0" font-size="10" font-weight="700">Admin Portal</text>
-                            <text x="75" y="44" fill="#94a3b8" font-size="8">Angular 19</text>
-                            <g transform="translate(130,13)">
-                                <rect width="40" height="40" rx="6" fill="#0078d4"/>
-                                <rect x="10" y="8" width="20" height="24" rx="3" fill="none" stroke="#fff" stroke-width="2"/>
-                                <line x1="14" y1="14" x2="26" y2="14" stroke="#fff" stroke-width="1.5"/>
-                                <line x1="14" y1="19" x2="22" y2="19" stroke="#fff" stroke-width="1.5"/>
-                            </g>
-                            <text x="190" y="30" fill="#e2e8f0" font-size="10" font-weight="700">Entity Portal</text>
-                            <text x="190" y="44" fill="#94a3b8" font-size="8">Angular 19</text>
-                            <text x="120" y="65" text-anchor="middle" fill="#16a34a" font-size="8" font-weight="600">Azure App Service</text>
-                        </g>
-
-                        <!-- APIM -->
-                        <g transform="translate(520,235)">
-                            <rect width="340" height="70" rx="8" fill="#16213e" stroke="#6b4fbb" stroke-width="1.5"/>
-                            <g transform="translate(15,15)">
-                                <rect width="40" height="40" rx="6" fill="#6b4fbb"/>
-                                <rect x="8" y="12" width="24" height="16" rx="3" fill="none" stroke="#fff" stroke-width="1.8"/>
-                                <text x="20" y="24" text-anchor="middle" fill="#fff" font-size="8" font-weight="700">API</text>
-                            </g>
-                            <text x="75" y="32" fill="#e2e8f0" font-size="10" font-weight="700">API Management (StandardV2)</text>
-                            <text x="75" y="46" fill="#94a3b8" font-size="9">7 APIs • Rate Limiting • CORS • TLS 1.2+</text>
-                            <text x="75" y="60" fill="#94a3b8" font-size="8">Subscription Keys • Security Headers • OpenAPI Import</text>
-                        </g>
-
-                        <!-- Arrow to AKS -->
-                        <path d="M690 305 L550 330" stroke="#3b9cff" stroke-width="2" marker-end="url(#arrBlue)"/>
-
-                        <!-- AKS Cluster Box -->
-                        <g transform="translate(60,330)">
-                            <rect width="880" height="210" rx="10" fill="#0f172a" stroke="#326ce5" stroke-width="2"/>
-                            <g transform="translate(10,8)">
-                                <rect width="40" height="40" rx="6" fill="#326ce5"/>
-                                <circle cx="20" cy="20" r="10" fill="none" stroke="#fff" stroke-width="2"/>
-                                <circle cx="20" cy="20" r="3.5" fill="#fff"/>
-                                <line x1="20" y1="10" x2="20" y2="14" stroke="#fff" stroke-width="2"/>
-                                <line x1="20" y1="26" x2="20" y2="30" stroke="#fff" stroke-width="2"/>
-                                <line x1="11" y1="15" x2="14.5" y2="17" stroke="#fff" stroke-width="2"/>
-                                <line x1="25.5" y1="23" x2="29" y2="25" stroke="#fff" stroke-width="2"/>
-                                <line x1="11" y1="25" x2="14.5" y2="23" stroke="#fff" stroke-width="2"/>
-                                <line x1="25.5" y1="17" x2="29" y2="15" stroke="#fff" stroke-width="2"/>
-                            </g>
-                            <text x="60" y="24" fill="#60a5fa" font-size="12" font-weight="700">Azure Kubernetes Service (AKS)</text>
-                            <text x="60" y="40" fill="#94a3b8" font-size="9">2× Standard_D4ds_v5 • Kubernetes 1.28+ • NGINX Ingress</text>
-
-                            <!-- Ingress bar -->
-                            <rect x="15" y="52" width="850" height="24" rx="5" fill="#1e293b" stroke="#326ce5" stroke-width="1"/>
-                            <text x="440" y="68" text-anchor="middle" fill="#60a5fa" font-size="9" font-weight="600">NGINX Ingress → Path Routing: /claims  /tenant  /quotation  /invoice  /settlement  /inthub</text>
-
-                            <!-- Microservice pods -->
-                            <g transform="translate(15,86)">
-                                <rect width="130" height="56" rx="6" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.3"/>
-                                <g transform="translate(8,6)">
-                                    <rect width="28" height="22" rx="3" fill="#5b5fc7"/>
-                                    <rect x="4" y="4" width="8" height="6" rx="1" fill="#fff"/>
-                                    <rect x="14" y="4" width="8" height="6" rx="1" fill="#fff"/>
-                                    <rect x="4" y="12" width="8" height="6" rx="1" fill="#fff"/>
-                                    <rect x="14" y="12" width="8" height="6" rx="1" fill="#fff"/>
-                                </g>
-                                <text x="85" y="22" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="700">Claims</text>
-                                <text x="85" y="40" text-anchor="middle" fill="#94a3b8" font-size="8">.NET 8 API</text>
-                            </g>
-                            <g transform="translate(158,86)">
-                                <rect width="130" height="56" rx="6" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.3"/>
-                                <g transform="translate(8,6)">
-                                    <rect width="28" height="22" rx="3" fill="#5b5fc7"/>
-                                    <rect x="4" y="4" width="8" height="6" rx="1" fill="#fff"/>
-                                    <rect x="14" y="4" width="8" height="6" rx="1" fill="#fff"/>
-                                    <rect x="4" y="12" width="8" height="6" rx="1" fill="#fff"/>
-                                    <rect x="14" y="12" width="8" height="6" rx="1" fill="#fff"/>
-                                </g>
-                                <text x="85" y="22" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="700">Tenant</text>
-                                <text x="85" y="40" text-anchor="middle" fill="#94a3b8" font-size="8">.NET 8 API</text>
-                            </g>
-                            <g transform="translate(301,86)">
-                                <rect width="130" height="56" rx="6" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.3"/>
-                                <g transform="translate(8,6)">
-                                    <rect width="28" height="22" rx="3" fill="#5b5fc7"/>
-                                    <rect x="4" y="4" width="8" height="6" rx="1" fill="#fff"/>
-                                    <rect x="14" y="4" width="8" height="6" rx="1" fill="#fff"/>
-                                    <rect x="4" y="12" width="8" height="6" rx="1" fill="#fff"/>
-                                    <rect x="14" y="12" width="8" height="6" rx="1" fill="#fff"/>
-                                </g>
-                                <text x="85" y="22" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="700">Quotation</text>
-                                <text x="85" y="40" text-anchor="middle" fill="#94a3b8" font-size="8">.NET 8 API</text>
-                            </g>
-                            <g transform="translate(444,86)">
-                                <rect width="130" height="56" rx="6" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.3"/>
-                                <g transform="translate(8,6)">
-                                    <rect width="28" height="22" rx="3" fill="#5b5fc7"/>
-                                    <rect x="4" y="4" width="8" height="6" rx="1" fill="#fff"/>
-                                    <rect x="14" y="4" width="8" height="6" rx="1" fill="#fff"/>
-                                    <rect x="4" y="12" width="8" height="6" rx="1" fill="#fff"/>
-                                    <rect x="14" y="12" width="8" height="6" rx="1" fill="#fff"/>
-                                </g>
-                                <text x="85" y="22" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="700">Invoice</text>
-                                <text x="85" y="40" text-anchor="middle" fill="#94a3b8" font-size="8">.NET 8 API</text>
-                            </g>
-                            <g transform="translate(587,86)">
-                                <rect width="130" height="56" rx="6" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.3"/>
-                                <g transform="translate(8,6)">
-                                    <rect width="28" height="22" rx="3" fill="#5b5fc7"/>
-                                    <rect x="4" y="4" width="8" height="6" rx="1" fill="#fff"/>
-                                    <rect x="14" y="4" width="8" height="6" rx="1" fill="#fff"/>
-                                    <rect x="4" y="12" width="8" height="6" rx="1" fill="#fff"/>
-                                    <rect x="14" y="12" width="8" height="6" rx="1" fill="#fff"/>
-                                </g>
-                                <text x="85" y="22" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="700">Settlement</text>
-                                <text x="85" y="40" text-anchor="middle" fill="#94a3b8" font-size="8">.NET 8 API</text>
-                            </g>
-                            <g transform="translate(730,86)">
-                                <rect width="130" height="56" rx="6" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.3"/>
-                                <g transform="translate(8,6)">
-                                    <rect width="28" height="22" rx="3" fill="#5b5fc7"/>
-                                    <rect x="4" y="4" width="8" height="6" rx="1" fill="#fff"/>
-                                    <rect x="14" y="4" width="8" height="6" rx="1" fill="#fff"/>
-                                    <rect x="4" y="12" width="8" height="6" rx="1" fill="#fff"/>
-                                    <rect x="14" y="12" width="8" height="6" rx="1" fill="#fff"/>
-                                </g>
-                                <text x="85" y="22" text-anchor="middle" fill="#e2e8f0" font-size="10" font-weight="700">IntHub</text>
-                                <text x="85" y="40" text-anchor="middle" fill="#94a3b8" font-size="8">.NET 8 API</text>
-                            </g>
-
-                            <!-- Bottom row: Key Vault + Functions + Monitoring -->
-                            <g transform="translate(15,155)">
-                                <rect width="36" height="36" rx="5" fill="#f5a623"/>
-                                <circle cx="14" cy="16" r="5" fill="none" stroke="#fff" stroke-width="2"/>
-                                <line x1="19" y1="16" x2="30" y2="16" stroke="#fff" stroke-width="2"/>
-                                <line x1="26" y1="13" x2="26" y2="19" stroke="#fff" stroke-width="1.5"/>
-                            </g>
-                            <text x="60" y="178" fill="#e2e8f0" font-size="9" font-weight="600">Key Vault CSI</text>
-
-                            <g transform="translate(160,155)">
-                                <rect width="36" height="36" rx="5" fill="#f5a623"/>
-                                <path d="M20 8 L13 20 H20 L15 28" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
-                            </g>
-                            <text x="205" y="178" fill="#e2e8f0" font-size="9" font-weight="600">Azure Functions</text>
-
-                            <g transform="translate(320,155)">
-                                <rect width="36" height="36" rx="5" fill="#68217a"/>
-                                <circle cx="18" cy="18" r="8" fill="none" stroke="#fff" stroke-width="2"/>
-                                <path d="M12 22 L16 16 L20 20 L26 12" fill="none" stroke="#fff" stroke-width="1.8"/>
-                            </g>
-                            <text x="365" y="178" fill="#e2e8f0" font-size="9" font-weight="600">App Insights</text>
-
-                            <g transform="translate(480,155)">
-                                <rect width="36" height="36" rx="5" fill="#e6522c"/>
-                                <circle cx="18" cy="18" r="9" fill="none" stroke="#fff" stroke-width="2"/>
-                                <path d="M12 18 L15 14 L18 18 L21 12 L24 16" fill="none" stroke="#fff" stroke-width="1.5"/>
-                            </g>
-                            <text x="530" y="178" fill="#e2e8f0" font-size="9" font-weight="600">Prometheus + Grafana</text>
-
-                            <g transform="translate(680,155)">
-                                <rect width="36" height="36" rx="5" fill="#0078d4"/>
-                                <rect x="8" y="10" width="20" height="16" rx="2" fill="none" stroke="#fff" stroke-width="2"/>
-                                <rect x="10" y="12" width="7" height="5" rx="1" fill="#fff"/>
-                                <rect x="19" y="12" width="7" height="5" rx="1" fill="#fff"/>
-                                <rect x="10" y="19" width="7" height="5" rx="1" fill="#fff"/>
-                            </g>
-                            <text x="730" y="178" fill="#e2e8f0" font-size="9" font-weight="600">Container Registry</text>
-                        </g>
-
-                        <!-- Data Layer -->
-                        <g transform="translate(60,555)">
-                            <rect width="880" height="70" rx="8" fill="#16213e" stroke="#d97706" stroke-width="1.5"/>
-                            <text x="15" y="18" fill="#fbbf24" font-size="10" font-weight="700">Data Layer</text>
-
-                            <g transform="translate(15,26)">
-                                <rect width="36" height="36" rx="5" fill="#13aa52"/>
-                                <path d="M18 8 C18 8 12 14 12 20 C12 26 18 30 18 30 C18 30 24 26 24 20 C24 14 18 8 18 8Z" fill="none" stroke="#fff" stroke-width="1.8"/>
-                                <line x1="18" y1="12" x2="18" y2="28" stroke="#fff" stroke-width="1.5"/>
-                            </g>
-                            <text x="60" y="50" fill="#e2e8f0" font-size="9" font-weight="600">MongoDB</text>
-
-                            <g transform="translate(140,26)">
-                                <rect width="36" height="36" rx="5" fill="#dc382d"/>
-                                <rect x="8" y="14" width="20" height="12" rx="3" fill="none" stroke="#fff" stroke-width="2"/>
-                                <line x1="10" y1="20" x2="26" y2="20" stroke="#fff" stroke-width="1.5"/>
-                                <circle cx="22" cy="17" r="2" fill="#fff"/>
-                            </g>
-                            <text x="167" y="50" fill="#e2e8f0" font-size="9" font-weight="600">Redis Cache</text>
-
-                            <g transform="translate(275,26)">
-                                <rect width="36" height="36" rx="5" fill="#0078d4"/>
-                                <rect x="10" y="8" width="16" height="20" rx="2" fill="none" stroke="#fff" stroke-width="1.8"/>
-                                <path d="M10 14 L26 14" stroke="#fff" stroke-width="1.5"/>
-                                <circle cx="18" cy="22" r="3" fill="none" stroke="#fff" stroke-width="1.5"/>
-                            </g>
-                            <text x="302" y="50" fill="#e2e8f0" font-size="9" font-weight="600">Blob Storage</text>
-
-                            <g transform="translate(410,26)">
-                                <rect width="36" height="36" rx="5" fill="#0078d4"/>
-                                <circle cx="18" cy="18" r="10" fill="none" stroke="#fff" stroke-width="1.5"/>
-                                <ellipse cx="18" cy="18" rx="5" ry="10" fill="none" stroke="#fff" stroke-width="1"/>
-                                <line x1="8" y1="18" x2="28" y2="18" stroke="#fff" stroke-width="1"/>
-                            </g>
-                            <text x="437" y="50" fill="#e2e8f0" font-size="9" font-weight="600">CosmosDB</text>
-
-                            <g transform="translate(545,26)">
-                                <rect width="36" height="36" rx="5" fill="#0078d4"/>
-                                <circle cx="18" cy="13" r="5" fill="none" stroke="#fff" stroke-width="1.8"/>
-                                <path d="M8 32 Q8 24 18 24 Q28 24 28 32" fill="none" stroke="#fff" stroke-width="1.8"/>
-                            </g>
-                            <text x="572" y="50" fill="#e2e8f0" font-size="9" font-weight="600">Azure B2C</text>
-
-                            <g transform="translate(680,26)">
-                                <rect width="36" height="36" rx="5" fill="#e3342f"/>
-                                <rect x="8" y="12" width="20" height="16" rx="2" fill="none" stroke="#fff" stroke-width="1.8"/>
-                                <path d="M14 16 L14 24 M18 14 L18 24 M22 16 L22 24" stroke="#fff" stroke-width="1.5"/>
-                            </g>
-                            <text x="707" y="50" fill="#e2e8f0" font-size="9" font-weight="600">Firewall</text>
-
-                            <g transform="translate(800,26)">
-                                <rect width="36" height="36" rx="5" fill="#0078d4"/>
-                                <rect x="11" y="16" width="14" height="12" rx="2" fill="none" stroke="#fff" stroke-width="1.8"/>
-                                <path d="M13 16 L13 12 Q13 8 18 8 Q23 8 23 12 L23 16" fill="none" stroke="#fff" stroke-width="1.8"/>
-                                <circle cx="18" cy="22" r="2" fill="#fff"/>
-                            </g>
-                            <text x="827" y="50" fill="#e2e8f0" font-size="9" font-weight="600">Bastion</text>
-                        </g>
-
-                        <!-- IaC Footer -->
-                        <g transform="translate(60,640)">
-                            <rect width="880" height="40" rx="6" fill="#1e1b4b" stroke="#6b4fbb" stroke-width="1"/>
-                            <g transform="translate(10,4)">
-                                <rect width="32" height="32" rx="5" fill="#6b4fbb"/>
-                                <text x="16" y="21" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">TF</text>
-                            </g>
-                            <text x="55" y="20" fill="#a78bfa" font-size="10" font-weight="700">Terraform (Modular IaC)</text>
-                            <text x="55" y="34" fill="#94a3b8" font-size="9">Modules: aks • api_management • app_service • key_vault • networking • monitoring</text>
-                            <g transform="translate(700,4)">
-                                <rect width="32" height="32" rx="5" fill="#24292e"/>
-                                <circle cx="16" cy="16" r="10" fill="none" stroke="#fff" stroke-width="1.5"/>
-                                <circle cx="16" cy="16" r="4" fill="#fff"/>
-                                <path d="M16 6 L16 10 M16 22 L16 26 M6 16 L10 16 M22 16 L26 16" stroke="#fff" stroke-width="1.5"/>
-                            </g>
-                            <text x="745" y="24" fill="#e2e8f0" font-size="9" font-weight="600">GitHub Actions CI/CD</text>
-                        </g>
-                    </svg>
-                </div>
-                <div class="arch-footer">
-                    <div class="arch-tech-row">
-                        <span>Azure AKS</span><span>Terraform</span><span>Kustomize</span><span>APIM</span><span>WAF_v2</span><span>Key Vault CSI</span><span>.NET 8</span><span>MongoDB</span><span>Redis</span><span>GitHub Actions</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Platform 2: Automation Workflows with AI Agents Platform (ActionAI/GenOr) -->
-            <div class="arch-item reveal">
-                <div class="arch-item-header">
-                    <div>
-                        <div class="arch-item-title">Automation Workflows with AI Agents Platform</div>
-                        <div class="arch-item-subtitle">Enterprise AI configuration engine — 12 microservices, Helm umbrella chart, Argo CD GitOps, Kafka event streaming, Front Door CDN</div>
-                    </div>
-                    <div class="arch-item-badge arch-badge-azure">Azure + GitOps</div>
-                </div>
-                <div class="arch-diagram-wrap">
-                    <svg viewBox="0 0 1000 720" xmlns="http://www.w3.org/2000/svg" style="font-family: 'Segoe UI', sans-serif;">
-                        <rect width="1000" height="720" fill="#1a1a2e"/>
-
-                        <text x="500" y="28" text-anchor="middle" fill="#e2e8f0" font-size="15" font-weight="700">AI Agents Platform — Azure AKS + Argo CD GitOps</text>
-                        <text x="500" y="48" text-anchor="middle" fill="#94a3b8" font-size="10">3 Environments (DEV / UAT / PROD) • Helm Umbrella Chart • Event-Driven Architecture</text>
-
-                        <!-- Front Door CDN -->
-                        <g transform="translate(420,60)">
-                            <rect width="48" height="48" rx="6" fill="#0078d4"/>
-                            <circle cx="24" cy="24" r="12" fill="none" stroke="#fff" stroke-width="2"/>
-                            <circle cx="24" cy="24" r="5" fill="#fff"/>
-                            <path d="M18 14 Q24 10 30 14" fill="none" stroke="#fff" stroke-width="1.5"/>
-                            <path d="M18 34 Q24 38 30 34" fill="none" stroke="#fff" stroke-width="1.5"/>
-                        </g>
-                        <text x="444" y="122" text-anchor="middle" fill="#cbd5e1" font-size="10" font-weight="600">Azure Front Door</text>
-                        <text x="444" y="135" text-anchor="middle" fill="#94a3b8" font-size="8">CDN + Private Link to Storage</text>
-
-                        <!-- VPN Gateway -->
-                        <g transform="translate(600,60)">
-                            <rect width="48" height="48" rx="6" fill="#0078d4"/>
-                            <rect x="10" y="14" width="28" height="20" rx="3" fill="none" stroke="#fff" stroke-width="1.8"/>
-                            <path d="M18 24 L24 18 L30 24" fill="none" stroke="#fff" stroke-width="2"/>
-                            <line x1="24" y1="18" x2="24" y2="32" stroke="#fff" stroke-width="2"/>
-                        </g>
-                        <text x="624" y="122" text-anchor="middle" fill="#cbd5e1" font-size="10" font-weight="600">VPN Gateway</text>
-
-                        <!-- APIM -->
-                        <g transform="translate(250,60)">
-                            <rect width="48" height="48" rx="6" fill="#6b4fbb"/>
-                            <rect x="10" y="14" width="28" height="18" rx="3" fill="none" stroke="#fff" stroke-width="1.8"/>
-                            <text x="24" y="27" text-anchor="middle" fill="#fff" font-size="8" font-weight="700">API</text>
-                        </g>
-                        <text x="274" y="122" text-anchor="middle" fill="#cbd5e1" font-size="10" font-weight="600">Azure APIM</text>
-                        <text x="274" y="135" text-anchor="middle" fill="#94a3b8" font-size="8">Auto-Registration</text>
-
-                        <!-- Arrows down -->
-                        <path d="M274 110 L274 155" stroke="#6b4fbb" stroke-width="1.5" marker-end="url(#arrPurple)"/>
-                        <path d="M444 110 L444 155" stroke="#3b9cff" stroke-width="1.5" marker-end="url(#arrBlue)"/>
-
-                        <!-- Argo CD Box -->
-                        <g transform="translate(60,155)">
-                            <rect width="380" height="70" rx="8" fill="#16213e" stroke="#ef7b4d" stroke-width="1.5"/>
-                            <g transform="translate(15,15)">
-                                <rect width="40" height="40" rx="20" fill="#ef7b4d"/>
-                                <circle cx="20" cy="20" r="10" fill="none" stroke="#fff" stroke-width="2"/>
-                                <path d="M15 20 L20 15 L25 20 M20 15 L20 28" fill="none" stroke="#fff" stroke-width="2"/>
-                            </g>
-                            <text x="70" y="32" fill="#e2e8f0" font-size="11" font-weight="700">Argo CD (GitOps)</text>
-                            <text x="70" y="48" fill="#94a3b8" font-size="9">App-of-Apps Pattern • Auto Prune • Self-Heal • Server-Side Apply</text>
-                            <!-- Helm icon -->
-                            <g transform="translate(300,15)">
-                                <rect width="40" height="40" rx="6" fill="#0f1689"/>
-                                <circle cx="20" cy="20" r="10" fill="none" stroke="#fff" stroke-width="2"/>
-                                <path d="M16 16 L20 12 L24 16 M16 24 L20 28 L24 24" fill="none" stroke="#fff" stroke-width="1.5"/>
-                            </g>
-                            <text x="345" y="60" fill="#94a3b8" font-size="8">Helm Umbrella</text>
-                        </g>
-
-                        <!-- GitHub Actions -->
-                        <g transform="translate(500,155)">
-                            <rect width="180" height="70" rx="8" fill="#16213e" stroke="#24292e" stroke-width="1.5"/>
-                            <g transform="translate(15,15)">
-                                <rect width="40" height="40" rx="6" fill="#24292e"/>
-                                <circle cx="20" cy="20" r="12" fill="none" stroke="#fff" stroke-width="1.8"/>
-                                <circle cx="20" cy="20" r="4" fill="#fff"/>
-                                <path d="M20 8 L20 12 M20 28 L20 32 M8 20 L12 20 M28 20 L32 20" stroke="#fff" stroke-width="1.8"/>
-                            </g>
-                            <text x="70" y="32" fill="#e2e8f0" font-size="10" font-weight="700">GitHub Actions</text>
-                            <text x="70" y="48" fill="#94a3b8" font-size="9">Build → Push ACR → Sync Argo</text>
-                        </g>
-
-                        <!-- Key Vault -->
-                        <g transform="translate(730,155)">
-                            <rect width="180" height="70" rx="8" fill="#16213e" stroke="#f5a623" stroke-width="1.5"/>
-                            <g transform="translate(15,15)">
-                                <rect width="40" height="40" rx="6" fill="#f5a623"/>
-                                <circle cx="16" cy="18" r="6" fill="none" stroke="#fff" stroke-width="2"/>
-                                <line x1="22" y1="18" x2="34" y2="18" stroke="#fff" stroke-width="2"/>
-                                <line x1="30" y1="15" x2="30" y2="21" stroke="#fff" stroke-width="1.5"/>
-                            </g>
-                            <text x="70" y="32" fill="#e2e8f0" font-size="10" font-weight="700">Key Vault</text>
-                            <text x="70" y="48" fill="#94a3b8" font-size="9">Entra RBAC • CSI Driver</text>
-                        </g>
-
-                        <!-- AKS Cluster -->
-                        <g transform="translate(60,250)">
-                            <rect width="880" height="280" rx="10" fill="#0f172a" stroke="#326ce5" stroke-width="2"/>
-                            <g transform="translate(10,8)">
-                                <rect width="40" height="40" rx="6" fill="#326ce5"/>
-                                <circle cx="20" cy="20" r="10" fill="none" stroke="#fff" stroke-width="2"/>
-                                <circle cx="20" cy="20" r="3.5" fill="#fff"/>
-                                <line x1="20" y1="10" x2="20" y2="14" stroke="#fff" stroke-width="2"/>
-                                <line x1="20" y1="26" x2="20" y2="30" stroke="#fff" stroke-width="2"/>
-                                <line x1="11" y1="15" x2="14.5" y2="17" stroke="#fff" stroke-width="2"/>
-                                <line x1="25.5" y1="23" x2="29" y2="25" stroke="#fff" stroke-width="2"/>
-                            </g>
-                            <text x="60" y="24" fill="#60a5fa" font-size="12" font-weight="700">Azure Kubernetes Service (AKS)</text>
-                            <text x="60" y="40" fill="#94a3b8" font-size="9">Standard_D4s_v3 • Envoy Sidecar mTLS • Namespace Isolation</text>
-
-                            <!-- Ingress bar -->
-                            <rect x="15" y="52" width="850" height="24" rx="5" fill="#1e293b" stroke="#326ce5" stroke-width="1"/>
-                            <text x="440" y="68" text-anchor="middle" fill="#60a5fa" font-size="9" font-weight="600">NGINX Ingress + Envoy mTLS → /engine /eval /config /notify /scheduler /accounts /security /genone /logs /socket /wrappers</text>
-
-                            <!-- Row 1 microservices -->
-                            <g transform="translate(15,86)">
-                                <rect width="138" height="50" rx="5" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.2"/>
-                                <g transform="translate(6,5)">
-                                    <rect width="24" height="18" rx="3" fill="#5b5fc7"/>
-                                    <rect x="3" y="3" width="7" height="5" rx="1" fill="#fff"/>
-                                    <rect x="12" y="3" width="7" height="5" rx="1" fill="#fff"/>
-                                    <rect x="3" y="10" width="7" height="5" rx="1" fill="#fff"/>
-                                </g>
-                                <text x="80" y="20" text-anchor="middle" fill="#e2e8f0" font-size="9" font-weight="700">PlatformEngine</text>
-                                <text x="80" y="36" text-anchor="middle" fill="#94a3b8" font-size="7">.NET 8 • Core Logic</text>
-                            </g>
-                            <g transform="translate(163,86)">
-                                <rect width="138" height="50" rx="5" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.2"/>
-                                <g transform="translate(6,5)">
-                                    <rect width="24" height="18" rx="3" fill="#5b5fc7"/>
-                                    <rect x="3" y="3" width="7" height="5" rx="1" fill="#fff"/>
-                                    <rect x="12" y="3" width="7" height="5" rx="1" fill="#fff"/>
-                                    <rect x="3" y="10" width="7" height="5" rx="1" fill="#fff"/>
-                                </g>
-                                <text x="80" y="20" text-anchor="middle" fill="#e2e8f0" font-size="9" font-weight="700">Evaluation</text>
-                                <text x="80" y="36" text-anchor="middle" fill="#94a3b8" font-size="7">.NET 8 • AI Scoring</text>
-                            </g>
-                            <g transform="translate(311,86)">
-                                <rect width="138" height="50" rx="5" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.2"/>
-                                <g transform="translate(6,5)">
-                                    <rect width="24" height="18" rx="3" fill="#5b5fc7"/>
-                                    <rect x="3" y="3" width="7" height="5" rx="1" fill="#fff"/>
-                                    <rect x="12" y="3" width="7" height="5" rx="1" fill="#fff"/>
-                                    <rect x="3" y="10" width="7" height="5" rx="1" fill="#fff"/>
-                                </g>
-                                <text x="80" y="20" text-anchor="middle" fill="#e2e8f0" font-size="9" font-weight="700">Configurations</text>
-                                <text x="80" y="36" text-anchor="middle" fill="#94a3b8" font-size="7">.NET 8 • Rules Engine</text>
-                            </g>
-                            <g transform="translate(459,86)">
-                                <rect width="138" height="50" rx="5" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.2"/>
-                                <g transform="translate(6,5)">
-                                    <rect width="24" height="18" rx="3" fill="#5b5fc7"/>
-                                    <rect x="3" y="3" width="7" height="5" rx="1" fill="#fff"/>
-                                    <rect x="12" y="3" width="7" height="5" rx="1" fill="#fff"/>
-                                    <rect x="3" y="10" width="7" height="5" rx="1" fill="#fff"/>
-                                </g>
-                                <text x="80" y="20" text-anchor="middle" fill="#e2e8f0" font-size="9" font-weight="700">Notifications</text>
-                                <text x="80" y="36" text-anchor="middle" fill="#94a3b8" font-size="7">.NET 8 • Push/Email</text>
-                            </g>
-                            <g transform="translate(607,86)">
-                                <rect width="138" height="50" rx="5" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.2"/>
-                                <g transform="translate(6,5)">
-                                    <rect width="24" height="18" rx="3" fill="#5b5fc7"/>
-                                    <rect x="3" y="3" width="7" height="5" rx="1" fill="#fff"/>
-                                    <rect x="12" y="3" width="7" height="5" rx="1" fill="#fff"/>
-                                    <rect x="3" y="10" width="7" height="5" rx="1" fill="#fff"/>
-                                </g>
-                                <text x="80" y="20" text-anchor="middle" fill="#e2e8f0" font-size="9" font-weight="700">Scheduler</text>
-                                <text x="80" y="36" text-anchor="middle" fill="#94a3b8" font-size="7">.NET 8 • Jobs</text>
-                            </g>
-                            <g transform="translate(755,86)">
-                                <rect width="108" height="50" rx="5" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.2"/>
-                                <g transform="translate(6,5)">
-                                    <rect width="24" height="18" rx="3" fill="#5b5fc7"/>
-                                    <rect x="3" y="3" width="7" height="5" rx="1" fill="#fff"/>
-                                    <rect x="12" y="3" width="7" height="5" rx="1" fill="#fff"/>
-                                    <rect x="3" y="10" width="7" height="5" rx="1" fill="#fff"/>
-                                </g>
-                                <text x="60" y="20" text-anchor="middle" fill="#e2e8f0" font-size="9" font-weight="700">GenOne</text>
-                                <text x="60" y="36" text-anchor="middle" fill="#94a3b8" font-size="7">AI Agent</text>
-                            </g>
-
-                            <!-- Row 2 microservices -->
-                            <g transform="translate(15,146)">
-                                <rect width="138" height="50" rx="5" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.2"/>
-                                <g transform="translate(6,5)">
-                                    <rect width="24" height="18" rx="3" fill="#5b5fc7"/>
-                                    <rect x="3" y="3" width="7" height="5" rx="1" fill="#fff"/>
-                                    <rect x="12" y="3" width="7" height="5" rx="1" fill="#fff"/>
-                                    <rect x="3" y="10" width="7" height="5" rx="1" fill="#fff"/>
-                                </g>
-                                <text x="80" y="20" text-anchor="middle" fill="#e2e8f0" font-size="9" font-weight="700">Accounts</text>
-                                <text x="80" y="36" text-anchor="middle" fill="#94a3b8" font-size="7">.NET 8 • Auth</text>
-                            </g>
-                            <g transform="translate(163,146)">
-                                <rect width="138" height="50" rx="5" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.2"/>
-                                <g transform="translate(6,5)">
-                                    <rect width="24" height="18" rx="3" fill="#5b5fc7"/>
-                                    <rect x="3" y="3" width="7" height="5" rx="1" fill="#fff"/>
-                                    <rect x="12" y="3" width="7" height="5" rx="1" fill="#fff"/>
-                                    <rect x="3" y="10" width="7" height="5" rx="1" fill="#fff"/>
-                                </g>
-                                <text x="80" y="20" text-anchor="middle" fill="#e2e8f0" font-size="9" font-weight="700">Security</text>
-                                <text x="80" y="36" text-anchor="middle" fill="#94a3b8" font-size="7">.NET 8 • RBAC</text>
-                            </g>
-                            <g transform="translate(311,146)">
-                                <rect width="138" height="50" rx="5" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.2"/>
-                                <g transform="translate(6,5)">
-                                    <rect width="24" height="18" rx="3" fill="#5b5fc7"/>
-                                    <rect x="3" y="3" width="7" height="5" rx="1" fill="#fff"/>
-                                    <rect x="12" y="3" width="7" height="5" rx="1" fill="#fff"/>
-                                    <rect x="3" y="10" width="7" height="5" rx="1" fill="#fff"/>
-                                </g>
-                                <text x="80" y="20" text-anchor="middle" fill="#e2e8f0" font-size="9" font-weight="700">Logs</text>
-                                <text x="80" y="36" text-anchor="middle" fill="#94a3b8" font-size="7">.NET 8 • Telemetry</text>
-                            </g>
-                            <g transform="translate(459,146)">
-                                <rect width="138" height="50" rx="5" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.2"/>
-                                <g transform="translate(6,5)">
-                                    <rect width="24" height="18" rx="3" fill="#5b5fc7"/>
-                                    <rect x="3" y="3" width="7" height="5" rx="1" fill="#fff"/>
-                                    <rect x="12" y="3" width="7" height="5" rx="1" fill="#fff"/>
-                                    <rect x="3" y="10" width="7" height="5" rx="1" fill="#fff"/>
-                                </g>
-                                <text x="80" y="20" text-anchor="middle" fill="#e2e8f0" font-size="9" font-weight="700">ConfigSocket</text>
-                                <text x="80" y="36" text-anchor="middle" fill="#94a3b8" font-size="7">.NET 8 • WebSocket</text>
-                            </g>
-                            <g transform="translate(607,146)">
-                                <rect width="138" height="50" rx="5" fill="#1e293b" stroke="#5b5fc7" stroke-width="1.2"/>
-                                <g transform="translate(6,5)">
-                                    <rect width="24" height="18" rx="3" fill="#5b5fc7"/>
-                                    <rect x="3" y="3" width="7" height="5" rx="1" fill="#fff"/>
-                                    <rect x="12" y="3" width="7" height="5" rx="1" fill="#fff"/>
-                                    <rect x="3" y="10" width="7" height="5" rx="1" fill="#fff"/>
-                                </g>
-                                <text x="80" y="20" text-anchor="middle" fill="#e2e8f0" font-size="9" font-weight="700">Wrappers</text>
-                                <text x="80" y="36" text-anchor="middle" fill="#94a3b8" font-size="7">.NET 8 • Integration</text>
-                            </g>
-
-                            <!-- Kafka bar -->
-                            <g transform="translate(15,210)">
-                                <rect width="848" height="50" rx="6" fill="#1e293b" stroke="#231f20" stroke-width="1.5"/>
-                                <g transform="translate(10,5)">
-                                    <rect width="40" height="40" rx="6" fill="#231f20"/>
-                                    <text x="20" y="16" text-anchor="middle" fill="#fff" font-size="6" font-weight="700">KAFKA</text>
-                                    <path d="M15 22 L25 22 M15 28 L25 28 M15 34 L25 34" stroke="#fff" stroke-width="1.5"/>
-                                </g>
-                                <text x="65" y="26" fill="#e2e8f0" font-size="10" font-weight="700">Apache Kafka (Strimzi Operator)</text>
-                                <text x="65" y="42" fill="#94a3b8" font-size="9">Event Streaming • Topic-per-Service • Consumer Groups • Schema Registry</text>
-                                <!-- Monitoring icon -->
-                                <g transform="translate(750,5)">
-                                    <rect width="36" height="36" rx="5" fill="#e6522c"/>
-                                    <circle cx="18" cy="18" r="9" fill="none" stroke="#fff" stroke-width="2"/>
-                                    <path d="M12 18 L15 14 L18 18 L21 12 L24 16" fill="none" stroke="#fff" stroke-width="1.5"/>
-                                </g>
-                                <text x="810" y="30" fill="#e2e8f0" font-size="8" font-weight="600">Prometheus</text>
-                            </g>
-                        </g>
-
-                        <!-- Data & Storage Layer -->
-                        <g transform="translate(60,548)">
-                            <rect width="880" height="70" rx="8" fill="#16213e" stroke="#0078d4" stroke-width="1.5"/>
-                            <text x="15" y="18" fill="#60a5fa" font-size="10" font-weight="700">Data &amp; Storage</text>
-
-                            <!-- MongoDB -->
-                            <g transform="translate(15,26)">
-                                <rect width="36" height="36" rx="5" fill="#13aa52"/>
-                                <path d="M18 8 C18 8 12 14 12 20 C12 26 18 30 18 30 C18 30 24 26 24 20 C24 14 18 8 18 8Z" fill="none" stroke="#fff" stroke-width="1.8"/>
-                                <line x1="18" y1="12" x2="18" y2="28" stroke="#fff" stroke-width="1.5"/>
-                            </g>
-                            <text x="60" y="50" fill="#e2e8f0" font-size="9" font-weight="600">MongoDB Atlas</text>
-
-                            <!-- Blob Storage -->
-                            <g transform="translate(165,26)">
-                                <rect width="36" height="36" rx="5" fill="#0078d4"/>
-                                <rect x="10" y="8" width="16" height="20" rx="2" fill="none" stroke="#fff" stroke-width="1.8"/>
-                                <path d="M10 14 L26 14" stroke="#fff" stroke-width="1.5"/>
-                                <circle cx="18" cy="22" r="3" fill="none" stroke="#fff" stroke-width="1.5"/>
-                            </g>
-                            <text x="192" y="50" fill="#e2e8f0" font-size="9" font-weight="600">Blob Storage</text>
-
-                            <!-- Redis -->
-                            <g transform="translate(305,26)">
-                                <rect width="36" height="36" rx="5" fill="#dc382d"/>
-                                <rect x="8" y="14" width="20" height="12" rx="3" fill="none" stroke="#fff" stroke-width="2"/>
-                                <line x1="10" y1="20" x2="26" y2="20" stroke="#fff" stroke-width="1.5"/>
-                                <circle cx="22" cy="17" r="2" fill="#fff"/>
-                            </g>
-                            <text x="332" y="50" fill="#e2e8f0" font-size="9" font-weight="600">Redis Cache</text>
-
-                            <!-- Entra ID -->
-                            <g transform="translate(445,26)">
-                                <rect width="36" height="36" rx="5" fill="#0078d4"/>
-                                <circle cx="18" cy="13" r="5" fill="none" stroke="#fff" stroke-width="1.8"/>
-                                <path d="M8 32 Q8 24 18 24 Q28 24 28 32" fill="none" stroke="#fff" stroke-width="1.8"/>
-                            </g>
-                            <text x="472" y="50" fill="#e2e8f0" font-size="9" font-weight="600">Entra ID</text>
-
-                            <!-- SonarQube -->
-                            <g transform="translate(575,26)">
-                                <rect width="36" height="36" rx="5" fill="#4e9bcd"/>
-                                <text x="18" y="22" text-anchor="middle" fill="#fff" font-size="8" font-weight="700">SQ</text>
-                            </g>
-                            <text x="602" y="50" fill="#e2e8f0" font-size="9" font-weight="600">SonarQube</text>
-
-                            <!-- ACR -->
-                            <g transform="translate(700,26)">
-                                <rect width="36" height="36" rx="5" fill="#0078d4"/>
-                                <rect x="8" y="10" width="20" height="16" rx="2" fill="none" stroke="#fff" stroke-width="2"/>
-                                <rect x="10" y="12" width="7" height="5" rx="1" fill="#fff"/>
-                                <rect x="19" y="12" width="7" height="5" rx="1" fill="#fff"/>
-                                <rect x="10" y="19" width="7" height="5" rx="1" fill="#fff"/>
-                            </g>
-                            <text x="745" y="50" fill="#e2e8f0" font-size="9" font-weight="600">Container Registry</text>
-                        </g>
-
-                        <!-- Terraform footer -->
-                        <g transform="translate(60,635)">
-                            <rect width="880" height="40" rx="6" fill="#1e1b4b" stroke="#6b4fbb" stroke-width="1"/>
-                            <g transform="translate(10,4)">
-                                <rect width="32" height="32" rx="5" fill="#6b4fbb"/>
-                                <text x="16" y="21" text-anchor="middle" fill="#fff" font-size="11" font-weight="700">TF</text>
-                            </g>
-                            <text x="55" y="20" fill="#a78bfa" font-size="10" font-weight="700">Terraform (Modular IaC)</text>
-                            <text x="55" y="34" fill="#94a3b8" font-size="9">Modules: compute • networking • front_door • security • monitoring • integration • certificates</text>
-                            <g transform="translate(700,4)">
-                                <rect width="32" height="32" rx="5" fill="#ef7b4d"/>
-                                <circle cx="16" cy="16" r="10" fill="none" stroke="#fff" stroke-width="1.5"/>
-                                <path d="M11 16 L16 11 L21 16 M16 11 L16 24" fill="none" stroke="#fff" stroke-width="1.8"/>
-                            </g>
-                            <text x="745" y="24" fill="#e2e8f0" font-size="9" font-weight="600">Argo CD Sync</text>
-                        </g>
-                    </svg>
-                </div>
-                <div class="arch-footer">
-                    <div class="arch-tech-row">
-                        <span>Azure AKS</span><span>Argo CD</span><span>Helm</span><span>Kafka Strimzi</span><span>Envoy mTLS</span><span>Front Door</span><span>APIM</span><span>Terraform</span><span>Key Vault</span><span>Entra ID</span><span>.NET 8</span>
-                    </div>
-                </div>
-            </div>
 
             <!-- Serverless Image Processing Pipeline -->
             <div class="arch-item reveal">
