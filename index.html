@@ -4,6 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ahmed ElMahdy — Platform/DevOps Engineer</title>
+    <meta name="description" content="Ahmed ElMahdy — Platform/DevOps Engineer with 5+ years on Azure & AWS. Kubernetes (AKS), Terraform, GitOps with Argo CD, CI/CD, and production platform engineering.">
+    <meta name="author" content="Ahmed ElMahdy">
+    <link rel="canonical" href="https://ahmed-el-mahdy.github.io/">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ahmed-el-mahdy.github.io/">
+    <meta property="og:title" content="Ahmed ElMahdy — Platform/DevOps Engineer">
+    <meta property="og:description" content="Platform/DevOps Engineer with 5+ years building production platforms on Azure & AWS. Kubernetes, Terraform, GitOps, CI/CD.">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Ahmed ElMahdy — Platform/DevOps Engineer">
+    <meta name="twitter:description" content="Platform/DevOps Engineer with 5+ years building production platforms on Azure & AWS. Kubernetes, Terraform, GitOps, CI/CD.">
+    <meta name="theme-color" content="#0a0a0f">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230a0a0f'/%3E%3Ctext x='50' y='68' font-size='52' font-family='monospace' font-weight='bold' fill='%2300d4ff' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Ahmed ElMahdy",
+      "jobTitle": "Platform / DevOps Engineer",
+      "url": "https://ahmed-el-mahdy.github.io/",
+      "email": "mailto:a.elmahdy.mail@gmail.com",
+      "sameAs": [
+        "https://github.com/ahmed-el-mahdy",
+        "https://linkedin.com/in/ahmed-el-mahdy-007"
+      ],
+      "knowsAbout": ["Kubernetes", "Azure", "AWS", "Terraform", "GitOps", "CI/CD", "DevOps", "Platform Engineering"]
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
@@ -94,6 +121,29 @@
             transition: color 0.2s;
         }
         .nav-links a:hover { color: var(--accent-blue); }
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 8px;
+            color: var(--text-primary);
+            padding: 8px 10px;
+            cursor: pointer;
+            font-size: 18px;
+            line-height: 1;
+        }
+        .skip-link {
+            position: absolute;
+            left: -9999px;
+            top: 0;
+            background: var(--accent-blue);
+            color: #0a0a0f;
+            padding: 10px 16px;
+            z-index: 200;
+            border-radius: 0 0 8px 0;
+            font-weight: 600;
+        }
+        .skip-link:focus { left: 0; }
 
         /* ═══════════════ HERO SECTION ═══════════════ */
         .hero {
@@ -667,8 +717,17 @@
 
         /* ═══════════════ RESPONSIVE ═══════════════ */
         @media (max-width: 768px) {
-            .nav { padding: 12px 20px; }
-            .nav-links { display: none; }
+            .nav { padding: 12px 20px; flex-wrap: wrap; }
+            .nav-toggle { display: block; }
+            .nav-links {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: 4px;
+                padding-top: 12px;
+            }
+            .nav-links.open { display: flex; }
+            .nav-links a { padding: 10px 4px; display: block; }
             .hero-stats { flex-direction: column; gap: 20px; }
             .impact-strip { margin-top: 16px; }
             .impact-pill { width: 100%; text-align: center; white-space: normal; }
@@ -705,9 +764,12 @@
 <div class="content-wrapper">
 
 <!-- Navigation -->
-<nav class="nav">
+<a href="#main" class="skip-link">Skip to content</a>
+
+<nav class="nav" aria-label="Main navigation">
     <a href="#" class="nav-logo">ahmed<span>.devops</span></a>
-    <div class="nav-links">
+    <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-links">☰</button>
+    <div class="nav-links" id="nav-links">
         <a href="#skills">Skills</a>
         <a href="#tech">Stack</a>
         <a href="#certs">Certs</a>
@@ -718,6 +780,7 @@
     </div>
 </nav>
 
+<main id="main">
 <!-- Hero -->
 <section class="hero">
     <div class="hero-orb hero-orb-1"></div>
@@ -741,7 +804,8 @@
     <div class="hero-cta animate delay-5">
         <a href="mailto:a.elmahdy.mail@gmail.com" class="btn btn-primary">Let's Talk →</a>
         <a href="https://github.com/ahmed-el-mahdy" target="_blank" class="btn btn-ghost">View GitHub</a>
-        <a href="https://linkedin.com/in/ahmed-el-mahdy-007" target="_blank" class="btn btn-ghost">LinkedIn</a>
+        <a href="https://linkedin.com/in/ahmed-el-mahdy-007" target="_blank" rel="noopener" class="btn btn-ghost">LinkedIn</a>
+        <a href="Ahmed-Elmahdy-CV-DevOps.pdf" download class="btn btn-ghost">Download CV ↓</a>
     </div>
 
     <div class="hero-stats animate delay-5">
@@ -1638,10 +1702,23 @@
     <div class="terminal-text">$ echo "AWS SAA • SC-300 • CKA-Ready • AZ-104-Ready"</div>
 </footer>
 
+</main>
 </div>
 
 <!-- Scroll Reveal Script -->
 <script>
+    // Mobile nav toggle
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinks = document.getElementById('nav-links');
+    navToggle.addEventListener('click', () => {
+        const open = navLinks.classList.toggle('open');
+        navToggle.setAttribute('aria-expanded', String(open));
+    });
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+    }));
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
