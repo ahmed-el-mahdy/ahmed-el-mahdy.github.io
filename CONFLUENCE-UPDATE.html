@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From Chaos to Confidence: The Mosadad Recovery Platform Journey</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.6; max-width: 1100px; margin: 0 auto; padding: 20px; color: #172B4D; }
+        h1 { color: #0052CC; border-bottom: 3px solid #0052CC; padding-bottom: 10px; }
+        h2 { color: #172B4D; border-bottom: 2px solid #DFE1E6; padding-bottom: 8px; margin-top: 40px; }
+        h3 { color: #253858; }
+        table { border-collapse: collapse; width: 100%; margin: 16px 0; }
+        th, td { border: 1px solid #DFE1E6; padding: 8px 12px; text-align: left; }
+        th { background-color: #F4F5F7; font-weight: 600; }
+        tr:nth-child(even) { background-color: #FAFBFC; }
+        .badge-green { background: #00875A; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+        .badge-yellow { background: #FF991F; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+        .badge-red { background: #DE350B; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+        .badge-blue { background: #0052CC; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+        .timeline { border-left: 3px solid #0052CC; padding-left: 20px; margin-left: 10px; }
+        .timeline-entry { margin-bottom: 30px; position: relative; }
+        .timeline-entry::before { content: '●'; position: absolute; left: -27px; color: #0052CC; font-size: 18px; }
+        .timeline-date { font-weight: bold; color: #0052CC; font-size: 14px; }
+        .architecture-box { background: #F4F5F7; border: 1px solid #DFE1E6; border-radius: 8px; padding: 20px; font-family: monospace; font-size: 13px; white-space: pre; overflow-x: auto; }
+        .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 20px 0; }
+        .metric-card { background: linear-gradient(135deg, #0052CC, #0747A6); color: white; padding: 20px; border-radius: 8px; text-align: center; }
+        .metric-card .number { font-size: 32px; font-weight: bold; }
+        .metric-card .label { font-size: 12px; opacity: 0.9; }
+        .status-section { background: #E3FCEF; border-left: 4px solid #00875A; padding: 16px; margin: 16px 0; border-radius: 4px; }
+        .warning-section { background: #FFFAE6; border-left: 4px solid #FF991F; padding: 16px; margin: 16px 0; border-radius: 4px; }
+        .blocker-section { background: #FFEBE6; border-left: 4px solid #DE350B; padding: 16px; margin: 16px 0; border-radius: 4px; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 6px; }
+        code { background: #F4F5F7; padding: 2px 6px; border-radius: 3px; font-size: 13px; }
+        .section-divider { border: none; border-top: 2px solid #DFE1E6; margin: 40px 0; }
+    </style>
+</head>
+<body>
+
+<h1>🚀 From Chaos to Confidence: The Mosadad Recovery Platform Journey</h1>
+
+<p><em>Living document tracking the evolution of the Mosadad Recovery Claims platform from fragile manual infrastructure to a production-grade, automated cloud platform.</em></p>
+
+<div class="metric-grid">
+    <div class="metric-card">
+        <div class="number">6+1</div>
+        <div class="label">Microservices</div>
+    </div>
+    <div class="metric-card">
+        <div class="number">4</div>
+        <div class="label">Environments</div>
+    </div>
+    <div class="metric-card">
+        <div class="number">85%</div>
+        <div class="label">IaC Coverage</div>
+    </div>
+    <div class="metric-card">
+        <div class="number">0</div>
+        <div class="label">Config Drift Issues</div>
+    </div>
+</div>
+
+<hr class="section-divider">
+
+<h2>📅 Timeline</h2>
+
+<div class="timeline">
+
+<div class="timeline-entry">
+    <div class="timeline-date">June 11, 2026 — Configuration Standardization & Portal CI/CD</div>
+    <p>Resolved cross-environment configuration inconsistencies and unified all portal CI/CD workflows.</p>
+    <h3>Key Achievements</h3>
+    <ul>
+        <li><strong>Quotation API Path Standardized</strong>: Fixed <code>api/quotations</code> (plural) → <code>api/quotation</code> (singular) across ALL layers:
+            <ul>
+                <li>Kubernetes: 4 claims configmaps (dev/qa/staging/prod)</li>
+                <li>Entity Portal: 4 environment files × 4 branches</li>
+                <li>Terraform: Commented module reference</li>
+                <li>Applied to live clusters, pods restarted</li>
+            </ul>
+        </li>
+        <li><strong>Missing TenantAPI Config Added</strong>: Dev and QA claims configmaps were missing <code>TenantAPI</code> key (used by ClaimManager.cs). Added and deployed.</li>
+        <li><strong>Portal CI/CD Unified</strong>: Both Admin and Entity portals now use DRY GitHub Actions with Environment Variables:
+            <ul>
+                <li>Single workflow file supports all 4 environments</li>
+                <li>Guardrails validate branch-to-environment mapping</li>
+                <li>GitHub Environments configured with <code>WEBAPP_NAME</code>, <code>REGISTRY</code>, <code>ACR_NAME</code></li>
+            </ul>
+        </li>
+        <li><strong>All 6 portal pipelines passing</strong> (admin dev/qa/staging, entity dev/qa/staging)</li>
+    </ul>
+    <div class="status-section">
+        <strong>Jira Tasks</strong>: MDI-206 (Portal Unification), MDI-207 (Entity Portal), MDI-208 (Quotation Standardization), MDI-209 (TenantAPI Fix) — all <span class="badge-green">DONE</span>
+    </div>
+</div>
+
+<div class="timeline-entry">
+    <div class="timeline-date">June 10, 2026 — Autoscaling Plan (MDI-185)</div>
+    <p>Assessed production AKS autoscaling status and created comprehensive implementation plan.</p>
+    <h3>Current State (No Autoscaling)</h3>
+    <ul>
+        <li>2× Standard_D4ds_v5 nodes — <strong>fixed</strong>, no cluster autoscaler</li>
+        <li>6 services × 1 replica — <strong>no HPA</strong></li>
+        <li>Total capacity: 16 vCPU / 64 GB (static)</li>
+    </ul>
+    <h3>Planned State</h3>
+    <table>
+        <tr><th>Layer</th><th>Target</th></tr>
+        <tr><td>Cluster Autoscaler</td><td>min=2, max=5 nodes</td></tr>
+        <tr><td>HPA (all 6 services)</td><td>min=2, max=4 replicas, 70% CPU target</td></tr>
+        <tr><td>Resource Requests</td><td>Based on Prometheus analysis</td></tr>
+    </table>
+    <p><strong>Jira Tasks</strong>: MDI-186 (Cluster Autoscaler), MDI-187 (HPA), MDI-188 (Resource Limits), MDI-189 (Load Test)</p>
+    <p><strong>ETA</strong>: 10-12h effort, 3-5 business days. Cost-neutral at rest, up to 2.5× under load.</p>
+</div>
+
+<div class="timeline-entry">
+    <div class="timeline-date">June 9, 2026 — Terraform Alignment, Security Audit & Full Verification</div>
+    <p>Comprehensive infrastructure audit revealed 14 Azure resources not managed by Terraform. All gaps closed with IaC definitions. Full E2E verification passed.</p>
+    <h3>Key Achievements</h3>
+    <ul>
+        <li><strong>Terraform IaC Alignment Complete</strong>: APIM v2, Redis Cache, Bastion, Grafana+Prometheus all added to prod/main.tf</li>
+        <li><strong>APIM Security Audit PASS</strong>: CORS restricted (5 origins), rate limiting (100/60s/IP), TLS 1.2+, weak ciphers disabled, security headers (HSTS, X-Frame-Options, nosniff), subscription keys on all 7 APIs</li>
+        <li><strong>Action Group Expanded</strong>: 4 email receivers for critical alerts</li>
+        <li><strong>App Gateway probe updated</strong>: Correct APIM v2 health endpoint</li>
+        <li><strong>App Insights confirmed flowing</strong>: 31 requests, 37 dependencies in 24h</li>
+    </ul>
+    <h3>Full Resource Verification (All Passed)</h3>
+    <table>
+        <tr><th>Check</th><th>Resource</th><th>Result</th></tr>
+        <tr><td>App Gateway → APIM</td><td>Backend health probe</td><td><span class="badge-green">✅ Healthy</span></td></tr>
+        <tr><td>APIM → AKS</td><td>Tenant API (returns 401)</td><td><span class="badge-green">✅ Reachable</span></td></tr>
+        <tr><td>AKS Pods</td><td>All 6 services</td><td><span class="badge-green">✅ Running 1/1</span></td></tr>
+        <tr><td>Admin Portal</td><td>recovery-admin-appservice-prod</td><td><span class="badge-green">✅ HTTP 200</span></td></tr>
+        <tr><td>Entity Portal</td><td>recovery-entity-appservice-prod</td><td><span class="badge-green">✅ HTTP 200</span></td></tr>
+        <tr><td>Redis</td><td>recoveryClaim-redis-cache-prod</td><td><span class="badge-green">✅ Succeeded</span></td></tr>
+        <tr><td>Key Vault</td><td>Recovery-keyvault-prod</td><td><span class="badge-green">✅ Succeeded</span></td></tr>
+        <tr><td>MongoDB VM</td><td>10.0.2.4 (mongo-subnet)</td><td><span class="badge-green">✅ Running</span></td></tr>
+        <tr><td>Grafana → Prometheus</td><td>Data source connected</td><td><span class="badge-green">✅ Connected</span></td></tr>
+        <tr><td>Firewall</td><td>Recovery-firewall-prod (ThreatIntel)</td><td><span class="badge-green">✅ Succeeded</span></td></tr>
+        <tr><td>Bastion</td><td>Recovery-bastion-prod (Standard)</td><td><span class="badge-green">✅ Succeeded</span></td></tr>
+        <tr><td>ACR</td><td>recoveryacrprod.azurecr.io</td><td><span class="badge-green">✅ Succeeded</span></td></tr>
+        <tr><td>CosmosDB</td><td>payment-cosmos-prod</td><td><span class="badge-green">✅ Succeeded</span></td></tr>
+        <tr><td>Ingress</td><td>20.233.167.149 (LoadBalancer)</td><td><span class="badge-green">✅ Running</span></td></tr>
+        <tr><td>Alert Rules</td><td>4 rules (Response, Error, CPU, Memory)</td><td><span class="badge-green">✅ Enabled</span></td></tr>
+        <tr><td>Availability Tests</td><td>3 tests (Admin, Entity, Backend)</td><td><span class="badge-green">✅ Enabled</span></td></tr>
+    </table>
+</div>
+
+<div class="timeline-entry">
+    <div class="timeline-date">June 9, 2026 — Portal Validation & APIM Gateway Fixes</div>
+    <p>Both production portals confirmed running. APIM routing issues fixed.</p>
+    <ul>
+        <li>APIM wildcard operations added for pass-through routing</li>
+        <li>App Gateway rewrite rule injects APIM subscription key for portal traffic</li>
+        <li>CORS policy updated with all portal origins</li>
+        <li>Entity portal quotation path and SignalR URL fixed</li>
+    </ul>
+    <div class="architecture-box">Portal (browser) → app.recoveryclaims.ae → App Gateway (WAF_v2) → [rewrite: inject APIM key] → APIM v2 → NGINX Ingress → AKS Pods</div>
+</div>
+
+</div>
+
+<hr class="section-divider">
+
+<h2>🏗️ Platform Architecture</h2>
+
+<div class="architecture-box">
+┌─────────────────────────────────────────────────────────────────────┐
+│                    PRODUCTION TRAFFIC FLOW                            │
+├─────────────────────────────────────────────────────────────────────┤
+│                                                                      │
+│  Users → app.recoveryclaims.ae (DNS A-record → 4.161.44.242)       │
+│              │                                                       │
+│              ▼                                                       │
+│  ┌─────────────────────────┐                                        │
+│  │  App Gateway (WAF_v2)   │  TLS + WAF + Rewrite (inject sub key) │
+│  └────────────┬────────────┘                                        │
+│              │                                                       │
+│              ▼                                                       │
+│  ┌─────────────────────────┐                                        │
+│  │  APIM v2 (StandardV2)   │  Rate Limit + CORS + Sub Keys         │
+│  │  7 APIs registered      │                                        │
+│  └────────────┬────────────┘                                        │
+│              │                                                       │
+│              ▼                                                       │
+│  ┌─────────────────────────────────────────────────────────────┐    │
+│  │  AKS Cluster (2× D4ds_v5) — NGINX Ingress (20.233.167.149) │    │
+│  │  ┌────────┐ ┌────────┐ ┌──────────┐ ┌────────┐ ┌────────┐ │    │
+│  │  │ Claims │ │ Tenant │ │Quotation │ │Invoice │ │Settl.  │ │    │
+│  │  │ IntHub │ └────────┘ └──────────┘ └────────┘ └────────┘ │    │
+│  │  └────────┘                                                 │    │
+│  └─────────────────────────────────────────────────────────────┘    │
+│              │                                                       │
+│              ▼                                                       │
+│  MongoDB (VM) │ Redis │ Blob Storage │ CosmosDB │ Key Vault         │
+└─────────────────────────────────────────────────────────────────────┘
+</div>
+
+<hr class="section-divider">
+
+<h2>🌍 Environment Matrix</h2>
+
+<table>
+    <tr>
+        <th>Component</th>
+        <th>Dev</th>
+        <th>QA</th>
+        <th>Staging</th>
+        <th>Production</th>
+    </tr>
+    <tr>
+        <td><strong>AKS Cluster</strong></td>
+        <td>Recovery-aks-dev (3 nodes)</td>
+        <td>Recovery-aks-qa (4 nodes)</td>
+        <td>Recovery-aks-staging (3 nodes)</td>
+        <td>Recovery-aks-prod (2 nodes)</td>
+    </tr>
+    <tr>
+        <td><strong>Replicas</strong></td>
+        <td>1 per service</td>
+        <td>2 per service</td>
+        <td>1 per service</td>
+        <td>1 per service</td>
+    </tr>
+    <tr>
+        <td><strong>APIM</strong></td>
+        <td>Developer SKU</td>
+        <td>Developer SKU</td>
+        <td>Developer SKU</td>
+        <td><span class="badge-blue">StandardV2</span></td>
+    </tr>
+    <tr>
+        <td><strong>App Gateway</strong></td>
+        <td>—</td>
+        <td>—</td>
+        <td>—</td>
+        <td><span class="badge-green">WAF_v2</span></td>
+    </tr>
+    <tr>
+        <td><strong>Key Vault</strong></td>
+        <td><span class="badge-red">Plaintext</span></td>
+        <td><span class="badge-green">KV + CSI</span></td>
+        <td><span class="badge-green">KV + CSI</span></td>
+        <td><span class="badge-green">KV + CSI</span></td>
+    </tr>
+    <tr>
+        <td><strong>ACR</strong></td>
+        <td>recoveryacr</td>
+        <td>recoveryacr</td>
+        <td>recoveryacrstaging</td>
+        <td>recoveryacrprod</td>
+    </tr>
+    <tr>
+        <td><strong>Monitoring</strong></td>
+        <td>App Insights only</td>
+        <td>App Insights only</td>
+        <td>App Insights only</td>
+        <td><span class="badge-green">Full Stack</span></td>
+    </tr>
+</table>
+
+<hr class="section-divider">
+
+<h2>🎯 Remaining Work & Next Steps</h2>
+
+<div class="blocker-section">
+    <h3>🔴 Blockers</h3>
+    <ul>
+        <li><strong>DNS</strong>: <code>app.recoveryclaims.ae</code> A-record → 4.161.44.242 (external team dependency)</li>
+        <li><strong>Terraform Import</strong>: 14 resources need <code>terraform import</code> before <code>apply</code> (MDI-184)</li>
+    </ul>
+</div>
+
+<div class="warning-section">
+    <h3>🟡 High Priority (Next Sprint)</h3>
+    <ul>
+        <li><strong>Autoscaling</strong>: HPA + Cluster Autoscaler for production (MDI-185 → MDI-189)</li>
+        <li><strong>Dev Key Vault</strong>: Migrate plaintext secrets to Key Vault</li>
+        <li><strong>Production Replicas</strong>: Increase Claims and Tenant to 2 replicas</li>
+        <li><strong>Network Policies</strong>: Zero-trust pod-to-pod communication</li>
+        <li><strong>Staging Ingress</strong>: Create ingress resource for staging environment</li>
+    </ul>
+</div>
+
+<div class="status-section">
+    <h3>🟢 Medium Priority (Next Month)</h3>
+    <ul>
+        <li><strong>GitOps</strong>: ArgoCD for declarative deployments with drift detection</li>
+        <li><strong>Container Scanning</strong>: Trivy in CI pipelines</li>
+        <li><strong>Production Approval Gate</strong>: Manual approval for prod deployments</li>
+        <li><strong>SLOs</strong>: Define and monitor service level objectives</li>
+        <li><strong>B2C Tenant Separation</strong>: Staging and Prod currently share B2C tenant</li>
+    </ul>
+</div>
+
+<hr class="section-divider">
+
+<h2>📊 Jira Epic Tracker</h2>
+
+<table>
+    <tr>
+        <th>Epic/Task</th>
+        <th>Status</th>
+        <th>Owner</th>
+    </tr>
+    <tr>
+        <td>MDI-196: Platform DevOps Stabilization</td>
+        <td><span class="badge-blue">IN PROGRESS</span></td>
+        <td>Ahmed</td>
+    </tr>
+    <tr>
+        <td>├── MDI-206: Portal CI/CD Unification</td>
+        <td><span class="badge-green">DONE</span></td>
+        <td>Ahmed</td>
+    </tr>
+    <tr>
+        <td>├── MDI-207: Entity Portal Workflow</td>
+        <td><span class="badge-green">DONE</span></td>
+        <td>Ahmed</td>
+    </tr>
+    <tr>
+        <td>├── MDI-208: Quotation Path Standardization</td>
+        <td><span class="badge-green">DONE</span></td>
+        <td>Ahmed</td>
+    </tr>
+    <tr>
+        <td>├── MDI-209: TenantAPI Config Fix</td>
+        <td><span class="badge-green">DONE</span></td>
+        <td>Ahmed</td>
+    </tr>
+    <tr>
+        <td>MDI-64: Production Scalability</td>
+        <td><span class="badge-yellow">PLANNED</span></td>
+        <td>Ahmed</td>
+    </tr>
+    <tr>
+        <td>├── MDI-185: Autoscaling Plan</td>
+        <td><span class="badge-green">DONE</span></td>
+        <td>Ahmed</td>
+    </tr>
+    <tr>
+        <td>├── MDI-186: Cluster Autoscaler</td>
+        <td><span class="badge-yellow">TODO</span></td>
+        <td>Ahmed</td>
+    </tr>
+    <tr>
+        <td>├── MDI-187: HPA Configuration</td>
+        <td><span class="badge-yellow">TODO</span></td>
+        <td>Ahmed</td>
+    </tr>
+    <tr>
+        <td>├── MDI-188: Resource Limits</td>
+        <td><span class="badge-yellow">TODO</span></td>
+        <td>Ahmed</td>
+    </tr>
+    <tr>
+        <td>├── MDI-189: Load Test Verification</td>
+        <td><span class="badge-yellow">TODO</span></td>
+        <td>Ahmed</td>
+    </tr>
+    <tr>
+        <td>MDI-184: Terraform Import</td>
+        <td><span class="badge-yellow">TODO</span></td>
+        <td>Ahmed</td>
+    </tr>
+    <tr>
+        <td>MDI-146: Security Audit (B2C, Network, Load Test)</td>
+        <td><span class="badge-yellow">TODO</span></td>
+        <td>Ahmed</td>
+    </tr>
+</table>
+
+<hr class="section-divider">
+
+<h2>🔑 Key Decisions Log</h2>
+
+<table>
+    <tr><th>Decision</th><th>Rationale</th><th>Date</th></tr>
+    <tr><td>Quotation path = singular (<code>api/quotation</code>)</td><td>Matches APIM registration, ASP.NET controller route, and K8s ingress</td><td>June 11, 2026</td></tr>
+    <tr><td>DRY CI/CD with GitHub Environment Variables</td><td>Single workflow per repo, environment isolation via GitHub Environments</td><td>June 10, 2026</td></tr>
+    <tr><td>APIM v2 (StandardV2) for production</td><td>Better performance, VNet integration, modern SKU</td><td>June 9, 2026</td></tr>
+    <tr><td>Kustomize (not Helm) for K8s</td><td>Simpler for env-specific overrides, no template complexity</td><td>Established</td></tr>
+    <tr><td>Branch-per-environment strategy</td><td>dev/qa/staging/prod branches map 1:1 to environments</td><td>Established</td></tr>
+</table>
+
+<hr class="section-divider">
+
+<p><em>Last Updated: June 11, 2026 | Maintained by: Ahmed Almahdi (Senior Cloud & DevOps Engineer)</em></p>
+
+</body>
+</html>

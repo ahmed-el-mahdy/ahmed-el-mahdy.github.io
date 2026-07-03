@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform Roadmap — Mosadad Recovery Claims</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.7; max-width: 1100px; margin: 0 auto; padding: 40px 20px; color: #1a1a2e; background: #fafbfc; }
+        h1 { color: #0052CC; border-bottom: 3px solid #0052CC; padding-bottom: 12px; }
+        h2 { color: #172B4D; margin-top: 40px; border-bottom: 2px solid #dfe1e6; padding-bottom: 8px; }
+        h3 { color: #253858; margin-top: 24px; }
+        h4 { color: #5e6c84; margin-top: 16px; }
+        blockquote { background: #f0f4ff; border-left: 4px solid #0052CC; padding: 12px 20px; margin: 16px 0; border-radius: 4px; }
+        table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }
+        th, td { border: 1px solid #DFE1E6; padding: 10px 14px; text-align: left; }
+        th { background: #0052CC; color: white; font-weight: 600; }
+        tr:nth-child(even) { background: #f4f5f7; }
+        code { background: #e8ecf0; padding: 2px 6px; border-radius: 3px; font-size: 13px; }
+        pre { background: #1e1e2e; color: #cdd6f4; padding: 20px; border-radius: 8px; overflow-x: auto; font-size: 12px; line-height: 1.5; }
+        .badge-green { background: #00875A; color: white; padding: 3px 10px; border-radius: 4px; font-size: 12px; }
+        .badge-yellow { background: #FF991F; color: white; padding: 3px 10px; border-radius: 4px; font-size: 12px; }
+        .badge-red { background: #DE350B; color: white; padding: 3px 10px; border-radius: 4px; font-size: 12px; }
+        .badge-blue { background: #0052CC; color: white; padding: 3px 10px; border-radius: 4px; font-size: 12px; }
+        hr { border: none; border-top: 2px solid #dfe1e6; margin: 36px 0; }
+        .nav { background: #f0f4ff; padding: 10px 20px; border-radius: 8px; margin-bottom: 30px; }
+        .nav a { margin-right: 16px; font-size: 13px; color: #0052CC; text-decoration: none; }
+        .phase { background: white; padding: 24px; border-radius: 8px; margin: 24px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-left: 4px solid #0052CC; }
+        .phase-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 6px; }
+        ol li { margin-bottom: 12px; }
+    </style>
+</head>
+<body>
+
+<div class="nav">
+    <a href="./README.html">← Index</a>
+    <a href="./PLATFORM-OVERVIEW.html">Overview</a>
+    <a href="./ENVIRONMENT-MATRIX.html">Env Matrix</a>
+    <a href="./CAREER-DEVELOPMENT.html">Career</a>
+</div>
+
+<h1>🗺️ Platform Roadmap — 8-Phase Improvement Plan</h1>
+<blockquote><strong>Timeframe</strong>: June 2026 – December 2026<br><strong>Approach</strong>: Incremental, prioritized by risk reduction</blockquote>
+
+<hr>
+
+<h2>Timeline Summary</h2>
+<table>
+    <tr><th>Phase</th><th>Focus</th><th>Duration</th><th>Priority</th></tr>
+    <tr><td>1</td><td>Security Hardening</td><td>Week 1–2</td><td><span class="badge-red">Critical</span></td></tr>
+    <tr><td>2</td><td>Autoscaling &amp; Resilience</td><td>Week 3–4</td><td><span class="badge-red">Critical</span></td></tr>
+    <tr><td>3</td><td>Terraform State Import</td><td>Week 5–6</td><td><span class="badge-yellow">High</span></td></tr>
+    <tr><td>4</td><td>GitOps Implementation</td><td>Week 7–8</td><td><span class="badge-yellow">High</span></td></tr>
+    <tr><td>5</td><td>Observability Enhancement</td><td>Week 9–10</td><td><span class="badge-blue">Medium</span></td></tr>
+    <tr><td>6</td><td>CI/CD Maturity</td><td>Week 11–12</td><td><span class="badge-blue">Medium</span></td></tr>
+    <tr><td>7</td><td>Database Resilience</td><td>Week 13–16</td><td><span class="badge-blue">Medium</span></td></tr>
+    <tr><td>8</td><td>Performance &amp; Optimization</td><td>Week 17–20</td><td><span class="badge-green">Enhancement</span></td></tr>
+</table>
+
+<hr>
+
+<div class="phase">
+<h2>Phase 1: Security Hardening (Week 1–2)</h2>
+
+<h3>1.1 Migrate Dev Secrets to Key Vault</h3>
+<pre># Create Key Vault for dev
+az keyvault create \
+  --name recovery-kv-dev \
+  --resource-group recovery-rg \
+  --location uaenorth
+
+# Enable CSI driver addon (if not enabled)
+az aks enable-addons \
+  --addons azure-keyvault-secrets-provider \
+  --name Recovery-aks-dev \
+  --resource-group recovery-rg
+
+# Migrate each secret
+az keyvault secret set --vault-name recovery-kv-dev --name MongoConnectionString --value "&lt;value&gt;"
+az keyvault secret set --vault-name recovery-kv-dev --name RedisConnectionString --value "&lt;value&gt;"</pre>
+
+<h3>1.2 Network Policies</h3>
+<pre># base/network-policies/deny-all.yaml
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: deny-all
+spec:
+  podSelector: {}
+  policyTypes:
+    - Ingress
+    - Egress
+
+---
+# Allow ingress controller to reach pods
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-ingress-controller
+spec:
+  podSelector: {}
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: ingress-nginx
+  policyTypes:
+    - Ingress</pre>
+
+<h3>1.3 Pod Security Standards</h3>
+<pre># Apply restricted PSS to prod namespace
+kubectl label namespace prod \
+  pod-security.kubernetes.io/enforce=restricted \
+  pod-security.kubernetes.io/warn=restricted</pre>
+
+<h4>Checklist:</h4>
+<ul>
+    <li>☐ Dev Key Vault created and secrets migrated</li>
+    <li>☐ SecretProviderClass for dev created</li>
+    <li>☐ Dev configmaps stripped of sensitive data</li>
+    <li>☐ Network policies applied to all namespaces</li>
+    <li>☐ Pod security standards enforced in prod</li>
+    <li>☐ Container images scanned (Trivy in CI)</li>
+</ul>
+</div>
+
+<hr>
+
+<div class="phase">
+<h2>Phase 2: Autoscaling &amp; Resilience (Week 3–4)</h2>
+
+<h3>2.1 Horizontal Pod Autoscaler</h3>
+<pre># overlays/prod/hpa-claims.yaml
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: prod-claims-hpa
+  namespace: prod
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: prod-claims
+  minReplicas: 2
+  maxReplicas: 5
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 80</pre>
+
+<h3>2.2 Cluster Autoscaler</h3>
+<pre>az aks update \
+  --name Recovery-aks-prod \
+  --resource-group Recovery-rg-prod \
+  --enable-cluster-autoscaler \
+  --min-count 2 \
+  --max-count 5</pre>
+
+<h3>2.3 Pod Disruption Budgets</h3>
+<pre>apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: prod-claims-pdb
+  namespace: prod
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: prod-claims</pre>
+
+<h4>Checklist:</h4>
+<ul>
+    <li>☐ HPA for claims, tenant (critical services)</li>
+    <li>☐ Cluster autoscaler enabled (prod)</li>
+    <li>☐ PDB for all prod deployments</li>
+    <li>☐ Resource requests/limits verified</li>
+    <li>☐ Readiness/liveness probes confirmed</li>
+    <li>☐ Min 2 replicas for claims+tenant in prod</li>
+</ul>
+</div>
+
+<hr>
+
+<div class="phase">
+<h2>Phase 3: Terraform State Import (Week 5–6)</h2>
+
+<h3>3.1 Import Strategy</h3>
+<pre># Use terraform import for each existing resource
+# Example for AKS cluster
+terraform import module.aks.azurerm_kubernetes_cluster.main \
+  /subscriptions/86e6cf03-*/resourceGroups/Recovery-rg-prod/providers/Microsoft.ContainerService/managedClusters/Recovery-aks-prod
+
+# Example for APIM
+terraform import module.apim.azurerm_api_management.main \
+  /subscriptions/86e6cf03-*/resourceGroups/Recovery-rg-prod/providers/Microsoft.ApiManagement/service/recovery-api-management-prod</pre>
+
+<h3>3.2 Validation</h3>
+<pre># After import, plan should show no changes
+terraform plan -out=plan.tfplan
+# Review: Expect "No changes. Your infrastructure matches the configuration."</pre>
+
+<h4>Checklist:</h4>
+<ul>
+    <li>☐ Remote state backend configured (Azure Storage)</li>
+    <li>☐ Prod resources imported</li>
+    <li>☐ terraform plan shows zero drift</li>
+    <li>☐ State locking enabled</li>
+    <li>☐ Team access to state configured</li>
+</ul>
+</div>
+
+<hr>
+
+<div class="phase">
+<h2>Phase 4: GitOps Implementation (Week 7–8)</h2>
+
+<h3>4.1 ArgoCD Installation</h3>
+<pre># Install ArgoCD
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+# Create Application for prod
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: prod-services
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/Mosadad/kubernetes.git
+    targetRevision: main
+    path: overlays/prod
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: prod
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true</pre>
+
+<h4>Checklist:</h4>
+<ul>
+    <li>☐ ArgoCD deployed in staging first</li>
+    <li>☐ Git repo connected</li>
+    <li>☐ Sync policies configured</li>
+    <li>☐ SSO integration with Azure AD</li>
+    <li>☐ Promote to prod after validation</li>
+</ul>
+</div>
+
+<hr>
+
+<div class="phase">
+<h2>Phase 5: Observability Enhancement (Week 9–10)</h2>
+
+<h3>5.1 Custom Dashboards</h3>
+<ul>
+    <li>Grafana dashboard per service (request rate, error rate, latency)</li>
+    <li>Business metrics dashboard (claims created/day, SLA compliance)</li>
+    <li>Infrastructure dashboard (node CPU, pod restarts, disk usage)</li>
+</ul>
+
+<h3>5.2 Enhanced Alerting</h3>
+<table>
+    <tr><th>Alert</th><th>Condition</th><th>Action</th></tr>
+    <tr><td>Pod restart &gt; 3 in 5min</td><td>kube_pod_container_status_restarts_total</td><td>Slack + PagerDuty</td></tr>
+    <tr><td>API latency P99 &gt; 2s</td><td>AppInsights request duration</td><td>Slack notification</td></tr>
+    <tr><td>Error rate &gt; 5%</td><td>requests.failed / requests.total</td><td>Slack + investigate</td></tr>
+    <tr><td>Node CPU &gt; 80%</td><td>node_cpu_seconds_total</td><td>Scale event</td></tr>
+    <tr><td>Disk usage &gt; 85%</td><td>node_filesystem_avail_bytes</td><td>Alert + expand</td></tr>
+</table>
+
+<h4>Checklist:</h4>
+<ul>
+    <li>☐ RED metrics dashboards per service</li>
+    <li>☐ SLA dashboard for business</li>
+    <li>☐ Alert notification channel (Slack/Teams)</li>
+    <li>☐ On-call rotation defined</li>
+    <li>☐ Runbooks linked to alerts</li>
+</ul>
+</div>
+
+<hr>
+
+<div class="phase">
+<h2>Phase 6: CI/CD Maturity (Week 11–12)</h2>
+
+<h3>6.1 Pipeline Enhancements</h3>
+<ul>
+    <li>Add integration tests stage</li>
+    <li>Add container image scanning (Trivy)</li>
+    <li>Add approval gate for production</li>
+    <li>Add smoke test post-deploy</li>
+    <li>Automated rollback on health check failure</li>
+</ul>
+
+<h3>6.2 Pipeline Template</h3>
+<pre>name: Deploy Service
+on:
+  push:
+    branches: [dev, qa, staging, prod]
+jobs:
+  build-test:
+    # Build + unit tests
+  scan:
+    # Trivy container scan
+  deploy:
+    needs: [build-test, scan]
+    environment: ${{ github.ref_name }}  # Requires approval for prod
+    # Deploy to AKS
+  smoke-test:
+    needs: deploy
+    # Health check endpoints
+  rollback:
+    needs: smoke-test
+    if: failure()
+    # kubectl rollout undo</pre>
+
+<h4>Checklist:</h4>
+<ul>
+    <li>☐ Trivy scan in all pipelines</li>
+    <li>☐ GitHub Environment protection rules for prod</li>
+    <li>☐ Smoke tests post-deploy</li>
+    <li>☐ Auto-rollback on failure</li>
+    <li>☐ DAST scan (OWASP ZAP) in QA pipeline</li>
+</ul>
+</div>
+
+<hr>
+
+<div class="phase">
+<h2>Phase 7: Database Resilience (Week 13–16)</h2>
+
+<h3>7.1 MongoDB Replica Set</h3>
+<pre># Deploy 2 additional MongoDB nodes
+# Configure replica set
+rs.initiate({
+  _id: "recovery-rs",
+  members: [
+    { _id: 0, host: "mongo-primary:27017", priority: 2 },
+    { _id: 1, host: "mongo-secondary1:27017", priority: 1 },
+    { _id: 2, host: "mongo-secondary2:27017", priority: 1 }
+  ]
+})</pre>
+
+<h3>7.2 Automated Backups</h3>
+<pre># Cron job for daily backup to Azure Blob
+0 2 * * * mongodump --uri="$MONGO_URI" --gzip --archive=/backup/daily-$(date +\%Y\%m\%d).gz
+# Upload to blob storage
+0 3 * * * az storage blob upload --account-name recoverystorageprod --container-name backups --file /backup/daily-*.gz</pre>
+
+<h4>Checklist:</h4>
+<ul>
+    <li>☐ Replica set configured (3 nodes)</li>
+    <li>☐ Connection strings updated to use replica set</li>
+    <li>☐ Automated daily backups</li>
+    <li>☐ Point-in-time recovery tested</li>
+    <li>☐ Backup retention policy (30 days)</li>
+</ul>
+</div>
+
+<hr>
+
+<div class="phase">
+<h2>Phase 8: Performance &amp; Optimization (Week 17–20)</h2>
+
+<h3>8.1 Load Testing</h3>
+<pre># k6 load test for claims API
+import http from 'k6/http';
+import { check, sleep } from 'k6';
+
+export const options = {
+  stages: [
+    { duration: '2m', target: 50 },
+    { duration: '5m', target: 100 },
+    { duration: '2m', target: 0 },
+  ],
+};
+
+export default function () {
+  const res = http.get('https://api.recoveryclaims.ae/api/claims/dashboard');
+  check(res, { 'status is 200': (r) => r.status === 200 });
+  sleep(1);
+}</pre>
+
+<h3>8.2 Cost Optimization</h3>
+<ul>
+    <li>Schedule dev/QA cluster shutdown outside business hours</li>
+    <li>Right-size node pools based on actual usage</li>
+    <li>Reserved instances for prod (1-year commitment = 30% savings)</li>
+    <li>Storage lifecycle policies (move cold data to archive tier)</li>
+</ul>
+
+<h4>Checklist:</h4>
+<ul>
+    <li>☐ k6 load tests for critical paths</li>
+    <li>☐ Performance baseline established</li>
+    <li>☐ Off-hours scheduling for dev/QA</li>
+    <li>☐ Reserved instances evaluated</li>
+    <li>☐ CDN for static assets (portals)</li>
+</ul>
+</div>
+
+<hr>
+
+<h2>Success Criteria</h2>
+<table>
+    <tr><th>Metric</th><th>Current</th><th>Target (Dec 2026)</th></tr>
+    <tr><td>Availability (prod)</td><td>~99.5%</td><td>99.9%</td></tr>
+    <tr><td>Deploy frequency</td><td>Manual, ad-hoc</td><td>Daily (automated)</td></tr>
+    <tr><td>Mean time to recovery</td><td>~30 min</td><td>&lt;5 min (auto-rollback)</td></tr>
+    <tr><td>Security score</td><td>~70%</td><td>90%+</td></tr>
+    <tr><td>IaC coverage</td><td>~50%</td><td>95%</td></tr>
+    <tr><td>Test coverage</td><td>~10%</td><td>60%+</td></tr>
+</table>
+
+</body>
+</html>

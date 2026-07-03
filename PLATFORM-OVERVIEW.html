@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform Overview — Mosadad Recovery Claims</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; line-height: 1.7; max-width: 1100px; margin: 0 auto; padding: 40px 20px; color: #1a1a2e; background: #fafbfc; }
+        h1 { color: #0052CC; border-bottom: 3px solid #0052CC; padding-bottom: 12px; }
+        h2 { color: #172B4D; margin-top: 40px; border-bottom: 2px solid #dfe1e6; padding-bottom: 8px; }
+        h3 { color: #253858; margin-top: 24px; }
+        blockquote { background: #f0f4ff; border-left: 4px solid #0052CC; padding: 12px 20px; margin: 16px 0; border-radius: 4px; }
+        table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 14px; }
+        th, td { border: 1px solid #DFE1E6; padding: 10px 14px; text-align: left; }
+        th { background: #0052CC; color: white; font-weight: 600; }
+        tr:nth-child(even) { background: #f4f5f7; }
+        code { background: #e8ecf0; padding: 2px 6px; border-radius: 3px; font-size: 13px; }
+        pre { background: #1e1e2e; color: #cdd6f4; padding: 20px; border-radius: 8px; overflow-x: auto; font-size: 12px; line-height: 1.5; }
+        .badge-green { background: #00875A; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+        .badge-yellow { background: #FF991F; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+        .badge-red { background: #DE350B; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+        hr { border: none; border-top: 2px solid #dfe1e6; margin: 36px 0; }
+        a { color: #0052CC; }
+        .nav { background: #f0f4ff; padding: 10px 20px; border-radius: 8px; margin-bottom: 30px; }
+        .nav a { margin-right: 16px; font-size: 13px; }
+    </style>
+</head>
+<body>
+
+<div class="nav">
+    <a href="./README.html">← Index</a>
+    <a href="./ENVIRONMENT-MATRIX.html">Environment Matrix</a>
+    <a href="./ROADMAP.html">Roadmap</a>
+    <a href="./CAREER-DEVELOPMENT.html">Career</a>
+</div>
+
+<h1>🏗️ Mosadad Recovery Claims Platform — Architecture Overview</h1>
+
+<blockquote><strong>Last Updated</strong>: June 11, 2026</blockquote>
+
+<hr>
+
+<h2>1. Platform Identity</h2>
+<p><strong>Mosadad Recovery Claims</strong> is an insurance subrogation recovery platform built for the UAE market. It automates the complete lifecycle of vehicle insurance claims — from filing through investigation, quotation, invoicing, settlement, and closure — serving both insurance companies (admin portal) and repair entities (entity portal).</p>
+
+<hr>
+
+<h2>2. Architecture Diagram</h2>
+<pre>
+┌─────────────────────────────────────────────────────────────────────────────────────────┐
+│                              PRODUCTION ARCHITECTURE                                     │
+├─────────────────────────────────────────────────────────────────────────────────────────┤
+│                                                                                          │
+│  Users ──► app.recoveryclaims.ae (DNS)                                                  │
+│                 │                                                                        │
+│                 ▼                                                                        │
+│  ┌─────────────────────────────┐                                                        │
+│  │   Azure App Gateway (WAF)   │  TLS termination, WAF rules, rewrite rules            │
+│  │   4.161.44.242              │  Injects APIM subscription key for portal traffic      │
+│  └──────────────┬──────────────┘                                                        │
+│                 │                                                                        │
+│       ┌─────────┴─────────┐                                                            │
+│       │                   │                                                            │
+│       ▼                   ▼                                                            │
+│  ┌──────────┐    ┌────────────────────────┐                                            │
+│  │  Portals │    │  APIM v2 (StandardV2)  │  Rate limiting, CORS, TLS 1.2+            │
+│  │ (Direct) │    │  7 APIs registered     │  Subscription keys, Security headers       │
+│  └──────────┘    └───────────┬────────────┘                                            │
+│                              │                                                          │
+│                              ▼                                                          │
+│  ┌────────────────────────────────────────────────────────────────────────────────┐     │
+│  │                    AKS Cluster (2× Standard_D4ds_v5)                           │     │
+│  │  ┌─────────────────────────────────────────────────────────────────────────┐   │     │
+│  │  │  NGINX Ingress Controller (20.233.167.149)                              │   │     │
+│  │  │  Path-based routing: /claims, /tenant, /quotation, /invoice, etc.       │   │     │
+│  │  └──────┬──────────┬──────────┬──────────┬──────────┬──────────┬──────────┘   │     │
+│  │         │          │          │          │          │          │               │     │
+│  │         ▼          ▼          ▼          ▼          ▼          ▼               │     │
+│  │  ┌──────────┐┌──────────┐┌──────────┐┌──────────┐┌──────────┐┌──────────┐    │     │
+│  │  │  Claims  ││  Tenant  ││Quotation ││ Invoice  ││Settlement││  IntHub  │    │     │
+│  │  │  .NET 8  ││  .NET 8  ││  .NET 8  ││  .NET 8  ││  .NET 8  ││  .NET 8  │    │     │
+│  │  └────┬─────┘└────┬─────┘└────┬─────┘└────┬─────┘└────┬─────┘└────┬─────┘    │     │
+│  │       └───────────┴───────────┴───────────┴───────────┴───────────┘           │     │
+│  │                              │                                                 │     │
+│  └──────────────────────────────┼─────────────────────────────────────────────────┘     │
+│                                 │                                                        │
+│                    ┌────────────┴────────────────────┐                                  │
+│                    │         Data Layer              │                                  │
+│                    │  MongoDB (VM) │ Redis Cache     │                                  │
+│                    │  Blob Storage │ CosmosDB        │                                  │
+│                    └────────────────────────────────┘                                  │
+│                                                                                          │
+│  ┌─── Supporting: Key Vault │ App Insights │ Grafana+Prometheus │ Firewall │ Bastion ──┐│
+└─────────────────────────────────────────────────────────────────────────────────────────┘
+</pre>
+
+<hr>
+
+<h2>3. Service Inventory</h2>
+
+<h3>3.1 Backend Microservices</h3>
+<table>
+    <tr><th>Service</th><th>Repo</th><th>Purpose</th><th>API Path</th><th>DB</th></tr>
+    <tr><td><strong>Claims</strong></td><td><code>backend-Mosadad-claims</code></td><td>Core claims lifecycle, dashboards, SLA management</td><td><code>/api/claims</code></td><td>MongoDB</td></tr>
+    <tr><td><strong>Tenant</strong></td><td><code>backend-mosadad-tenant</code></td><td>Auth, users, entities, B2C integration, refresh tokens</td><td><code>/api/tenant</code></td><td>MongoDB</td></tr>
+    <tr><td><strong>Quotation</strong></td><td><code>backend-mosadad-quotation</code></td><td>Repair/replacement quotes, bulk approval, negotiations</td><td><code>/api/quotation</code></td><td>MongoDB</td></tr>
+    <tr><td><strong>Invoice</strong></td><td><code>backend-mosadad-invoice</code></td><td>Billing, LPO invoices, payment tracking</td><td><code>/api/invoice</code></td><td>MongoDB</td></tr>
+    <tr><td><strong>Settlement</strong></td><td><code>backend-mosadad-settlement</code></td><td>Final settlement processing, payment reconciliation</td><td><code>/api/settlement</code></td><td>MongoDB</td></tr>
+    <tr><td><strong>IntHub</strong></td><td><code>backend-mosadad-inthub</code></td><td>External integrations (SMS, email, third-party APIs)</td><td><code>/api/inthub</code></td><td>MongoDB</td></tr>
+    <tr><td><strong>TriggerHub</strong></td><td><code>backend-triggerhub</code></td><td>Azure Functions — scheduled jobs, event-driven tasks</td><td>N/A</td><td>MongoDB</td></tr>
+</table>
+
+<h3>3.2 Frontend Applications</h3>
+<table>
+    <tr><th>App</th><th>Repo</th><th>Framework</th><th>Purpose</th><th>Hosting</th></tr>
+    <tr><td><strong>Admin Portal</strong></td><td><code>WebApps-admin-portal</code></td><td>Angular 19</td><td>Insurance company users — claims management</td><td>Azure App Service</td></tr>
+    <tr><td><strong>Entity Portal</strong></td><td><code>WebApps-entity-portal</code></td><td>Angular 19</td><td>Repair entities — quotation submission</td><td>Azure App Service</td></tr>
+</table>
+
+<h3>3.3 Infrastructure Repos</h3>
+<table>
+    <tr><th>Repo</th><th>Purpose</th></tr>
+    <tr><td><code>terraform</code></td><td>IaC for all Azure resources (modularized)</td></tr>
+    <tr><td><code>kubernetes</code></td><td>K8s manifests — Kustomize base + overlays for 4 envs</td></tr>
+</table>
+
+<hr>
+
+<h2>4. Technology Stack</h2>
+<table>
+    <tr><th>Layer</th><th>Technology</th></tr>
+    <tr><td>Compute</td><td>AKS (Kubernetes 1.28+), Azure App Service</td></tr>
+    <tr><td>Runtime</td><td>.NET 8 (ASP.NET Core Web API)</td></tr>
+    <tr><td>Frontend</td><td>Angular 19, TypeScript</td></tr>
+    <tr><td>Database</td><td>MongoDB (self-hosted VM), Azure CosmosDB (payment)</td></tr>
+    <tr><td>Cache</td><td>Azure Redis Cache</td></tr>
+    <tr><td>API Gateway</td><td>Azure API Management (StandardV2)</td></tr>
+    <tr><td>WAF/LB</td><td>Azure Application Gateway (WAF_v2)</td></tr>
+    <tr><td>Auth</td><td>Azure AD B2C (per-environment tenants)</td></tr>
+    <tr><td>Secrets</td><td>Azure Key Vault (CSI driver mount in K8s)</td></tr>
+    <tr><td>Storage</td><td>Azure Blob Storage</td></tr>
+    <tr><td>Monitoring</td><td>Application Insights + Grafana + Prometheus</td></tr>
+    <tr><td>CI/CD</td><td>GitHub Actions</td></tr>
+    <tr><td>IaC</td><td>Terraform (modularized)</td></tr>
+    <tr><td>Container Registry</td><td>Azure Container Registry (per-env)</td></tr>
+    <tr><td>Networking</td><td>Azure Firewall, Bastion, VNet + subnets, NSGs</td></tr>
+    <tr><td>Serverless</td><td>Azure Functions (Isolated Worker, .NET 8)</td></tr>
+</table>
+
+<hr>
+
+<h2>5. Security Posture (Production)</h2>
+<table>
+    <tr><th>Control</th><th>Status</th></tr>
+    <tr><td>TLS 1.2+ enforced</td><td><span class="badge-green">✅</span></td></tr>
+    <tr><td>WAF enabled (App Gateway)</td><td><span class="badge-green">✅</span></td></tr>
+    <tr><td>Rate limiting (100/60s/IP)</td><td><span class="badge-green">✅</span></td></tr>
+    <tr><td>CORS restricted (5 origins)</td><td><span class="badge-green">✅</span></td></tr>
+    <tr><td>Subscription keys on all APIs</td><td><span class="badge-green">✅</span></td></tr>
+    <tr><td>Security headers (HSTS, X-Frame, nosniff)</td><td><span class="badge-green">✅</span></td></tr>
+    <tr><td>Key Vault for secrets</td><td><span class="badge-green">✅ QA/Staging/Prod</span></td></tr>
+    <tr><td>Network segmentation (subnets)</td><td><span class="badge-green">✅</span></td></tr>
+    <tr><td>Azure Firewall (ThreatIntel)</td><td><span class="badge-green">✅</span></td></tr>
+    <tr><td>Bastion for SSH access</td><td><span class="badge-green">✅</span></td></tr>
+    <tr><td>Container image scanning</td><td><span class="badge-yellow">⚠️ Not automated</span></td></tr>
+    <tr><td>Network policies in K8s</td><td><span class="badge-yellow">⚠️ Not configured</span></td></tr>
+    <tr><td>Pod security standards</td><td><span class="badge-yellow">⚠️ Not enforced</span></td></tr>
+</table>
+
+<hr>
+
+<h2>6. Observability</h2>
+<table>
+    <tr><th>Component</th><th>Tool</th><th>Status</th></tr>
+    <tr><td>APM &amp; Distributed Tracing</td><td>Application Insights</td><td><span class="badge-green">✅ Active</span></td></tr>
+    <tr><td>Metrics</td><td>Prometheus + Grafana</td><td><span class="badge-green">✅ Connected</span></td></tr>
+    <tr><td>Alerting</td><td>Azure Monitor (4 rules)</td><td><span class="badge-green">✅ Enabled</span></td></tr>
+    <tr><td>Availability Tests</td><td>3 ping tests</td><td><span class="badge-green">✅ Enabled</span></td></tr>
+    <tr><td>Logging</td><td>App Insights + Log Analytics</td><td><span class="badge-green">✅</span></td></tr>
+    <tr><td>Real-time Notifications</td><td>SignalR (via APIM WebSocket)</td><td><span class="badge-green">✅</span></td></tr>
+</table>
+
+<hr>
+
+<h2>7. CI/CD Architecture</h2>
+
+<h3>Pipeline Pattern (Backend)</h3>
+<pre>git push → GitHub Actions → dotnet build → Docker build → Push to ACR → kubectl set image → APIM swagger import</pre>
+
+<h3>Pipeline Pattern (Frontend)</h3>
+<pre>git push → GitHub Actions → npm install → ng build --configuration={env} → Docker (nginx) → ACR → az webapp deploy</pre>
+
+<h3>Branch → Environment Mapping</h3>
+<table>
+    <tr><th>Branch</th><th>Namespace</th><th>Cluster</th><th>ACR</th><th>APIM</th></tr>
+    <tr><td><code>dev</code></td><td>dev</td><td>Recovery-aks-dev</td><td>recoveryacr</td><td>recovery-api-management-dev</td></tr>
+    <tr><td><code>qa</code></td><td>qa</td><td>Recovery-aks-qa</td><td>recoveryacr</td><td>recovery-api-management-qa</td></tr>
+    <tr><td><code>staging</code></td><td>staging</td><td>Recovery-aks-staging</td><td>recoveryacrstaging</td><td>recovery-api-management-staging</td></tr>
+    <tr><td><code>prod</code></td><td>prod</td><td>Recovery-aks-prod</td><td>recoveryacrprod</td><td>recovery-api-management-prod</td></tr>
+</table>
+
+<h3>Key CI/CD Features</h3>
+<ul>
+    <li><strong>DRY Workflow Pattern</strong>: Single workflow file uses GitHub Environment variables</li>
+    <li><strong>Guardrails</strong>: Branch-to-environment validation prevents wrong deployments</li>
+    <li><strong>Image Tags</strong>: <code>{env}-{short_sha}</code> for traceability</li>
+    <li><strong>APIM Import</strong>: Automatic Swagger/OpenAPI import post-deploy</li>
+    <li><strong>Rollback</strong>: Previous image tag stored, manual rollback via <code>kubectl set image</code></li>
+</ul>
+
+<hr>
+
+<h2>8. Current State (June 11, 2026)</h2>
+<table>
+    <tr><th>Environment</th><th>Pods</th><th>Nodes</th><th>Status</th></tr>
+    <tr><td>Dev</td><td>6/6 Running</td><td>3</td><td><span class="badge-green">✅ Healthy</span></td></tr>
+    <tr><td>QA</td><td>12 (2 replicas)</td><td>4</td><td><span class="badge-green">✅ Healthy</span></td></tr>
+    <tr><td>Staging</td><td>6/6 Running</td><td>3</td><td><span class="badge-green">✅ Healthy</span></td></tr>
+    <tr><td>Production</td><td>6/6 Running</td><td>2</td><td><span class="badge-green">✅ Healthy</span></td></tr>
+</table>
+
+<h3>Recent Fixes Applied (June 11)</h3>
+<ol>
+    <li>✅ Quotation API path standardized (<code>api/quotation</code> singular) — all environments</li>
+    <li>✅ Portal CI/CD workflows unified to DRY pattern — all branches</li>
+    <li>✅ Missing <code>TenantAPI</code> config added to dev/qa claims</li>
+    <li>✅ Entity portal environment URLs corrected — all branches</li>
+    <li>✅ Claims pods restarted with correct configmaps</li>
+</ol>
+
+</body>
+</html>
