@@ -1,5 +1,12 @@
 # Ahmed ElMahdy
 
+## Portfolio Engineering
+
+- Live portfolio: [ahmed-el-mahdy.github.io](https://ahmed-el-mahdy.github.io/)
+- Safe update workflow: [PORTFOLIO-MAINTENANCE.md](PORTFOLIO-MAINTENANCE.md)
+- Visual acceptance record: [design-qa.md](design-qa.md)
+- Runtime: static GitHub Pages site; no build step or package installation required.
+
 **Platform / DevOps Engineer**  
 📍 New Cairo, Egypt  
 

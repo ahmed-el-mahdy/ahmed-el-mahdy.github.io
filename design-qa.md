@@ -1,13 +1,16 @@
 # Platform Blueprint Design QA
 
 - Source visual truth: `design-reference/option-3-platform-blueprint.png`
-- Implementation: `portfolio-v3.html`
+- Production implementation: `index.html`
 - Desktop screenshot: `design-reference/implementation-desktop-1440x1024.png`
 - Mobile screenshot: `design-reference/implementation-mobile-390x844.png`
 - Evidence board screenshots: `design-reference/implementation-proof-desktop.png`, `design-reference/implementation-proof-mobile.png`
 - Evidence board comparison: `design-reference/qa-proof-board-comparison.jpg`
 - Brand icon screenshots: `design-reference/implementation-brand-icons-desktop.png`, `design-reference/implementation-brand-icons-stack.png`, `design-reference/implementation-brand-icons-mobile.png`
 - Architecture screenshots: `design-reference/implementation-architecture-desktop.png`, `design-reference/implementation-architecture-mobile.png`
+- Contact photo screenshots: `design-reference/implementation-contact-photo-desktop.png`, `design-reference/implementation-contact-photo-mobile.png`
+- Stack icon screenshots: `design-reference/implementation-stack-icons-desktop.png`, `design-reference/implementation-stack-icons-mobile.png`
+- Stack icon comparison: `design-reference/qa-stack-icons-comparison.jpg`
 - Full comparison: `design-reference/qa-side-by-side-desktop.jpg`
 - Focused comparisons: `design-reference/qa-hero-focus.jpg`, `design-reference/qa-pipeline-focus.jpg`
 - Viewports: 1440 x 1024 desktop and 390 x 844 mobile
@@ -93,6 +96,24 @@ The source composition is preserved while replacing illustrative mock copy with 
 - Propagation: Reused the same identities in the hero pipeline, outcome counters, evidence board, detailed casework, public projects, operating model, and technical stack.
 - Performance: Kept only eight local SVG files totaling approximately 28 KB; the page makes no extra icon CDN requests beyond the existing Lucide runtime.
 - Post-fix evidence: 34 of 34 brand icon instances loaded, desktop and 390 px mobile overflow remained 0 px, and browser console output remained empty.
+
+### Iteration 5
+
+- P2: The final contact section ended on another technical panel and lacked a clear human signal.
+- Fix: Integrated Ahmed's authentic at-work portrait as an unframed responsive visual while retaining the existing contact copy and all four actions.
+- Composition: Desktop uses a right-aligned photograph with a soft masked fade into the content field; mobile uses a dedicated 300 px image band above the contact copy so the subject and text never collide.
+- Performance: Converted the selected photograph to a 1600 x 1195 WebP asset at approximately 52 KB.
+- Accessibility: Added a descriptive image role and label; all information and actions remain real HTML text and links.
+- Post-fix evidence: Desktop and 390 px mobile captures show zero horizontal overflow, all four contact links remain present, and browser console output remains empty.
+
+### Iteration 6
+
+- P1: Technical Stack mixed recognizable product identities with generic teal dots, weakening the evidence for the actual platforms and tools used.
+- Fix: Added real local marks across Cloud and IaC, Kubernetes, Delivery, Observability, Security and Identity, and Systems and Data. Microsoft Azure and AWS services use their official architecture collections; cross-platform tools use maintained Devicon and Simple Icons assets.
+- Coverage: Added Azure, AWS, Terraform, CloudFormation, Key Vault, AKS, Docker, Helm, Argo CD, Jenkins, CircleCI, GitLab CI, Ansible, YAML, Prometheus, Grafana, Application Insights, CloudWatch, Entra ID, RBAC, WAF, Firewall, B2C, IAM, Redis, Linux, Windows Server, Bash, Python, .NET, and Angular marks. Kustomize and Ingress use restrained Lucide workflow glyphs because they are operational concepts without a stable standalone product mark in the selected maintained sets.
+- Layout: Replaced the uneven inline list with a four-column desktop identity grid, a three-column tablet grid, and a two-column mobile grid while retaining the left responsibility labels.
+- Performance: The 31 new local SVG assets total approximately 89 KB and add no third-party runtime icon requests.
+- Post-fix evidence: 42 of 42 stack image instances loaded, all 39 unique local icon references resolve, desktop overflow remained 0 px, and 390 px mobile overflow remained 0 px.
 
 ## Follow-up Polish
 
