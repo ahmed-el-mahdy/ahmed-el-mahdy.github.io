@@ -139,7 +139,8 @@ The source composition is preserved while replacing illustrative mock copy with 
 - Fix: Reduced Public Work to six selected repositories covering Azure platform composition, GitOps, reusable delivery automation, Kubernetes overlays, DEPI team delivery, and the UdaPeople end-to-end CI/CD lifecycle.
 - Repository hardening: Corrected AzureRM 3 argument compatibility, moved reusable workflows under `.github/workflows`, replaced invalid dynamic environment-variable lookup, aligned Argo CD generators with committed value files, and repaired Kustomize resource and patch composition.
 - Documentation: Rebuilt all six READMEs around implemented scope, architecture, safe validation, security boundaries, collaboration context, and production modernization notes.
-- Verification: Terraform validation passes and both Kustomize overlays render successfully. The final responsive and link checks are recorded in the publishing commit.
+- Verification: Terraform validation passes, both Kustomize overlays render, and GitHub registers all five reusable workflows as active.
+- Live QA: GitHub Pages returned HTTP 200 with six unique project cards. At 1440 x 1000 the document width remained inside the viewport; at 390 x 844 all six project rows remained in bounds. No broken images or browser-console warnings were detected.
 
 ## Follow-up Polish
 
