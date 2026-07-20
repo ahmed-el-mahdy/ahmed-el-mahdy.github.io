@@ -176,7 +176,7 @@ Containerized workflow automation platform with reverse proxy, SSL, and automate
 
 `Docker Compose` `Nginx` `Ngrok` `Shell` `n8n`
 
-### DevOps CI/CD Project — 3-Tier App (2024)
+### [DevOps CI/CD Project — 3-Tier App (2024)](https://github.com/ahmed-el-mahdy/MCIT-DevOps-Project)
 Automated deployment of a 3-tier application on AWS using Jenkins, Terraform, and EKS with auto-scaling and high availability.
 
 `Jenkins` `Terraform` `EKS` `AWS` `Auto-scaling`
@@ -186,13 +186,13 @@ CLI-based database management system built entirely with shell scripts for local
 
 `Bash` `Shell Scripting` `Linux`
 
-### UdaPeople CI/CD App (2023)
+### [UdaPeople CI/CD App (2023)](https://github.com/ahmed-el-mahdy/udapeople-cicd)
 Deployed a dynamic website using CloudFormation and CircleCI integrated with AWS services. Final graduation project for the DevOps Nanodegree.
 
 `CloudFormation` `CircleCI` `AWS` `Ansible` `Prometheus`
 
-### AWS Infrastructure Automation (2022)
-Automated AWS static site infrastructure using CloudFormation templates for repeatable provisioning.
+### [AWS Infrastructure Automation (2022)](https://github.com/ahmed-el-mahdy/CloudFormation-Project2)
+Provisioned a highly available AWS web application using reusable CloudFormation network and server templates.
 
 `CloudFormation` `S3` `AWS`
 

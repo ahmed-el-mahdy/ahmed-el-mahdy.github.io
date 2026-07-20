@@ -10,6 +10,7 @@
 - Architecture screenshots: `design-reference/implementation-architecture-desktop.png`, `design-reference/implementation-architecture-mobile.png`
 - Contact photo screenshots: `design-reference/implementation-contact-photo-desktop.png`, `design-reference/implementation-contact-photo-mobile.png`
 - Experience timeline screenshot: `design-reference/implementation-experience-mobile.png`
+- Public Work screenshot: `design-reference/implementation-public-work-mobile.png`
 - Stack icon screenshots: `design-reference/implementation-stack-icons-desktop.png`, `design-reference/implementation-stack-icons-mobile.png`
 - Stack icon comparison: `design-reference/qa-stack-icons-comparison.jpg`
 - Full comparison: `design-reference/qa-side-by-side-desktop.jpg`
@@ -123,6 +124,14 @@ The source composition is preserved while replacing illustrative mock copy with 
 - Evidence alignment: Added the DEPI - MCIT internship and MCIT & Udacity training with dates and application-delivery outcomes verified against the published CV.
 - Link reliability: Normalized every portfolio and README LinkedIn target to the canonical `https://www.linkedin.com/in/ahmed-el-mahdy-007/` URL.
 - Post-fix evidence: `implementation-experience-mobile.png`; four distinct stages, no duplicated employer entry, no horizontal overflow at 390 x 844, and both LinkedIn links resolve to the canonical profile destination.
+
+### Iteration 8
+
+- P2: The Public Work section showed only recent platform repositories and did not expose the application delivery evidence referenced in the experience timeline.
+- Fix: Added verified cards for `MCIT-DevOps-Project`, `udapeople-cicd`, and `CloudFormation-Project2`, linking directly to each public repository and README.
+- Evidence integrity: Card descriptions were derived from the repositories' public Jenkinsfile, CircleCI workflow, CloudFormation templates, READMEs, and directory structures.
+- Information hierarchy: Kept the four current platform-engineering repositories first, followed by DEPI client delivery and the two MCIT/Udacity projects in descending date order.
+- Post-fix evidence: `implementation-public-work-mobile.png`; seven unique repository targets, no missing local icons, no horizontal overflow at 390 x 844, and no browser-console warnings.
 
 ## Follow-up Polish
 
