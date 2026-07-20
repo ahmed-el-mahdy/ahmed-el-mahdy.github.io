@@ -133,6 +133,14 @@ The source composition is preserved while replacing illustrative mock copy with 
 - Information hierarchy: Kept the four current platform-engineering repositories first, followed by DEPI client delivery and the two MCIT/Udacity projects in descending date order.
 - Post-fix evidence: `implementation-public-work-mobile.png`; seven unique repository targets, no missing local icons, no horizontal overflow at 390 x 844, and no browser-console warnings.
 
+### Iteration 9
+
+- P1: The seven-repository list rewarded project count over implementation quality; the standalone CloudFormation training repository also duplicated stronger AWS delivery evidence.
+- Fix: Reduced Public Work to six selected repositories covering Azure platform composition, GitOps, reusable delivery automation, Kubernetes overlays, DEPI team delivery, and the UdaPeople end-to-end CI/CD lifecycle.
+- Repository hardening: Corrected AzureRM 3 argument compatibility, moved reusable workflows under `.github/workflows`, replaced invalid dynamic environment-variable lookup, aligned Argo CD generators with committed value files, and repaired Kustomize resource and patch composition.
+- Documentation: Rebuilt all six READMEs around implemented scope, architecture, safe validation, security boundaries, collaboration context, and production modernization notes.
+- Verification: Terraform validation passes and both Kustomize overlays render successfully. The final responsive and link checks are recorded in the publishing commit.
+
 ## Follow-up Polish
 
 - P3: The Lucide icon runtime is loaded from a pinned external CDN. A later publishing pass can bundle the selected icons locally to remove that external dependency.
