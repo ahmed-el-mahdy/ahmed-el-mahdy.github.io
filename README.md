@@ -14,7 +14,7 @@
 
 [![Email](https://img.shields.io/badge/Email-a.elmahdy.mail%40gmail.com-blue?style=flat&logo=gmail)](mailto:a.elmahdy.mail@gmail.com)
 [![GitHub](https://img.shields.io/badge/GitHub-ahmed--el--mahdy-181717?style=flat&logo=github)](https://github.com/ahmed-el-mahdy)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-ahmed--el--mahdy--007-0A66C2?style=flat&logo=linkedin)](https://linkedin.com/in/ahmed-el-mahdy-007)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-ahmed--el--mahdy--007-0A66C2?style=flat&logo=linkedin)](https://www.linkedin.com/in/ahmed-el-mahdy-007/)
 [![Credly](https://img.shields.io/badge/Credly-Certifications-FF6B00?style=flat&logo=credly)](https://www.credly.com/users/ahmed-el-mahdy-mohammad/badges)
 
 🇬🇧 English — Professional Working | 🇪🇬 Arabic — Native
@@ -97,6 +97,7 @@ Azure Entra ID, RBAC, Key Vault secret governance, IAM roles, group-based access
 **January 2026 – Present** | Cairo, Egypt
 
 - Stabilized inherited Azure/Terraform platforms across DEV, STAGING, and PROD by resolving drift, state, and configuration risks
+- Own cloud platform delivery for client environments, including Mosadad Recovery Claims across four AKS environments
 - Implemented end-to-end microservice onboarding for the ActionAI platform — GitHub repos, GitHub Actions CI/CD, Helm deployments, Argo CD post-sync automation
 - Integrated secure delivery patterns: Azure Key Vault, Terraform-based secret governance, Azure/Entra group-based RBAC
 - Modernized CI/CD by migrating pipelines from GitLab to GitHub Actions with validated workflow reliability
@@ -107,21 +108,7 @@ Azure Entra ID, RBAC, Key Vault secret governance, IAM roles, group-based access
 
 ---
 
-### Cloud & DevOps Engineer — Mosadad (Recovery Claims Platform)
-**January 2026 – Present** | Cairo, Egypt
-
-- Recovered and stabilized inherited Azure/Terraform environments across 4 environments (DEV, QA, STAGING, PROD)
-- Operate 4 AKS clusters with 7 .NET 8 microservices and 2 Angular 19 frontends
-- Implemented Kustomize-based multi-environment deployment with NGINX ingress and CSI secret provider
-- Built DRY GitHub Actions CI/CD pipelines with Docker → ACR → AKS → APIM import
-- Configured production security: WAF, Azure Firewall, APIM rate limiting, Key Vault CSI, B2C auth
-- Set up Grafana + Prometheus monitoring with Application Insights APM
-
-`Azure AKS` `Terraform` `.NET 8` `Angular 19` `Kustomize` `MongoDB` `Redis` `GitHub Actions`
-
----
-
-### System Administrator — Julfar Consultancy Services
+### Cloud & Systems Administrator — Julfar Consultancy Services
 **October 2021 – December 2025** | Cairo, Egypt (4 years 4 months)
 
 - Administered diverse infrastructure: Windows/Linux servers, AWS CloudFormation stacks, VDI environments
@@ -135,22 +122,22 @@ Azure Entra ID, RBAC, Key Vault secret governance, IAM roles, group-based access
 
 ---
 
-### DevOps Engineer — Digital Egypt Pioneers Initiative (DEPI) — MCIT
-**April 2024 – January 2025** | Cairo, Egypt (10 months)
+### DevOps Engineer Intern — Digital Egypt Pioneers Initiative (DEPI) — MCIT
+**May 2024 – February 2025** | Cairo, Egypt
 
 - Comprehensive DevOps training: Git, Ansible, Docker, Jenkins, Kubernetes, Prometheus
 - AWS Cloud architecture, Terraform for infrastructure as code
-- Real-world application projects covering the full DevOps lifecycle
+- Delivered a client-facing 3-tier web application with automated infrastructure, CI/CD, autoscaling, and monitoring
 
 `Docker` `Kubernetes` `Jenkins` `Terraform` `Ansible` `AWS` `Prometheus`
 
 ---
 
-### DevOps Trainee — Ministry of Communications & IT (MCIT), Egypt
-**November 2023 – April 2024** | Cairo, Egypt (6 months)
+### Cloud DevOps Trainee — MCIT & Udacity
+**November 2022 – April 2023** | Cairo, Egypt
 
 - Six-month intensive program: AWS, CI/CD pipelines, IaC with Terraform & CloudFormation
-- Deployed websites on AWS, designed automated pipelines, integrated monitoring
+- Delivered two client web applications: a static AWS site and a 3-tier application deployed through CircleCI
 - Agile collaboration with mentors
 
 ---
@@ -227,7 +214,7 @@ Remote, UAE, KSA, or Egypt-based
 
 - 📧 [a.elmahdy.mail@gmail.com](mailto:a.elmahdy.mail@gmail.com)
 - 🐙 [GitHub](https://github.com/ahmed-el-mahdy)
-- 💼 [LinkedIn](https://linkedin.com/in/ahmed-el-mahdy-007)
+- 💼 [LinkedIn](https://www.linkedin.com/in/ahmed-el-mahdy-007/)
 - 🏅 [Certifications (Credly)](https://www.credly.com/users/ahmed-el-mahdy-mohammad/badges)
 
 ---

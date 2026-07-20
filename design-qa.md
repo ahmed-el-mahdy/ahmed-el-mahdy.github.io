@@ -9,6 +9,7 @@
 - Brand icon screenshots: `design-reference/implementation-brand-icons-desktop.png`, `design-reference/implementation-brand-icons-stack.png`, `design-reference/implementation-brand-icons-mobile.png`
 - Architecture screenshots: `design-reference/implementation-architecture-desktop.png`, `design-reference/implementation-architecture-mobile.png`
 - Contact photo screenshots: `design-reference/implementation-contact-photo-desktop.png`, `design-reference/implementation-contact-photo-mobile.png`
+- Experience timeline screenshot: `design-reference/implementation-experience-mobile.png`
 - Stack icon screenshots: `design-reference/implementation-stack-icons-desktop.png`, `design-reference/implementation-stack-icons-mobile.png`
 - Stack icon comparison: `design-reference/qa-stack-icons-comparison.jpg`
 - Full comparison: `design-reference/qa-side-by-side-desktop.jpg`
@@ -114,6 +115,14 @@ The source composition is preserved while replacing illustrative mock copy with 
 - Layout: Replaced the uneven inline list with a four-column desktop identity grid, a three-column tablet grid, and a two-column mobile grid while retaining the left responsibility labels.
 - Performance: The 31 new local SVG assets total approximately 89 KB and add no third-party runtime icon requests.
 - Post-fix evidence: 42 of 42 stack image instances loaded, all 39 unique local icon references resolve, desktop overflow remained 0 px, and 390 px mobile overflow remained 0 px.
+
+### Iteration 7
+
+- P1: The experience timeline showed Mosadad as a second concurrent employer, which made the current role ambiguous.
+- Fix: Consolidated Mosadad as client casework under the current Julfar Platform / DevOps Engineer role and renamed the earlier Julfar role to Cloud & Systems Administrator.
+- Evidence alignment: Added the DEPI - MCIT internship and MCIT & Udacity training with dates and application-delivery outcomes verified against the published CV.
+- Link reliability: Normalized every portfolio and README LinkedIn target to the canonical `https://www.linkedin.com/in/ahmed-el-mahdy-007/` URL.
+- Post-fix evidence: `implementation-experience-mobile.png`; four distinct stages, no duplicated employer entry, no horizontal overflow at 390 x 844, and both LinkedIn links resolve to the canonical profile destination.
 
 ## Follow-up Polish
 
