@@ -266,7 +266,9 @@
     .stack-tools .tool-logo.on-light { width: 20px; height: 20px; flex-basis: 20px; padding: 2px; background: #eef4f3; border-radius: 2px; }
     .stack-tools .tool-glyph { color: var(--teal); stroke-width: 1.8; }
 
-    .credential-row { grid-template-columns: minmax(200px, 0.62fr) minmax(0, 1.08fr) minmax(120px, 0.3fr); align-items: center; }
+    .credential-row { grid-template-columns: minmax(250px, 0.72fr) minmax(0, 1.03fr) minmax(120px, 0.25fr); align-items: center; padding-block: 22px; }
+    .credential-name { display: flex; align-items: center; gap: 14px; min-width: 0; }
+    .credential-badge { width: 50px; height: 50px; flex: 0 0 50px; object-fit: contain; }
     .credential-row h3 { margin: 0; font-size: 16px; }
     .credential-row p { margin: 0; color: var(--muted); font-size: 13px; }
     .credential-status { color: var(--green); font-family: "Cascadia Code", Consolas, monospace; font-size: 10px; text-align: right; text-transform: uppercase; }
@@ -351,6 +353,7 @@
       main section::before { top: 16px; right: 12px; font-size: 38px; opacity: 0.55; }
       .section-intro h2 { font-size: 36px; }
       .data-row, .role-row, .stack-row, .credential-row { grid-template-columns: 1fr; gap: 15px; }
+      .credential-name { align-items: flex-start; }
       .project-row { grid-template-columns: 1fr 26px; }
       .project-row p { grid-column: 1 / -1; }
       .outcomes { grid-template-columns: 1fr; }
@@ -543,12 +546,41 @@
       <div class="wrap section-grid">
         <div class="section-intro reveal"><span class="micro-label">Credentials</span><h2>Technical depth with stakeholder range.</h2><p>Cloud credentials lead. Professional development supports senior communication and decision-making.</p></div>
         <div class="section-body reveal">
-          <div class="data-row credential-row"><h3>AWS Solutions Architect Associate</h3><p>Cloud architecture, resilient workload design, and service selection.</p><span class="credential-status">Valid to Sep 2028</span></div>
-          <div class="data-row credential-row"><h3>AWS Cloud Practitioner</h3><p>Cloud concepts, security, billing, and AWS service foundations.</p><span class="credential-status">Valid to Sep 2028</span></div>
-          <div class="data-row credential-row"><h3>Microsoft SC-300</h3><p>Identity and Access Administrator.</p><span class="credential-status">Identity</span></div>
-          <div class="data-row credential-row"><h3>CKA and AZ-104 preparation</h3><p>Kubernetes and Azure administration exam-ready tracks.</p><span class="credential-status track">In progress</span></div>
-          <div class="data-row credential-row"><h3>McKinsey.org Forward Program</h3><p>Problem solving, communication, adaptability, and digital collaboration.</p><span class="credential-status">Completed</span></div>
-          <div class="data-row credential-row"><h3>VMware IT Academy</h3><p>Cloud, network virtualization, and software-defined storage foundations.</p><span class="credential-status">Foundations</span></div>
+          <div class="data-row credential-row">
+            <div class="credential-name"><img class="credential-badge" src="assets/credentials/aws-solutions-architect-associate.png" alt="" aria-hidden="true"><h3>AWS Certified Solutions Architect &ndash; Associate</h3></div>
+            <p>Resilient cloud architecture, workload design, and AWS service selection.</p>
+            <span class="credential-status">Valid to Sep 2028</span>
+          </div>
+          <div class="data-row credential-row">
+            <div class="credential-name"><img class="credential-badge" src="assets/credentials/microsoft-certified-associate.svg" alt="" aria-hidden="true"><h3>Microsoft Certified: Identity and Access Administrator Associate</h3></div>
+            <p>Microsoft Entra identity, authentication, access, and identity governance.</p>
+            <span class="credential-status">Issued Nov 2025</span>
+          </div>
+          <div class="data-row credential-row">
+            <div class="credential-name"><img class="credential-badge" src="assets/credentials/aws-cloud-practitioner.png" alt="" aria-hidden="true"><h3>AWS Certified Cloud Practitioner</h3></div>
+            <p>AWS cloud concepts, security, billing, and service foundations.</p>
+            <span class="credential-status">Valid to Sep 2028</span>
+          </div>
+          <div class="data-row credential-row">
+            <div class="credential-name"><img class="credential-badge" src="assets/credentials/udacity.svg" alt="" aria-hidden="true"><h3>Advanced Cloud DevOps Nanodegree</h3></div>
+            <p>Udacity and MCIT program covering cloud infrastructure, CI/CD, and DevOps delivery.</p>
+            <span class="credential-status">Completed 2023</span>
+          </div>
+          <div class="data-row credential-row">
+            <div class="credential-name"><img class="credential-badge" src="assets/credentials/mckinsey-forward.png" alt="" aria-hidden="true"><h3>McKinsey.org Forward Program</h3></div>
+            <p>Problem solving, communication, adaptability, and digital collaboration.</p>
+            <span class="credential-status">Completed 2025</span>
+          </div>
+          <div class="data-row credential-row">
+            <div class="credential-name"><img class="credential-badge" src="assets/icons/kubernetes.svg" alt="" aria-hidden="true"><h3>CKA Certification Course</h3></div>
+            <p>KodeKloud training in Kubernetes administration and CKA exam objectives.</p>
+            <span class="credential-status track">Course complete</span>
+          </div>
+          <div class="data-row credential-row">
+            <div class="credential-name"><img class="credential-badge" src="assets/icons/azure.svg" alt="" aria-hidden="true"><h3>Azure Administrator Associate Training</h3></div>
+            <p>Manara training aligned to Azure administration and AZ-104 objectives.</p>
+            <span class="credential-status track">Training complete</span>
+          </div>
         </div>
       </div>
     </section>

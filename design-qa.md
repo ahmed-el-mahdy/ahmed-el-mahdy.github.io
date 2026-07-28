@@ -13,6 +13,9 @@
 - Public Work screenshot: `design-reference/implementation-public-work-mobile.png`
 - Stack icon screenshots: `design-reference/implementation-stack-icons-desktop.png`, `design-reference/implementation-stack-icons-mobile.png`
 - Stack icon comparison: `design-reference/qa-stack-icons-comparison.jpg`
+- Credential source crop: `design-reference/credentials-live-before-source.png`
+- Credential screenshots: `design-reference/implementation-credentials-desktop.png`, `design-reference/implementation-credentials-mobile.png`
+- Credential comparison: `design-reference/qa-credentials-desktop-comparison.jpg`
 - Full comparison: `design-reference/qa-side-by-side-desktop.jpg`
 - Focused comparisons: `design-reference/qa-hero-focus.jpg`, `design-reference/qa-pipeline-focus.jpg`
 - Viewports: 1440 x 1024 desktop and 390 x 844 mobile
@@ -141,6 +144,17 @@ The source composition is preserved while replacing illustrative mock copy with 
 - Documentation: Rebuilt all six READMEs around implemented scope, architecture, safe validation, security boundaries, collaboration context, and production modernization notes.
 - Verification: Terraform validation passes, both Kustomize overlays render, and GitHub registers all five reusable workflows as active.
 - Live QA: GitHub Pages returned HTTP 200 with six unique project cards. At 1440 x 1000 the document width remained inside the viewport; at 390 x 844 all six project rows remained in bounds. No broken images or browser-console warnings were detected.
+
+### Iteration 10
+
+- P1: Credentials were text-only, making issuer recognition slow and mixing certifications with training.
+- Fix: Added authentic issuer or program artwork for AWS, Microsoft, McKinsey.org, and Udacity; reused existing Azure and Kubernetes marks for training-only entries.
+- Evidence integrity: Expanded official certification names and explicitly labelled KodeKloud and Manara entries as course or training completion rather than certification.
+- Source and state: Cropped the user's live-before Edge screenshot to the 1136 x 696 page viewport and captured the local credential implementation at the same 1136 x 696 CSS viewport, device scale factor 1, dark theme, and `#certs` scroll state.
+- Full-view comparison: `qa-credentials-desktop-comparison.jpg` places the normalized source and implementation together. The existing section grid, typography, dividers, dark tokens, and status colors remain intact while the first column gains compact 50 px issuer marks.
+- Focused evidence: The credential section fills the normalized comparison viewport, so a separate crop would duplicate the same readable evidence. The desktop capture confirms balanced icon/title wrapping; the 390 x 844 capture confirms the one-column responsive treatment.
+- Browser verification: Seven of seven credential rows are visible, seven of seven badges load at their intended 50 px size, both viewports have zero horizontal overflow, all seven expanded names are present, the CV request returns HTTP 200, and no page errors or reproducible failed resources remain.
+- Static verification: All credential references resolve; PNG and SVG assets pass format checks; `git diff --check` passes.
 
 ## Follow-up Polish
 
