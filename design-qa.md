@@ -158,6 +158,18 @@ The source composition is preserved while replacing illustrative mock copy with 
 
 ## Follow-up Polish
 
+### Iteration 11
+
+- P2: The Public Work section did not surface the Mosadad Recovery Claims platform as a named project, and the evidence board and casework sections had no migration-focused entry.
+- Fix: Added a Mosadad Recovery Claims platform project card linking to the existing `kustomize-multi-env-k8s` repository, added a third evidence-board row for the production data migration, added a fourth casework row for the data and CI/CD standardization work, and extended the Julfar Platform / DevOps Engineer experience paragraph with the migration outcome. Removed the standalone Kustomize multi-environment Kubernetes project card because it pointed to the same repository as the new Mosadad card.
+- Evidence integrity: Project card, snapshot row, and casework row reuse the existing `project-row`, `snapshot-row`, and `data-row` CSS patterns and the existing `kubernetes.svg` and `mongodb.svg` brand icons. No new CSS, icons, or image assets were introduced. The migration claims match the metrics documented in the Career-Advance impact snapshot: six services, zero pod restarts, 24 unified CI/CD branches, the Cosmos DB cutover, the firewall policy fix, the APIM Swagger self-healing, and the staging2 Gateway API isolation.
+- Scope protection: Kept the hero, delivery pipeline, AKS stabilization, infrastructure governance, secrets, reliability, observability, operating model, stack, credentials, and contact sections unchanged. The source composition and responsive breakpoints are untouched.
+- Post-fix evidence: local preview at `http://127.0.0.1:4173/` renders six unique project cards, a three-row evidence board, a four-row casework section, and the extended experience paragraph. The duplicate repository link is removed. Desktop and mobile layouts keep zero horizontal overflow. No new browser console errors.
+
+---
+
+## Follow-up Polish
+
 - P3: The Lucide icon runtime is loaded from a pinned external CDN. A later publishing pass can bundle the selected icons locally to remove that external dependency.
 
 ## Final Result
