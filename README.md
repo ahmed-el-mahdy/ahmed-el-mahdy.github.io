@@ -10,7 +10,7 @@
 **Platform / DevOps Engineer**  
 📍 New Cairo, Egypt  
 
-> Cloud & DevOps Engineer with 5+ years of experience delivering cloud infrastructure, CI/CD, Kubernetes platforms, and environment modernization across Azure and AWS. Proven ability to stabilize inherited platforms, onboard microservices, implement secure delivery patterns, and drive operational reliability.
+> Cloud & DevOps Engineer focused on inherited-platform stabilization, controlled migrations, repeatable delivery, and workload-to-data troubleshooting across Azure and AWS.
 
 [![Email](https://img.shields.io/badge/Email-a.elmahdy.mail%40gmail.com-blue?style=flat&logo=gmail)](mailto:a.elmahdy.mail@gmail.com)
 [![GitHub](https://img.shields.io/badge/GitHub-ahmed--el--mahdy-181717?style=flat&logo=github)](https://github.com/ahmed-el-mahdy)
@@ -23,8 +23,10 @@
 
 ## 📊 At a Glance
 
-| 5+ Years Cloud/DevOps | 7+ Years Total IT | 3+ Official Certs | 4 AKS Clusters | 7 Microservices | 2 Platforms |
+| 6 AKS Backend Services | 2 App Service Portals | 18 Verified CSI Keys | 91,724 Blobs Replicated | 24 Historical Workflow Branches | 18 Promotion Checks |
 |:-:|:-:|:-:|:-:|:-:|:-:|
+
+Reviewed 30 October 2026 against the Career-Advance evidence summary and canonical platform READMEs. Counts are dated implementation checkpoints, not current live inventory, uptime guarantees or tested regional recovery. [Career evidence and STAR stories](https://github.com/ahmed-el-mahdy/Career-Advance/tree/main/progress).
 
 ---
 
@@ -34,7 +36,7 @@
 Azure (AZ-104 trained, SC-300 certified) and AWS (SAA certified). AKS, APIM, App Gateway, Firewall, Key Vault, Entra ID, EC2, Lambda, VPC. Multi-subscription environment design and platform recovery.
 
 ### ⚙️ Containers & Orchestration
-CKA exam-ready. Production Kubernetes with Helm, Argo CD, Kustomize. Multi-environment AKS deployments, autoscaling, capacity right-sizing, and secure workload delivery.
+CKA training completed. Kubernetes operations, Kustomize overlays, environment-specific scaling, probes, immutable images and CSI-backed configuration; separate Helm/Argo CD examples demonstrate pull-based GitOps.
 
 ### 🏗️ Infrastructure as Code
 Terraform (modules, state management, drift analysis, environment alignment). CloudFormation for AWS. Platform recovery through IaC stabilization and alignment.
@@ -43,7 +45,7 @@ Terraform (modules, state management, drift analysis, environment alignment). Cl
 GitHub Actions (GitLab migration), Jenkins, CircleCI. DRY pipeline patterns, secret-dependent workflows, multi-branch deployments, automated APIM imports.
 
 ### 🔒 Identity & Security
-Azure Entra ID, RBAC, Key Vault secret governance, IAM roles, group-based access control, WAF policies, network segmentation, pod security standards.
+Azure Entra ID, scoped RBAC, Key Vault/CSI secret contracts, IAM roles, WAF policies and network-boundary validation. Pod security, image scanning and network policies are separate controls, not implied by perimeter security.
 
 ---
 
@@ -97,12 +99,15 @@ Azure Entra ID, RBAC, Key Vault secret governance, IAM roles, group-based access
 **January 2026 – Present** | Cairo, Egypt
 
 - Stabilized inherited Azure/Terraform platforms across DEV, STAGING, and PROD by resolving drift, state, and configuration risks
-- Own cloud platform delivery for client environments, including Mosadad Recovery Claims across four AKS environments
+- Deliver client-platform work including Mosadad's six AKS backends, two App Service portals, and separate Functions and VM payment deployment paths
 - Implemented end-to-end microservice onboarding for the ActionAI platform — GitHub repos, GitHub Actions CI/CD, Helm deployments, Argo CD post-sync automation
 - Integrated secure delivery patterns: Azure Key Vault, Terraform-based secret governance, Azure/Entra group-based RBAC
 - Modernized CI/CD by migrating pipelines from GitLab to GitHub Actions with validated workflow reliability
 - Drove platform efficiency through Kubernetes autoscaling, capacity right-sizing, and cloud cost analysis
 - Improved maintainability through READMEs, Confluence documentation, architecture diagrams, and stakeholder reporting
+- Delivered isolated staging2 backend/API/portal phases with immutable images, direct-backend checks and service-by-service routing validation
+- Replicated 91,724 blobs across three containers with exact name/size parity at the checkpoint, read-only source access and no-delete target permissions
+- Verified the 18-key CSI contract and removed temporary operator access; standardized six backend workflows across four branches and validated 18 promotion merge paths at the recorded checkpoint
 
 `Azure` `Terraform` `Kubernetes` `Helm` `Argo CD` `GitHub Actions` `APIM` `Key Vault` `Entra RBAC`
 
@@ -162,12 +167,18 @@ End-to-end onboarding of new microservices: repository setup, GitHub Actions CI/
 `Azure` `GitHub Actions` `Helm` `Argo CD` `APIM` `Key Vault` `Entra RBAC`
 
 ### Mosadad Recovery Claims Platform (2026)
-Recovered and stabilized inherited Azure/Terraform environments. 7 microservices, 4 AKS clusters, 4 environments. Migrated CI/CD from GitLab to GitHub Actions. Implemented Kubernetes autoscaling, cloud cost optimization, and comprehensive operational documentation.
+Recovered inherited Azure/Terraform configuration and delivered a parallel staging2 migration for six backend services and two portals. The September handoff records 18 CSI keys, six immutable backend digests and exact name/size parity for 91,724 application blobs. Production data modernization happened in distinct Cosmos DB MongoDB API RU/serverless and DocumentDB vCore stages, with firewall egress diagnosis and application-read validation. Historical workflow alignment covered six repositories and four branches, with 18 clean promotion dry-runs.
+
+Authenticated staging2 UAT, notifications and final closure remained follow-ups. October staging2 NGINX source differs from the historical Gateway API handoff and requires controller-ownership reconciliation. Declared HA/replicas are not evidence of tested restore, regional failover, RPO or RTO.
 
 `Azure AKS` `Terraform` `GitHub Actions` `Kubernetes` `.NET 8` `Kustomize` `MongoDB`
 
 ### Serverless Image Processing (2025)
-Built a serverless image-processing pipeline using S3 and Lambda, reducing operational overhead by 40%.
+Built an S3/Lambda image-processing reference project with configurable resizing and infrastructure examples; its educational scope is distinct from employer production outcomes.
+
+### Portfolio Asset Sources
+
+The Azure Block Blob and Cosmos DB SVGs are original Microsoft Azure architecture artwork distributed by the maintained [benc-uk icon collection](https://github.com/benc-uk/icon-collection/tree/master/azure-icons): `Blob-Block.svg` and `Azure-Cosmos-DB.svg`. Existing Microsoft, AWS, Devicon, Simple Icons and credential assets are retained. Lucide is used for interface actions and generic concepts, not invented product logos.
 
 `AWS Lambda` `S3` `Python` `CloudFormation`
 

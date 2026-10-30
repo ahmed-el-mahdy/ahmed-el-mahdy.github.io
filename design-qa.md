@@ -174,4 +174,16 @@ The source composition is preserved while replacing illustrative mock copy with 
 
 ## Final Result
 
+### October 2026 Content and UX Refresh
+
+- Reviewed 30 October 2026. This review supersedes the older topology, autoscaling, drift, migration and project-scope statements in the historical iterations above.
+- Updated evidence from Career-Advance: six AKS backends, two portals, 18 CSI keys, 91,724 replicated blobs and historical workflow/promotion checkpoints. RU/serverless and DocumentDB vCore are separate migration stages; public reference examples are distinct from production work.
+- Preserved all original sections, six project targets, seven credential/training entries, contact actions, downloads, images and technology assets. No existing file or asset was removed.
+- Tightened hero framing and typography, moved the intact delivery band below the hero, refined section labels, and improved tablet stack/credential composition, the experience timeline and project grouping.
+- Added progressively enhanced 65 px mobile navigation, Escape/focus return, outside-click handling, active-section navigation, clickable outcome-to-case links and three native keyboard-operable validation disclosures.
+- Retained pipeline packets, row signals, hover feedback and reveal motion. Continuous travel now uses transforms and opacity rather than animated layout positions; motion pauses offscreen and in hidden documents. Track sizes follow ResizeObserver updates and scroll progress is coalesced through requestAnimationFrame.
+- Added authentic Azure Block Blob and Cosmos DB vectors from the maintained Microsoft architecture-icon collection; corrected the secrets case to use Key Vault. Product artwork remains local, with source attribution in the README.
+- Responsive/browser gates cover 360, 390, 768, 1024, 1440 and 1920 px, including text clipping inside overflow-hidden panels, assets, anchor targets, preserved content counts, motion preferences and JavaScript-disabled readability.
+- Main screenshot updates use the existing desktop/mobile overview paths. Other comparison images above remain dated history, not current-release screenshots. Temporary HTTP fixtures and headless browser processes are closed after validation.
+
 final result: passed

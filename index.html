@@ -4,17 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ahmed ElMahdy | Senior Cloud DevOps Engineer</title>
-  <meta name="description" content="Ahmed ElMahdy is a Senior Cloud DevOps and Platform Engineer focused on Azure, AKS, Terraform, CI/CD, GitOps, security, and production reliability.">
+  <meta name="description" content="Ahmed ElMahdy is a Senior Cloud DevOps and Platform Engineer focused on Azure, AKS, Terraform, controlled migrations, secure delivery, and evidence-led platform operations.">
   <meta name="theme-color" content="#061012">
   <link rel="canonical" href="https://ahmed-el-mahdy.github.io/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Ahmed ElMahdy | Senior Cloud DevOps Engineer">
-  <meta property="og:description" content="Azure platform engineering, AKS reliability, infrastructure as code, secure delivery, and production operations backed by measurable casework.">
+  <meta property="og:description" content="Azure platform engineering, isolated environment delivery, verified data migration, and repeatable CI/CD backed by dated implementation evidence.">
   <meta property="og:url" content="https://ahmed-el-mahdy.github.io/">
   <meta property="og:image" content="https://ahmed-el-mahdy.github.io/assets/platform-hero-v2.webp">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Ahmed ElMahdy | Senior Cloud DevOps Engineer">
-  <meta name="twitter:description" content="Platform engineering casework across Azure, AKS, Terraform, CI/CD, security, and production reliability.">
+  <meta name="twitter:description" content="Platform engineering casework across Azure, AKS, Terraform, controlled migrations, secure delivery, and operational validation.">
   <meta name="twitter:image" content="https://ahmed-el-mahdy.github.io/assets/platform-hero-v2.webp">
   <link rel="preload" as="image" href="assets/platform-hero-v2.avif" type="image/avif" fetchpriority="high">
   <script defer src="https://unpkg.com/lucide@0.475.0/dist/umd/lucide.min.js"></script>
@@ -100,10 +100,13 @@
     .nav-links a { text-decoration: none; transition: color 0.2s ease; }
     .nav-links a:hover, .nav-links a:focus-visible { color: var(--ink); }
     .nav-links .nav-action { min-width: 50px; padding: 8px 12px; text-align: center; color: var(--teal); border: 1px solid var(--line-strong); }
+    .nav-toggle { display: none; width: 44px; height: 44px; place-items: center; border: 1px solid var(--line-strong); background: transparent; color: var(--teal); cursor: pointer; }
+    :focus-visible { outline: 2px solid var(--teal); outline-offset: 4px; }
+    .nav-links a[aria-current="location"] { color: var(--teal); text-decoration: underline; text-underline-offset: 8px; }
 
     .hero {
       position: relative;
-      min-height: 650px;
+      min-height: 520px;
       border-bottom: 1px solid var(--line);
       overflow: hidden;
       background: #061012;
@@ -128,12 +131,12 @@
       pointer-events: none;
       background: linear-gradient(180deg, transparent 0 73%, rgba(3, 9, 10, 0.9) 100%);
     }
-    .hero-main { position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(390px, 1.1fr); min-height: 420px; padding: 38px 0 18px; }
+    .hero-main { position: relative; z-index: 2; display: grid; grid-template-columns: minmax(0, 0.9fr) minmax(390px, 1.1fr); min-height: 520px; padding: 44px 0; }
     .hero-copy { align-self: center; max-width: 610px; }
     .micro-label { display: inline-flex; align-items: center; gap: 10px; color: var(--teal); font-family: "Cascadia Code", Consolas, monospace; font-size: 11px; font-weight: 800; text-transform: uppercase; }
     .micro-label::before { content: "//"; color: var(--cyan); }
-    h1 { max-width: 650px; margin: 16px 0 12px; font-size: clamp(58px, 6.6vw, 96px); line-height: 0.91; letter-spacing: 0; }
-    .role-line { margin: 0 0 18px; color: var(--muted); font-size: clamp(19px, 2.1vw, 28px); }
+    h1 { max-width: 650px; margin: 16px 0 16px; font-family: Bahnschrift, "Trebuchet MS", sans-serif; font-size: 88px; font-weight: 750; line-height: 0.98; letter-spacing: 0; }
+    .role-line { margin: 0 0 18px; color: var(--muted); font-size: 23px; }
     .role-line strong { color: var(--teal); font-weight: 750; }
     .hero-summary { max-width: 580px; margin: 0; color: #c5d2d0; font-size: 17px; line-height: 1.68; }
     .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
@@ -149,7 +152,7 @@
     .axis-label.two { top: 40%; }
     .axis-label.three { top: 68%; }
     .axis-label.four { top: 88%; color: var(--amber); }
-    .axis-packet { position: absolute; left: -3px; width: 6px; height: 6px; background: var(--teal); box-shadow: 0 0 12px rgba(38, 215, 194, 0.7); animation: axisTravel 8s linear infinite; }
+    .axis-packet { position: absolute; top: 0; left: -3px; width: 6px; height: 6px; background: var(--teal); box-shadow: 0 0 12px rgba(38, 215, 194, 0.7); animation: axisTravel 8s linear infinite; }
 
     .delivery-strip { position: relative; z-index: 3; border: 1px solid var(--line); background: rgba(3, 12, 13, 0.78); }
     .delivery-head { padding: 13px 18px 0; color: var(--teal); font-family: "Cascadia Code", Consolas, monospace; font-size: 10px; font-weight: 800; text-transform: uppercase; }
@@ -171,45 +174,64 @@
     .proof:nth-child(4) strong { color: var(--amber); }
     .proof .proof-tool-icon { width: 24px; height: 24px; display: grid; place-items: center; margin: 0 0 8px; color: var(--teal); }
     .proof .proof-tool-icon .tool-logo { width: 23px; height: 23px; }
-    .proof .proof-label { display: block; margin-top: 7px; color: var(--muted); font-size: 10px; text-transform: uppercase; }
+    .proof .proof-label { display: block; margin-top: 7px; color: var(--muted); font-size: 11px; text-transform: uppercase; }
 
     .case-snapshot { padding: 50px 0 54px; background: rgba(3, 12, 14, 0.76); }
     .snapshot-layout { display: grid; grid-template-columns: minmax(240px, 0.44fr) minmax(0, 1.56fr); gap: 52px; align-items: start; }
-    .snapshot-intro h2 { max-width: 280px; margin: 13px 0 0; font-size: clamp(30px, 3vw, 42px); line-height: 1.04; }
+    .snapshot-intro h2 { max-width: 300px; margin: 13px 0 16px; font-size: 36px; line-height: 1.08; }
+    .snapshot-intro p { margin: 0 0 20px; max-width: 310px; color: var(--muted); font-size: 14px; }
+    .text-link { display: inline-flex; align-items: center; gap: 8px; color: var(--teal); font-size: 13px; font-weight: 700; text-decoration: none; }
+    .text-link svg { width: 16px; height: 16px; }
+    .text-link:hover { text-decoration: underline; text-underline-offset: 4px; }
     .snapshot-board { min-width: 0; border-top: 1px solid var(--line-strong); }
-    .snapshot-labels { display: grid; grid-template-columns: minmax(280px, 1.12fr) minmax(390px, 0.88fr) 28px; gap: 24px; padding: 10px 4px 8px; color: var(--teal); font-family: "Cascadia Code", Consolas, monospace; font-size: 9px; text-transform: uppercase; }
+    .snapshot-labels { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) 28px; gap: 24px; padding: 10px 4px 8px; color: var(--teal); font-family: "Cascadia Code", Consolas, monospace; font-size: 10px; text-transform: uppercase; }
     .snapshot-labels span:nth-child(2) { color: var(--green); }
-    .snapshot-row { position: relative; display: grid; grid-template-columns: minmax(280px, 1.12fr) minmax(390px, 0.88fr) 28px; gap: 24px; align-items: center; padding: 18px 4px; border-top: 1px solid var(--line); overflow: hidden; transition: background 0.25s ease, transform 0.25s ease; }
+    .snapshot-row { position: relative; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr) 28px; gap: 24px; align-items: center; padding: 22px 4px; border-top: 1px solid var(--line); overflow: hidden; transition: background 0.25s ease; }
     .snapshot-row::before { content: ""; position: absolute; top: 0; left: -28%; width: 24%; height: 1px; background: linear-gradient(90deg, transparent, var(--teal), transparent); animation: snapshotSignal 8s linear infinite; animation-delay: var(--delay, 0s); }
-    .snapshot-row:hover, .snapshot-row:focus-within { background: rgba(38, 215, 194, 0.035); transform: translateX(4px); }
+    .snapshot-row:hover, .snapshot-row:focus-within { background: rgba(38, 215, 194, 0.055); }
     .snapshot-case { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 14px; align-items: start; }
     .snapshot-case .row-icon { width: 44px; height: 44px; }
-    .snapshot-case h3 { margin: 0 0 5px; font-size: 15px; }
-    .snapshot-case p { margin: 0; color: var(--muted); font-size: 11px; line-height: 1.45; }
+    .snapshot-case h3 { margin: 0 0 7px; font-size: 17px; line-height: 1.3; }
+    .snapshot-case p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
     .snapshot-metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .snapshot-metric { min-width: 0; padding: 0 14px; border-left: 1px solid var(--line); }
+    .snapshot-metric { min-width: 0; padding: 0 10px; border-left: 1px solid var(--line); }
     .snapshot-metric strong { display: block; color: var(--green); font-size: 22px; line-height: 1; }
-    .snapshot-metric span { display: block; margin-top: 5px; color: var(--muted); font-size: 9px; line-height: 1.35; text-transform: uppercase; }
+    .snapshot-metric span { display: block; margin-top: 7px; color: var(--muted); font-size: 10px; line-height: 1.45; text-transform: uppercase; }
     .snapshot-row > svg { width: 18px; color: var(--ink); transition: color 0.2s ease, transform 0.2s ease; }
     .snapshot-row:hover > svg { color: var(--teal); transform: translateX(4px); }
+    .snapshot-link { display: grid; place-items: center; min-height: 44px; color: var(--teal); }
+    .snapshot-link::after { content: ""; position: absolute; inset: 0; }
+    .snapshot-row:has(.snapshot-link:focus-visible) { outline: 2px solid var(--teal); outline-offset: -2px; }
+    .snapshot-link svg { width: 18px; transition: transform 0.2s ease; }
+    .snapshot-row:hover .snapshot-link svg { transform: translateX(3px); }
 
     main section { position: relative; padding: 76px 0; border-bottom: 1px solid var(--line); scroll-margin-top: var(--nav); overflow: hidden; }
     main section:nth-child(even) { background: rgba(8, 20, 22, 0.42); }
-    main section::before { content: attr(data-watermark); position: absolute; right: max(20px, calc((100% - var(--max)) / 2)); top: 20px; color: rgba(125, 211, 252, 0.04); -webkit-text-stroke: 1px rgba(125, 211, 252, 0.14); font-size: clamp(48px, 6vw, 86px); font-weight: 900; line-height: 1; pointer-events: none; white-space: nowrap; }
+    main section::before { content: attr(data-watermark); position: absolute; right: max(20px, calc((100% - var(--max)) / 2)); top: 20px; color: var(--muted); font-family: "Cascadia Code", Consolas, monospace; font-size: 10px; font-weight: 600; line-height: 1; opacity: 0.55; pointer-events: none; white-space: nowrap; }
+    main section.delivery-section { padding: 0; background: #051012; border-bottom: 0; }
     .section-grid { display: grid; grid-template-columns: minmax(280px, 0.5fr) minmax(0, 1.5fr); gap: 40px; align-items: start; }
     .section-intro { position: sticky; top: calc(var(--nav) + 28px); }
-    .section-intro h2 { margin: 14px 0 14px; font-size: clamp(34px, 3.6vw, 50px); line-height: 1.02; }
+    .section-intro h2 { margin: 14px 0; font-size: 40px; line-height: 1.08; }
     .section-intro p { max-width: 390px; margin: 0; color: var(--muted); font-size: 15px; }
     .section-body { min-width: 0; border-top: 1px solid var(--line-strong); }
     .data-row { position: relative; display: grid; grid-template-columns: minmax(190px, 0.62fr) minmax(0, 1.38fr); gap: 26px; padding: 24px 4px; border-bottom: 1px solid var(--line); transition: background 0.25s ease, transform 0.25s ease; overflow: hidden; }
     .data-row::before { content: ""; position: absolute; top: 0; left: -34%; width: 28%; height: 1px; background: linear-gradient(90deg, transparent, var(--teal), transparent); animation: rowSignal 9s linear infinite; animation-delay: var(--delay, 0s); }
-    .data-row:hover, .data-row:focus-within { transform: translateX(4px); background: rgba(38, 215, 194, 0.035); }
+    .data-row:hover, .data-row:focus-within { background: rgba(38, 215, 194, 0.035); }
+    .data-row[id] { scroll-margin-top: calc(var(--nav) + 24px); }
     .row-title { display: flex; align-items: flex-start; gap: 12px; }
     .row-icon { flex: 0 0 40px; width: 40px; height: 40px; display: grid; place-items: center; border: 1px solid var(--line-strong); color: var(--teal); background: rgba(5, 16, 18, 0.66); }
     .row-icon .tool-logo { width: 24px; height: 24px; }
     .row-title h3 { margin: 1px 0 5px; font-size: 17px; line-height: 1.25; }
     .row-title small { color: var(--teal); font-family: "Cascadia Code", Consolas, monospace; font-size: 10px; text-transform: uppercase; }
     .row-copy p { margin: 0; color: var(--muted); font-size: 15px; }
+    .case-detail { margin-top: 16px; border-top: 1px solid var(--line); }
+    .case-detail summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; color: var(--teal); font-size: 13px; font-weight: 700; list-style: none; cursor: pointer; }
+    .case-detail summary::-webkit-details-marker { display: none; }
+    .case-detail summary svg { width: 16px; transition: transform 0.2s ease; }
+    .case-detail[open] summary svg { transform: rotate(180deg); }
+    .case-detail .detail-copy { padding: 0 0 6px; }
+    .case-detail .detail-copy p { margin: 8px 0 12px; font-size: 14px; }
+    .case-detail strong { color: var(--ink); }
     .tags { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 13px; color: #c3d4d1; font-family: "Cascadia Code", Consolas, monospace; font-size: 10px; }
     .tags span::before { content: "+ "; color: var(--teal); }
     .outcomes { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 17px; border-top: 1px solid var(--line); }
@@ -231,6 +253,8 @@
     .role-date span { display: block; margin-top: 7px; color: var(--muted); font-family: Inter, sans-serif; font-size: 13px; font-weight: 600; text-transform: none; }
     .role-copy h3 { margin: 0 0 8px; font-size: 20px; }
     .role-copy p { margin: 0; color: var(--muted); font-size: 15px; }
+    .role-copy { border-left: 1px solid var(--line-strong); padding-left: 22px; }
+    .project-group { margin: 0; padding: 20px 4px 10px; color: var(--muted); font-family: "Cascadia Code", Consolas, monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; }
 
     .project-row { grid-template-columns: minmax(190px, 0.7fr) minmax(0, 1.3fr) 34px; align-items: center; text-decoration: none; }
     .project-row .project-name h3 { margin: 0 0 5px; font-size: 17px; }
@@ -280,7 +304,7 @@
     .contact-photo { position: absolute; inset: 0; z-index: 0; background: url("assets/ahmed-at-work-v2.webp") right center / auto 100% no-repeat; filter: saturate(0.92) contrast(1.04) brightness(1.08); -webkit-mask-image: linear-gradient(90deg, transparent 32%, #000 58%); mask-image: linear-gradient(90deg, transparent 32%, #000 58%); }
     .contact-band { position: relative; z-index: 3; min-height: 620px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 76px 0; }
     .contact-copy { max-width: 720px; }
-    .contact-band h2 { max-width: 720px; margin: 13px 0 14px; font-size: clamp(38px, 4.3vw, 60px); line-height: 1.02; }
+    .contact-band h2 { max-width: 720px; margin: 13px 0 14px; font-size: 48px; line-height: 1.08; }
     .contact-band p { max-width: 630px; margin: 0; color: #bccdca; }
     .contact-links { width: min(650px, 100%); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 32px; border-top: 1px solid var(--line-strong); }
     .contact-links a { min-width: 0; display: flex; justify-content: space-between; gap: 18px; padding: 14px 2px; border-bottom: 1px solid var(--line); text-decoration: none; color: var(--muted); transition: color 0.2s ease, transform 0.2s ease; }
@@ -291,19 +315,31 @@
     footer { padding: 22px 0; color: var(--muted); font-size: 12px; border-top: 1px solid var(--line); }
     .footer-inner { display: flex; justify-content: space-between; gap: 20px; }
 
-    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal { opacity: 1; transform: none; transition: opacity 0.7s ease, transform 0.7s ease; }
+    .motion-ready .reveal { opacity: 0; transform: translateY(16px); }
     .reveal.is-visible { opacity: 1; transform: translateY(0); }
-    @keyframes axisTravel { from { top: 0; opacity: 0; } 10%, 85% { opacity: 1; } to { top: 100%; opacity: 0; } }
-    @keyframes pipelinePacket { from { left: 8%; opacity: 0; } 8%, 90% { opacity: 1; } to { left: 91%; opacity: 0; } }
-    @keyframes rowSignal { 0%, 18% { left: -34%; opacity: 0; } 24%, 42% { opacity: 1; } 56%, 100% { left: 110%; opacity: 0; } }
-    @keyframes snapshotSignal { 0%, 16% { left: -28%; opacity: 0; } 22%, 46% { opacity: 1; } 62%, 100% { left: 108%; opacity: 0; } }
+    .motion-paused, .motion-paused::before, .motion-paused::after, .motion-paused .axis-packet, .motion-paused li::before { animation-play-state: paused !important; }
+    .motion-suspended *, .motion-suspended *::before, .motion-suspended *::after { animation-play-state: paused !important; }
+    @keyframes axisTravel { from { transform: translateY(0); opacity: 0; } 10%, 85% { opacity: 1; } to { transform: translateY(var(--travel-y, 360px)); opacity: 0; } }
+    @keyframes pipelinePacket { from { transform: translateX(0); opacity: 0; } 8%, 90% { opacity: 1; } to { transform: translateX(var(--travel-x, 520px)); opacity: 0; } }
+    @keyframes rowSignal { 0%, 18% { transform: translateX(0); opacity: 0; } 24%, 42% { opacity: 1; } 56%, 100% { transform: translateX(515%); opacity: 0; } }
+    @keyframes snapshotSignal { 0%, 16% { transform: translateX(0); opacity: 0; } 22%, 46% { opacity: 1; } 62%, 100% { transform: translateX(567%); opacity: 0; } }
     @keyframes nodePulse { 0%, 100% { opacity: 0.45; transform: scale(0.82); } 50% { opacity: 1; transform: scale(1.12); } }
 
+    @media (max-width: 1100px) {
+      .snapshot-layout { grid-template-columns: 1fr; gap: 26px; }
+      .snapshot-intro h2 { max-width: 560px; }
+      .snapshot-intro p { max-width: 560px; }
+      .stack-row { grid-template-columns: 1fr; gap: 16px; }
+      .credential-row { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+      .credential-status { grid-column: 2; text-align: left; }
+    }
+
     @media (max-width: 980px) {
-      .nav-inner { align-items: flex-start; flex-direction: column; padding: 12px 0; }
-      .nav-links { width: 100%; justify-content: space-between; gap: 12px; overflow-x: auto; padding-bottom: 2px; }
-      .hero-main { grid-template-columns: 1fr; min-height: auto; padding-top: 48px; }
-      .blueprint-axis { min-height: 150px; margin: 34px 0 0 52%; }
+      .nav-inner { gap: 16px; }
+      .nav-links { width: auto; gap: 16px; font-size: 12px; }
+      .hero-main { grid-template-columns: minmax(0, 1fr); min-height: auto; padding-block: 44px; }
+      .blueprint-axis { display: none; }
       .delivery-grid { grid-template-columns: 1fr; }
       .pipeline { border-right: 0; border-bottom: 1px solid var(--line); }
       .snapshot-layout { grid-template-columns: 1fr; gap: 26px; }
@@ -320,20 +356,28 @@
     }
 
     @media (max-width: 640px) {
-      :root { --nav: 134px; }
+      :root { --nav: 64px; }
+      html.has-navigation { --nav: 64px; }
       .wrap { width: min(100% - 24px, var(--max)); }
-      .nav-inner { gap: 8px; padding: 10px 0; }
+      .nav-inner { gap: 8px; padding: 10px 0; flex-direction: column; align-items: flex-start; }
+      .nav:not(.nav-ready) { position: relative; }
       .brand-copy small { display: none; }
       .nav-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; font-size: 11px; }
       .nav-links a { min-height: 32px; display: grid; place-items: center; border: 1px solid var(--line); }
+      .nav-ready .nav-inner { min-height: 64px; flex-direction: row; align-items: center; padding: 10px 0; }
+      .nav-ready .nav-toggle { display: grid; }
+      .nav-ready .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; padding: 12px; background: #071416; border-bottom: 1px solid var(--line-strong); }
+      .nav-ready.is-open .nav-links { display: grid; }
+      .nav-ready .nav-links a { min-height: 44px; }
+      .nav-toggle[aria-expanded="true"] { background: rgba(38, 215, 194, 0.1); }
       .hero { min-height: auto; }
       .hero::before { background: linear-gradient(180deg, rgba(3, 9, 10, 0.92), rgba(3, 9, 10, 0.84)), image-set(url("assets/platform-hero-v2.avif") type("image/avif"), url("assets/platform-hero-v2.webp") type("image/webp"), url("assets/platform-hero-v2.png") type("image/png")) center / cover no-repeat; }
-      .hero-main { padding: 40px 0 20px; }
-      h1 { font-size: clamp(48px, 15vw, 66px); }
+      .hero-main { padding: 32px 0; }
+      h1 { font-size: 56px; }
       .role-line { font-size: 18px; }
       .hero-summary { font-size: 15px; }
       .actions .btn { flex: 1 1 calc(50% - 8px); }
-      .blueprint-axis { min-height: 100px; margin-left: 24px; }
+      .blueprint-axis { display: none; }
       .delivery-strip { margin: 0 -1px; }
       .pipeline { grid-template-columns: repeat(3, 1fr); gap: 16px 4px; }
       .pipeline::before, .pipeline::after { display: none; }
@@ -342,16 +386,20 @@
       .proof:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
       .case-snapshot { padding: 44px 0; }
       .snapshot-labels { display: none; }
-      .snapshot-row { grid-template-columns: 1fr; gap: 16px; padding: 20px 0; }
+      .snapshot-row { grid-template-columns: minmax(0, 1fr) 28px; gap: 16px 10px; padding: 22px 0; }
+      .snapshot-case { grid-column: 1; grid-template-columns: 36px minmax(0, 1fr); gap: 12px; }
+      .snapshot-case .row-icon { width: 36px; height: 36px; }
+      .snapshot-metrics { grid-column: 1 / -1; }
+      .snapshot-link { grid-column: 2; grid-row: 1; }
       .snapshot-row:first-of-type { border-top: 0; }
       .snapshot-row > svg { display: none; }
       .snapshot-metric { padding: 0 9px; }
       .snapshot-metric:first-child { padding-left: 0; border-left: 0; }
       .snapshot-metric strong { font-size: 20px; }
-      .snapshot-metric span { font-size: 8px; }
+      .snapshot-metric span { font-size: 10px; }
       main section { padding: 54px 0; scroll-margin-top: var(--nav); }
-      main section::before { top: 16px; right: 12px; font-size: 38px; opacity: 0.55; }
-      .section-intro h2 { font-size: 36px; }
+      main section::before { top: 18px; right: 12px; font-size: 10px; }
+      .section-intro h2 { font-size: 34px; }
       .data-row, .role-row, .stack-row, .credential-row { grid-template-columns: 1fr; gap: 15px; }
       .credential-name { align-items: flex-start; }
       .project-row { grid-template-columns: 1fr 26px; }
@@ -362,7 +410,7 @@
       .compare-arrow { transform: rotate(90deg); }
       .model-flow { grid-template-columns: 1fr; }
       .model-flow span { border-right: 0; border-bottom: 1px solid var(--line); }
-      .credential-status { text-align: left; }
+      .credential-status { grid-column: 1; text-align: left; }
       .contact-section::after { height: 300px; }
       .contact-photo { height: 300px; background-position: 64% 44%; }
       .contact-band { padding: 38px 0 54px; }
@@ -376,7 +424,7 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
-      .reveal { opacity: 1; transform: none; }
+      .reveal, .motion-ready .reveal { opacity: 1; transform: none; }
     }
   </style>
 </head>
@@ -390,7 +438,8 @@
         <span class="brand-mark">A</span>
         <span class="brand-copy">Ahmed ElMahdy<small>Platform Engineer</small></span>
       </a>
-      <div class="nav-links">
+      <button class="nav-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-links" title="Open navigation" hidden><i data-lucide="menu" aria-hidden="true"></i></button>
+      <div class="nav-links" id="primary-links">
         <a href="#impact">Impact</a><a href="#casework">Casework</a><a href="#experience">Experience</a>
         <a href="#projects">Projects</a><a href="#stack">Stack</a>
         <a class="nav-action" href="Ahmed-Elmahdy-CV-DevOps.pdf" download>CV</a>
@@ -402,10 +451,10 @@
     <div class="wrap">
       <div class="hero-main">
         <div class="hero-copy reveal">
-          <span class="micro-label">Platform blueprint</span>
+          <span class="micro-label">Azure &amp; AWS / Platform engineering</span>
           <h1>Ahmed<br>ElMahdy</h1>
           <p class="role-line"><strong>Senior Cloud DevOps</strong> / Platform Engineer</p>
-          <p class="hero-summary">I stabilize inherited platforms and turn them into secure, automated, observable production systems across Azure, AKS, Terraform, GitHub Actions, APIM, Key Vault, and Kubernetes delivery.</p>
+          <p class="hero-summary">I make inherited Azure platforms safer to change through controlled migrations, repeatable delivery, and workload-to-data troubleshooting across AKS, Terraform, GitHub Actions, APIM, and Key Vault.</p>
           <div class="actions">
             <a class="btn primary" href="mailto:a.elmahdy.mail@gmail.com"><i data-lucide="mail" aria-hidden="true"></i>Contact Ahmed</a>
             <a class="btn" href="https://github.com/ahmed-el-mahdy" target="_blank" rel="noopener"><img class="tool-logo github-logo" src="assets/icons/github.svg" alt="" aria-hidden="true">GitHub</a>
@@ -418,6 +467,12 @@
         </div>
       </div>
 
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="delivery-section" id="delivery" aria-label="Platform delivery and outcomes">
+    <div class="wrap">
       <div class="delivery-strip reveal" aria-label="Platform delivery pipeline and key outcomes">
         <div class="delivery-head">Platform delivery pipeline</div>
         <div class="delivery-grid">
@@ -430,36 +485,37 @@
             <div class="pipe-step"><span class="pipe-icon"><img class="tool-logo" src="assets/icons/azure-monitor.svg" alt="" aria-hidden="true"></span><strong>Monitor</strong><span>Observe</span></div>
           </div>
           <div class="proof-grid">
-            <div class="proof"><span class="proof-tool-icon"><i data-lucide="calendar-days" aria-hidden="true"></i></span><strong>5+</strong><span class="proof-label">Years delivery</span></div><div class="proof"><span class="proof-tool-icon"><img class="tool-logo" src="assets/icons/kubernetes.svg" alt="" aria-hidden="true"></span><strong>4</strong><span class="proof-label">AKS environments</span></div><div class="proof"><span class="proof-tool-icon"><img class="tool-logo" src="assets/icons/mongodb.svg" alt="" aria-hidden="true"></span><strong>27</strong><span class="proof-label">Indexes optimized</span></div><div class="proof"><span class="proof-tool-icon"><i data-lucide="code-2" aria-hidden="true"></i></span><strong>10+</strong><span class="proof-label">Repos standardized</span></div>
+            <div class="proof"><span class="proof-tool-icon"><img class="tool-logo" src="assets/icons/kubernetes.svg" alt="" aria-hidden="true"></span><strong>6</strong><span class="proof-label">AKS backend services</span></div><div class="proof"><span class="proof-tool-icon"><i data-lucide="app-window" aria-hidden="true"></i></span><strong>2</strong><span class="proof-label">App Service portals</span></div><div class="proof"><span class="proof-tool-icon"><i data-lucide="key-round" aria-hidden="true"></i></span><strong>18</strong><span class="proof-label">CSI keys verified</span></div><div class="proof"><span class="proof-tool-icon"><i data-lucide="code-2" aria-hidden="true"></i></span><strong>24</strong><span class="proof-label">Branches aligned in 2026</span></div>
           </div>
         </div>
       </div>
     </div>
-  </header>
+    </section>
 
-  <main id="main">
     <section class="case-snapshot" id="proof" data-watermark="Outcomes">
       <div class="wrap snapshot-layout">
         <div class="snapshot-intro reveal">
           <span class="micro-label">Evidence, not claims</span>
-          <h2>Casework that moves the needle.</h2>
+          <h2>Selected delivery outcomes.</h2>
+          <p>2026 implementation checkpoints, with the scope and validation behind each result.</p>
+          <a class="text-link" href="https://github.com/ahmed-el-mahdy/Career-Advance/tree/main/progress" target="_blank" rel="noopener noreferrer">Experience notes<i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
         </div>
         <div class="snapshot-board reveal" aria-label="Selected casework and measurable outcomes">
           <div class="snapshot-labels" aria-hidden="true"><span>What I did</span><span>Measurable outcome</span><span></span></div>
           <article class="snapshot-row" style="--delay:0s">
-            <div class="snapshot-case"><span class="row-icon"><img class="tool-logo" src="assets/icons/kubernetes.svg" alt="" aria-hidden="true"></span><div><h3>AKS platform stabilization</h3><p>Standardized workloads, autoscaling, probes, ingress, and GitOps delivery across production environments.</p></div></div>
-            <div class="snapshot-metrics"><div class="snapshot-metric"><strong>4</strong><span>Environments managed</span></div><div class="snapshot-metric"><strong>24</strong><span>HPA policies enforced</span></div><div class="snapshot-metric"><strong>0</strong><span>Staging IaC drift</span></div></div>
-            <i data-lucide="arrow-right" aria-hidden="true"></i>
+            <div class="snapshot-case"><span class="row-icon"><img class="tool-logo" src="assets/icons/kubernetes.svg" alt="" aria-hidden="true"></span><div><h3>Isolated staging2 delivery</h3><p>Delivered the September 2026 backend and portal phases through image, secret, data, routing, and browser-smoke gates.</p></div></div>
+            <div class="snapshot-metrics"><div class="snapshot-metric"><strong>6</strong><span>Backend services</span></div><div class="snapshot-metric"><strong>2</strong><span>Portals smoke-tested</span></div><div class="snapshot-metric"><strong>18</strong><span>CSI keys verified</span></div></div>
+            <a class="snapshot-link" href="#case-staging2" aria-label="Read the staging2 delivery case"><i data-lucide="arrow-right" aria-hidden="true"></i></a>
           </article>
           <article class="snapshot-row" style="--delay:3s">
-            <div class="snapshot-case"><span class="row-icon"><img class="tool-logo" src="assets/icons/terraform.svg" alt="" aria-hidden="true"></span><div><h3>Infrastructure governance and optimization</h3><p>Aligned Terraform delivery, repository standards, database indexing, and production ingress exposure.</p></div></div>
-            <div class="snapshot-metrics"><div class="snapshot-metric"><strong>10+</strong><span>Repos standardized</span></div><div class="snapshot-metric"><strong>27</strong><span>Indexes optimized</span></div><div class="snapshot-metric"><strong>5</strong><span>Public IPs released</span></div></div>
-            <i data-lucide="arrow-right" aria-hidden="true"></i>
+            <div class="snapshot-case"><span class="row-icon"><img class="tool-logo" src="assets/icons/azure-blob-storage.svg" alt="" aria-hidden="true"></span><div><h3>Verified application-file replication</h3><p>Used bounded SDK streaming, read-only source access, and no-delete target permissions; matched exact blob names and sizes.</p></div></div>
+            <div class="snapshot-metrics"><div class="snapshot-metric"><strong>91,724</strong><span>Blobs at checkpoint</span></div><div class="snapshot-metric"><strong>3</strong><span>Containers compared</span></div><div class="snapshot-metric"><strong>12.24</strong><span>GB replicated</span></div></div>
+            <a class="snapshot-link" href="#case-storage" aria-label="Read the application-file replication case"><i data-lucide="arrow-right" aria-hidden="true"></i></a>
           </article>
           <article class="snapshot-row" style="--delay:6s">
-            <div class="snapshot-case"><span class="row-icon"><img class="tool-logo" src="assets/icons/mongodb.svg" alt="" aria-hidden="true"></span><div><h3>Production data migration with zero restart</h3><p>Cut over six services from a self-managed MongoDB VM to Cosmos DB (MongoDB API) with HA, backup, and a private endpoint, then fixed the firewall policy that blocked the database port.</p></div></div>
-            <div class="snapshot-metrics"><div class="snapshot-metric"><strong>6</strong><span>Services migrated</span></div><div class="snapshot-metric"><strong>0</strong><span>Pod restarts</span></div><div class="snapshot-metric"><strong>24</strong><span>CI/CD branches unified</span></div></div>
-            <i data-lucide="arrow-right" aria-hidden="true"></i>
+            <div class="snapshot-case"><span class="row-icon"><img class="tool-logo" src="assets/icons/mongodb.svg" alt="" aria-hidden="true"></span><div><h3>Data and delivery modernization</h3><p>Separated RU/serverless and DocumentDB vCore migration stages, resolved database egress blocking, and standardized delivery workflows.</p></div></div>
+            <div class="snapshot-metrics"><div class="snapshot-metric"><strong>2</strong><span>Database migration stages</span></div><div class="snapshot-metric"><strong>24</strong><span>Historical branch alignment</span></div><div class="snapshot-metric"><strong>18</strong><span>Clean merge dry-runs</span></div></div>
+            <a class="snapshot-link" href="#case-database" aria-label="Read the database migration case"><i data-lucide="arrow-right" aria-hidden="true"></i></a>
           </article>
         </div>
       </div>
@@ -467,16 +523,16 @@
 
     <section id="impact" data-watermark="Evidence">
       <div class="wrap section-grid">
-        <div class="section-intro reveal"><span class="micro-label">Evidence, not claims</span><h2>Platform recovery with measurable control.</h2><p>The strongest story is not a tool list. It is how unstable delivery became a governed production platform.</p></div>
+        <div class="section-intro reveal"><span class="micro-label">Evidence, not claims</span><h2>Platform recovery with measurable control.</h2><p>Dated delivery outcomes, not a live inventory or an uptime guarantee. Each result has a validation checkpoint and a clear scope.</p></div>
         <div class="section-body reveal">
           <div class="compare-row">
             <div class="compare-col"><h3>Before</h3><ul><li>Manual infrastructure and environment drift</li><li>Plaintext secrets and inconsistent configuration</li><li>Limited alerting and slow incident detection</li><li>Low deployment confidence</li></ul></div>
             <div class="compare-arrow"><i data-lucide="arrow-right"></i></div>
-            <div class="compare-col after"><h3>After</h3><ul><li>Terraform-aligned environments with documented topology</li><li>Key Vault CSI, RBAC, and policy guardrails</li><li>Unified metrics, alerts, and availability tests</li><li>Automated delivery with controlled rollback</li></ul></div>
+            <div class="compare-col after"><h3>After</h3><ul><li>Reviewed Terraform ownership and environment topology</li><li>Verified CSI key coverage and scoped operator access</li><li>Layered metrics, alerts, and availability checks</li><li>Phased validation with recorded rollback boundaries</li></ul></div>
           </div>
           <div class="data-row" style="--delay:1s">
-            <div class="row-title"><span class="row-icon"><img class="tool-logo" src="assets/icons/kubernetes.svg" alt="" aria-hidden="true"></span><div><small>Measured outcome</small><h3>Production stability</h3></div></div>
-            <div class="row-copy"><p>Four AKS environments stabilized with standardized autoscaling, probes, ingress, secure delivery, and environment-aware configuration.</p><div class="outcomes"><div class="outcome"><strong>24</strong><span>HPA policies</span></div><div class="outcome"><strong>0</strong><span>staging IaC drift</span></div><div class="outcome"><strong>5</strong><span>public IPs released</span></div></div></div>
+            <div class="row-title"><span class="row-icon"><img class="tool-logo" src="assets/icons/kubernetes.svg" alt="" aria-hidden="true"></span><div><small>September 2026 handoff</small><h3>Controlled environment migration</h3></div></div>
+            <div class="row-copy"><p>Delivered six backend workloads and two portals while retaining legacy staging as the boundary. Temporary access and copy resources were removed; authenticated portal UAT and notifications remained follow-ups.</p><div class="outcomes"><div class="outcome"><strong>6</strong><span>backend image digests</span></div><div class="outcome"><strong>18</strong><span>verified secret keys</span></div><div class="outcome"><strong>2</strong><span>portal smoke validations</span></div></div></div>
           </div>
         </div>
       </div>
@@ -484,12 +540,14 @@
 
     <section id="casework" data-watermark="Casework">
       <div class="wrap section-grid">
-        <div class="section-intro reveal"><span class="micro-label">What changed</span><h2>Casework that moves the needle.</h2><p>Each case connects an engineering action to the operating result a hiring manager can inspect.</p></div>
+        <div class="section-intro reveal"><span class="micro-label">What changed</span><h2>The work behind the numbers.</h2><p>Engineering decisions, validation, and recovery boundaries behind the delivery outcomes.</p></div>
         <div class="section-body reveal">
-          <article class="data-row" style="--delay:0s"><div class="row-title"><span class="row-icon"><img class="tool-logo" src="assets/icons/github-actions.svg" alt="" aria-hidden="true"></span><div><small>Secure delivery</small><h3>Secrets and environment guardrails</h3></div></div><div class="row-copy"><p>Migrated secret handling toward Key Vault CSI, standardized environment variables, and prevented cross-environment deployment mistakes.</p><div class="tags"><span>Key Vault</span><span>CSI</span><span>GitHub Environments</span><span>APIM</span></div></div></article>
-          <article class="data-row" style="--delay:2s"><div class="row-title"><span class="row-icon"><img class="tool-logo" src="assets/icons/kubernetes.svg" alt="" aria-hidden="true"></span><div><small>Reliability</small><h3>Kubernetes workload consistency</h3></div></div><div class="row-copy"><p>Implemented HPA coverage, upgraded AKS capacity, tuned resources, fixed probes and service routing, and standardized overlays.</p><div class="tags"><span>AKS</span><span>HPA</span><span>Kustomize</span><span>Ingress</span></div></div></article>
+          <article class="data-row" style="--delay:0s"><div class="row-title"><span class="row-icon"><img class="tool-logo" src="assets/icons/key-vault.svg" alt="" aria-hidden="true"></span><div><small>Secure delivery</small><h3>Secrets and scoped access</h3></div></div><div class="row-copy"><p>Verified the staging2 18-key Key Vault-to-CSI contract and exact Kubernetes Secret coverage, then revoked temporary vault-scoped operator access and removed disposable validation resources.</p><div class="tags"><span>Key Vault</span><span>CSI</span><span>Scoped RBAC</span><span>Secret contracts</span></div></div></article>
+          <article class="data-row" id="case-staging2" style="--delay:2s"><div class="row-title"><span class="row-icon"><img class="tool-logo" src="assets/icons/kubernetes.svg" alt="" aria-hidden="true"></span><div><small>Phased migration</small><h3>Workloads before traffic</h3></div></div><div class="row-copy"><p>Pinned six backend images by digest, checked probes and direct service paths before exposing routes, then validated API backends and portal builds one step at a time. Kept environment-specific resource and scaling policies explicit.</p><div class="tags"><span>AKS</span><span>Kustomize</span><span>Gateway API</span><span>Image digests</span></div><details class="case-detail"><summary>Change controls<i data-lucide="chevron-down" aria-hidden="true"></i></summary><div class="detail-copy"><p><strong>Approach:</strong> Separate infrastructure, identity, data, workload, route, and portal gates. Preserve legacy staging and move one API at a time.</p><p><strong>Validated:</strong> The September handoff records six backend Deployments, two smoke-tested portals, exact CSI key coverage, and removal of temporary access and copy resources.</p><p><strong>Boundary:</strong> Authenticated UAT and notifications remained follow-ups. The historical Gateway API handoff differs from October NGINX source; current controller ownership needs reconciliation before reuse.</p></div></details></div></article>
+          <article class="data-row" id="case-storage" style="--delay:3s"><div class="row-title"><span class="row-icon"><img class="tool-logo" src="assets/icons/azure-blob-storage.svg" alt="" aria-hidden="true"></span><div><small>Data integrity</small><h3>File migration under network controls</h3></div></div><div class="row-copy"><p>Replicated 91,724 application blobs across three containers using bounded SDK streaming after CLI and service-side copy attempts failed. Kept source access read-only and excluded target delete permissions.</p><div class="tags"><span>Blob Storage</span><span>Python SDK</span><span>Network boundaries</span><span>Inventory parity</span></div><details class="case-detail"><summary>Migration checks<i data-lucide="chevron-down" aria-hidden="true"></i></summary><div class="detail-copy"><p><strong>Approach:</strong> Pilot one blob, then a small container, before using 24 bounded workers for the larger data set. Preserve metadata, content settings, and tier; do not overwrite matching objects.</p><p><strong>Validated:</strong> Exact name/size parity for 91,724 objects and 12,244,349,406 bytes at the checkpoint. Temporary Jobs, pods, and SAS Secrets were removed.</p><p><strong>Boundary:</strong> This was a name/size comparison, not a content-checksum audit. The source remained writable, so parity was time-bound and required a delta gate before cutover.</p></div></details></div></article>
           <article class="data-row" style="--delay:4s"><div class="row-title"><span class="row-icon"><img class="tool-logo" src="assets/icons/azure-monitor.svg" alt="" aria-hidden="true"></span><div><small>Observability</small><h3>Operational visibility</h3></div></div><div class="row-copy"><p>Built monitoring and reporting around Application Insights, Grafana, Prometheus, availability tests, alert rules, and performance assessments.</p><div class="tags"><span>Grafana</span><span>Prometheus</span><span>App Insights</span><span>KQL</span></div></div></article>
-          <article class="data-row" style="--delay:6s"><div class="row-title"><span class="row-icon"><img class="tool-logo" src="assets/icons/mongodb.svg" alt="" aria-hidden="true"></span><div><small>Data and delivery</small><h3>Production data migration and CI/CD standardization</h3></div></div><div class="row-copy"><p>Cut over six production services from a self-managed MongoDB VM to Cosmos DB with zero pod restarts, fixed the firewall policy that blocked the database port, and unified CI/CD across 24 repository branches so the same workflow is correct in every environment.</p><div class="tags"><span>Cosmos DB</span><span>MongoDB</span><span>GitHub Actions</span><span>Kustomize</span><span>APIM</span></div></div></article>
+          <article class="data-row" id="case-database" style="--delay:6s"><div class="row-title"><span class="row-icon"><img class="tool-logo" src="assets/icons/mongodb.svg" alt="" aria-hidden="true"></span><div><small>Data and networking</small><h3>Managed database migration</h3></div></div><div class="row-copy"><p>Moved the production data layer in separate stages from self-hosted MongoDB to Cosmos DB MongoDB API (RU/serverless), then DocumentDB vCore. Traced blocked node traffic to firewall port 10260 and verified real application reads after the secret cutover.</p><div class="tags"><span>DocumentDB vCore</span><span>Cosmos DB</span><span>Azure Firewall</span><span>Key Vault</span></div><details class="case-detail"><summary>Validation and recovery<i data-lucide="chevron-down" aria-hidden="true"></i></summary><div class="detail-copy"><p><strong>Approach:</strong> Treat RU/serverless and vCore as separate targets. Trace workload egress rather than assuming a healthy resource is reachable from a pod.</p><p><strong>Validated:</strong> Recorded data checks for the RU stage and real application reads after the vCore connection cutover, with source and connection recovery anchors retained for the agreed window.</p><p><strong>Boundary:</strong> Declared high availability and a regional replica do not establish tested restore, regional failover, RPO, or RTO.</p></div></details></div></article>
+          <article class="data-row" style="--delay:8s"><div class="row-title"><span class="row-icon"><img class="tool-logo" src="assets/icons/github-actions.svg" alt="" aria-hidden="true"></span><div><small>Durable automation</small><h3>Workflow and API contract safeguards</h3></div></div><div class="row-copy"><p>Aligned six repositories across four branches and validated 18 promotion merge paths at the recorded checkpoint. Added a later five-branch source-contract guard before cloud login, and made Swagger publishing repeatable with five imported operations and a scoped public-server rewrite.</p><div class="tags"><span>GitHub Actions</span><span>Source contracts</span><span>OpenAPI</span><span>APIM</span></div></div></article>
         </div>
       </div>
     </section>
@@ -498,7 +556,7 @@
       <div class="wrap section-grid">
         <div class="section-intro reveal"><span class="micro-label">Operating history</span><h2>Cloud, platform, and infrastructure ownership.</h2><p>A clear path from cloud and systems administration through client delivery into production platform engineering.</p></div>
         <div class="section-body reveal">
-          <article class="data-row role-row"><div class="role-date">Jan 2026 - Present<span>Julfar Consultancy Services</span></div><div class="role-copy"><h3>Platform / DevOps Engineer</h3><p>Own cloud platform delivery for client environments, including the Mosadad Recovery Claims platform: stabilized Azure and Terraform, operated four AKS environments, onboarded microservices, modernized CI/CD, migrated production data from a self-managed MongoDB VM to Cosmos DB with zero service restarts, hardened API Management so the Swagger UI survives every deploy, isolated a parallel staging environment on Gateway API, and strengthened APIM, Key Vault, and RBAC controls.</p><div class="tags"><span>Azure</span><span>Terraform</span><span>AKS</span><span>GitHub Actions</span><span>APIM</span><span>Key Vault</span></div></div></article>
+          <article class="data-row role-row"><div class="role-date">Jan 2026 - Present<span>Julfar Consultancy Services</span></div><div class="role-copy"><h3>Platform / DevOps Engineer</h3><p>Deliver cloud platform work for client environments, including Mosadad's six AKS backend services, two App Service portals, and separate Functions and VM payment paths. Reconciled inherited Terraform, delivered isolated staging2 migration phases, replicated 91,724 application blobs, verified an 18-key CSI contract, and improved database connectivity, workflow promotion, and repeatable API publishing.</p><div class="tags"><span>Azure</span><span>Terraform</span><span>AKS</span><span>GitHub Actions</span><span>APIM</span><span>Key Vault</span></div></div></article>
           <article class="data-row role-row"><div class="role-date">Oct 2021 - Dec 2025<span>Julfar Consultancy Services</span></div><div class="role-copy"><h3>Cloud &amp; Systems Administrator</h3><p>Administered Windows, Linux, and AWS environments; supported CI/CD platforms; automated maintenance, backups, and deployments with Bash and Python; and sustained 99.9% service uptime.</p><div class="tags"><span>AWS</span><span>Linux</span><span>Windows Server</span><span>CloudFormation</span><span>Bash</span><span>Python</span></div></div></article>
           <article class="data-row role-row"><div class="role-date">May 2024 - Feb 2025<span>DEPI - MCIT</span></div><div class="role-copy"><h3>DevOps Engineer Intern</h3><p>Delivered a client-facing 3-tier web application on AWS with automated infrastructure, CI/CD, container orchestration, autoscaling, and monitoring across the full DevOps lifecycle.</p><div class="tags"><span>AWS</span><span>Terraform</span><span>Jenkins</span><span>Docker</span><span>Kubernetes</span><span>Prometheus</span></div></div></article>
           <article class="data-row role-row"><div class="role-date">Nov 2022 - Apr 2023<span>MCIT &amp; Udacity</span></div><div class="role-copy"><h3>Cloud DevOps Trainee</h3><p>Delivered two client web applications on AWS: a static website provisioned with CloudFormation and a 3-tier application deployed through an automated CircleCI pipeline with observability controls.</p><div class="tags"><span>AWS</span><span>CloudFormation</span><span>CircleCI</span><span>Terraform</span><span>S3</span><span>EC2</span></div></div></article>
@@ -508,26 +566,28 @@
 
     <section id="projects" data-watermark="Public Work">
       <div class="wrap section-grid">
-        <div class="section-intro reveal"><span class="micro-label">Inspect the work</span><h2>Public repositories with operating context.</h2><p>Six selected examples spanning Azure platform engineering, GitOps, Kubernetes configuration, and end-to-end client delivery.</p></div>
+        <div class="section-intro reveal"><span class="micro-label">Inspect the work</span><h2>Public repositories with operating context.</h2><p>Four reference implementations and two training projects, separate from employer production code.</p></div>
         <div class="section-body reveal">
-          <a class="data-row project-row" href="https://github.com/ahmed-el-mahdy/azure-aks-platform" target="_blank" rel="noopener"><div class="project-name"><span class="project-brand"><img class="tool-logo" src="assets/icons/terraform.svg" alt="" aria-hidden="true"></span><span>Platform</span><h3>Azure AKS platform showcase</h3></div><p>Terraform modules for AKS, VNet, Key Vault, ACR, and API Management patterns.</p><i data-lucide="arrow-up-right"></i></a>
-          <a class="data-row project-row" href="https://github.com/ahmed-el-mahdy/kustomize-multi-env-k8s" target="_blank" rel="noopener"><div class="project-name"><span class="project-brand"><img class="tool-logo" src="assets/icons/kubernetes.svg" alt="" aria-hidden="true"></span><span>Recovery platform</span><h3>Mosadad Recovery Claims platform</h3></div><p>Stabilized a four-environment Azure recovery platform: migrated production data from a self-managed MongoDB VM to Cosmos DB with zero service restarts, standardized CI/CD across 24 repository branches, hardened API Management so the Swagger UI survives every deploy, isolated a parallel staging environment on Gateway API, and triaged a 36-gap security audit across the production estate.</p><i data-lucide="arrow-up-right"></i></a>
-          <a class="data-row project-row" href="https://github.com/ahmed-el-mahdy/argocd-helm-deployments" target="_blank" rel="noopener"><div class="project-name"><span class="project-brand"><img class="tool-logo" src="assets/icons/kubernetes.svg" alt="" aria-hidden="true"></span><span>GitOps</span><h3>Argo CD and Helm deployments</h3></div><p>Reusable Helm chart with app-of-apps and ApplicationSet delivery patterns for development and production.</p><i data-lucide="arrow-up-right"></i></a>
-          <a class="data-row project-row" href="https://github.com/ahmed-el-mahdy/github-actions-reusable-workflows" target="_blank" rel="noopener"><div class="project-name"><span class="project-brand"><img class="tool-logo" src="assets/icons/github-actions.svg" alt="" aria-hidden="true"></span><span>Delivery</span><h3>Reusable GitHub Actions workflows</h3></div><p>Build, test, container publish, AKS deploy, and APIM import workflow templates.</p><i data-lucide="arrow-up-right"></i></a>
+          <h3 class="project-group">Platform reference implementations</h3>
+          <a class="data-row project-row" href="https://github.com/ahmed-el-mahdy/azure-aks-platform" target="_blank" rel="noopener"><div class="project-name"><span class="project-brand"><img class="tool-logo" src="assets/icons/terraform.svg" alt="" aria-hidden="true"></span><span>Platform reference</span><h3>Azure AKS platform showcase</h3></div><p>Five Terraform modules for networking, AKS, ACR, Key Vault, and APIM, with a dev composition and explicit production-hardening boundaries.</p><i data-lucide="arrow-up-right"></i></a>
+          <a class="data-row project-row" href="https://github.com/ahmed-el-mahdy/kustomize-multi-env-k8s" target="_blank" rel="noopener"><div class="project-name"><span class="project-brand"><img class="tool-logo" src="assets/icons/kubernetes.svg" alt="" aria-hidden="true"></span><span>Configuration reference</span><h3>Kustomize multi-environment workloads</h3></div><p>Three workloads sharing a base across dev and prod overlays, with environment-specific configuration, CSI references, an API HPA, and local render checks.</p><i data-lucide="arrow-up-right"></i></a>
+          <a class="data-row project-row" href="https://github.com/ahmed-el-mahdy/argocd-helm-deployments" target="_blank" rel="noopener"><div class="project-name"><span class="project-brand"><img class="tool-logo" src="assets/icons/kubernetes.svg" alt="" aria-hidden="true"></span><span>GitOps reference</span><h3>Argo CD and Helm deployments</h3></div><p>One API with dev/prod Helm values, app-of-apps and ApplicationSet examples, automatic dev reconciliation, and deliberate production sync.</p><i data-lucide="arrow-up-right"></i></a>
+          <a class="data-row project-row" href="https://github.com/ahmed-el-mahdy/github-actions-reusable-workflows" target="_blank" rel="noopener"><div class="project-name"><span class="project-brand"><img class="tool-logo" src="assets/icons/github-actions.svg" alt="" aria-hidden="true"></span><span>Delivery reference</span><h3>Reusable GitHub Actions workflows</h3></div><p>Callable .NET build/test, Docker and ACR publishing, Trivy image gating, AKS rollout checks, and optional APIM import, with a consuming-workflow example.</p><i data-lucide="arrow-up-right"></i></a>
+          <h3 class="project-group">Collaborative and training delivery</h3>
           <a class="data-row project-row" href="https://github.com/ahmed-el-mahdy/MCIT-DevOps-Project" target="_blank" rel="noopener noreferrer"><div class="project-name"><span class="project-brand"><img class="tool-logo" src="assets/icons/kubernetes.svg" alt="" aria-hidden="true"></span><span>DEPI team delivery</span><h3>AWS three-tier DevOps platform</h3></div><p>Collaborative Angular and .NET delivery with Jenkins, Docker, Kubernetes, Terraform, Ansible, and AWS EKS.</p><i data-lucide="arrow-up-right"></i></a>
-          <a class="data-row project-row" href="https://github.com/ahmed-el-mahdy/udapeople-cicd" target="_blank" rel="noopener noreferrer"><div class="project-name"><span class="project-brand"><img class="tool-logo" src="assets/icons/circleci.svg" alt="" aria-hidden="true"></span><span>MCIT &amp; Udacity</span><h3>UdaPeople CI/CD pipeline</h3></div><p>CircleCI workflow for build, test, security scanning, CloudFormation provisioning, Ansible deployment, smoke tests, and rollback.</p><i data-lucide="arrow-up-right"></i></a>
+          <a class="data-row project-row" href="https://github.com/ahmed-el-mahdy/udapeople-cicd" target="_blank" rel="noopener noreferrer"><div class="project-name"><span class="project-brand"><img class="tool-logo" src="assets/icons/circleci.svg" alt="" aria-hidden="true"></span><span>MCIT &amp; Udacity training</span><h3>UdaPeople CI/CD pipeline</h3></div><p>Historical CircleCI training project covering build/test, dependency audits, CloudFormation, Ansible, smoke checks, promotion, and failure-time rollback hooks.</p><i data-lucide="arrow-up-right"></i></a>
         </div>
       </div>
     </section>
 
     <section id="architecture" data-watermark="Control Plane">
       <div class="wrap section-grid">
-        <div class="section-intro reveal"><span class="micro-label">Operating model</span><h2>One control plane, three responsibilities.</h2><p>A concise system view connecting delivery, runtime, security, and observability without adding a heavy diagram asset.</p></div>
+        <div class="section-intro reveal"><span class="micro-label">Operating model</span><h2>One control plane, three responsibilities.</h2><p>Infrastructure ownership, application delivery, and runtime validation are separate responsibilities with explicit change and recovery gates.</p></div>
         <div class="section-body reveal">
           <div class="model-grid">
-            <article class="model-stage"><h3><img class="tool-logo" src="assets/icons/github-actions.svg" alt="" aria-hidden="true">Delivery plane</h3><ul><li>Protected GitHub repositories</li><li>Reusable Actions workflows</li><li>Build, test, scan, and image promotion</li><li>APIM import after deployment</li></ul></article>
-            <article class="model-stage"><h3><img class="tool-logo" src="assets/icons/kubernetes.svg" alt="" aria-hidden="true">Runtime platform</h3><ul><li>Four AKS environments</li><li>Seven environment-aware services</li><li>Ingress, HPA, Helm, and Kustomize</li><li>Argo CD GitOps path</li></ul></article>
-            <article class="model-stage"><h3><img class="tool-logo" src="assets/icons/terraform.svg" alt="" aria-hidden="true">Control and operations</h3><ul><li>Terraform platform modules</li><li>Key Vault CSI and Entra RBAC</li><li>WAF, Firewall, Bastion, and NSGs</li><li>App Insights, Prometheus, and Grafana</li></ul></article>
+            <article class="model-stage"><h3><img class="tool-logo" src="assets/icons/github-actions.svg" alt="" aria-hidden="true">Delivery plane</h3><ul><li>Environment-scoped GitHub Actions</li><li>Immutable images and source guards</li><li>Repeatable APIM contract publishing</li><li>Argo CD and Helm reference patterns</li></ul></article>
+            <article class="model-stage"><h3><img class="tool-logo" src="assets/icons/kubernetes.svg" alt="" aria-hidden="true">Runtime platform</h3><ul><li>Six AKS backend services</li><li>Two App Service portals</li><li>Environment-specific probes and scaling</li><li>Separate Functions and VM payment paths</li></ul></article>
+            <article class="model-stage"><h3><img class="tool-logo" src="assets/icons/terraform.svg" alt="" aria-hidden="true">Control and operations</h3><ul><li>Reviewed Terraform plans and state ownership</li><li>Key Vault CSI and Entra RBAC</li><li>WAF, Firewall, Bastion, and NSGs</li><li>App Insights, Prometheus, and Grafana</li></ul></article>
             <div class="model-flow" aria-label="Operating model flow"><span>Commit</span><span>Validate</span><span>Promote</span><span>Observe</span><span>Improve</span></div>
           </div>
         </div>
@@ -543,7 +603,7 @@
           <div class="data-row stack-row"><h3><img class="tool-logo" src="assets/icons/github-actions.svg" alt="" aria-hidden="true">Delivery</h3><div class="stack-tools"><span><img class="tool-logo" src="assets/icons/github-actions.svg" alt="" aria-hidden="true">GitHub Actions</span><span><img class="tool-logo" src="assets/icons/jenkins.svg" alt="" aria-hidden="true">Jenkins</span><span><img class="tool-logo on-light" src="assets/icons/circleci.svg" alt="" aria-hidden="true">CircleCI</span><span><img class="tool-logo" src="assets/icons/gitlab.svg" alt="" aria-hidden="true">GitLab CI</span><span><img class="tool-logo on-light" src="assets/icons/ansible.svg" alt="" aria-hidden="true">Ansible</span><span><img class="tool-logo" src="assets/icons/yaml.svg" alt="" aria-hidden="true">YAML</span></div></div>
           <div class="data-row stack-row"><h3><img class="tool-logo" src="assets/icons/azure-monitor.svg" alt="" aria-hidden="true">Observability</h3><div class="stack-tools"><span><img class="tool-logo" src="assets/icons/prometheus.svg" alt="" aria-hidden="true">Prometheus</span><span><img class="tool-logo" src="assets/icons/grafana.svg" alt="" aria-hidden="true">Grafana</span><span><img class="tool-logo" src="assets/icons/application-insights.svg" alt="" aria-hidden="true">Application Insights</span><span><img class="tool-logo" src="assets/icons/azure-monitor.svg" alt="" aria-hidden="true">Azure Monitor</span><span><img class="tool-logo" src="assets/icons/cloudwatch.svg" alt="" aria-hidden="true">CloudWatch</span></div></div>
           <div class="data-row stack-row"><h3><img class="tool-logo" src="assets/icons/entra-id.svg" alt="" aria-hidden="true">Security and identity</h3><div class="stack-tools"><span><img class="tool-logo" src="assets/icons/entra-id.svg" alt="" aria-hidden="true">Entra ID</span><span><img class="tool-logo" src="assets/icons/rbac.svg" alt="" aria-hidden="true">RBAC</span><span><img class="tool-logo" src="assets/icons/waf.svg" alt="" aria-hidden="true">WAF</span><span><img class="tool-logo" src="assets/icons/firewall.svg" alt="" aria-hidden="true">Firewall</span><span><img class="tool-logo" src="assets/icons/b2c.svg" alt="" aria-hidden="true">B2C</span><span><img class="tool-logo" src="assets/icons/aws-iam.svg" alt="" aria-hidden="true">IAM</span></div></div>
-          <div class="data-row stack-row"><h3><img class="tool-logo" src="assets/icons/mongodb.svg" alt="" aria-hidden="true">Systems and data</h3><div class="stack-tools"><span><img class="tool-logo" src="assets/icons/mongodb.svg" alt="" aria-hidden="true">MongoDB</span><span><img class="tool-logo" src="assets/icons/redis.svg" alt="" aria-hidden="true">Redis</span><span><img class="tool-logo" src="assets/icons/linux.svg" alt="" aria-hidden="true">Linux</span><span><img class="tool-logo" src="assets/icons/windows-server.svg" alt="" aria-hidden="true">Windows Server</span><span><img class="tool-logo on-light" src="assets/icons/bash.svg" alt="" aria-hidden="true">Bash</span><span><img class="tool-logo" src="assets/icons/python.svg" alt="" aria-hidden="true">Python</span><span><img class="tool-logo" src="assets/icons/dotnet.svg" alt="" aria-hidden="true">.NET</span><span><img class="tool-logo" src="assets/icons/angular.svg" alt="" aria-hidden="true">Angular</span></div></div>
+          <div class="data-row stack-row"><h3><img class="tool-logo" src="assets/icons/mongodb.svg" alt="" aria-hidden="true">Systems and data</h3><div class="stack-tools"><span><img class="tool-logo" src="assets/icons/mongodb.svg" alt="" aria-hidden="true">MongoDB</span><span><i class="tool-glyph" data-lucide="database" aria-hidden="true"></i>DocumentDB vCore</span><span><img class="tool-logo" src="assets/icons/azure-cosmos-db.svg" alt="" aria-hidden="true">Cosmos DB</span><span><img class="tool-logo" src="assets/icons/azure-blob-storage.svg" alt="" aria-hidden="true">Blob Storage</span><span><img class="tool-logo" src="assets/icons/redis.svg" alt="" aria-hidden="true">Redis</span><span><img class="tool-logo" src="assets/icons/linux.svg" alt="" aria-hidden="true">Linux</span><span><img class="tool-logo" src="assets/icons/windows-server.svg" alt="" aria-hidden="true">Windows Server</span><span><img class="tool-logo on-light" src="assets/icons/bash.svg" alt="" aria-hidden="true">Bash</span><span><img class="tool-logo" src="assets/icons/python.svg" alt="" aria-hidden="true">Python</span><span><img class="tool-logo" src="assets/icons/dotnet.svg" alt="" aria-hidden="true">.NET</span><span><img class="tool-logo" src="assets/icons/angular.svg" alt="" aria-hidden="true">Angular</span></div></div>
         </div>
       </div>
     </section>
@@ -600,11 +660,37 @@
     </section>
   </main>
 
-  <footer><div class="wrap footer-inner"><span>Ahmed ElMahdy | Senior Cloud DevOps Engineer</span><span>Azure | AKS | Terraform | GitOps | Reliability</span></div></footer>
+  <footer><div class="wrap footer-inner"><span>Ahmed ElMahdy | Senior Cloud DevOps Engineer</span><span>Experience reviewed October 2026 | Dated delivery evidence</span></div></footer>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       if (window.lucide) window.lucide.createIcons();
+
+      const navigation = document.querySelector(".nav");
+      const navigationToggle = document.querySelector(".nav-toggle");
+      const navigationLinks = document.querySelector(".nav-links");
+      const setNavigationOpen = (open) => {
+        navigation.classList.toggle("is-open", open);
+        navigationToggle.setAttribute("aria-expanded", String(open));
+        navigationToggle.setAttribute("aria-label", open ? "Close navigation" : "Open navigation");
+        navigationToggle.title = open ? "Close navigation" : "Open navigation";
+      };
+      navigationToggle.hidden = false;
+      navigation.classList.add("nav-ready");
+      document.documentElement.classList.add("has-navigation");
+      navigationToggle.addEventListener("click", () => setNavigationOpen(navigationToggle.getAttribute("aria-expanded") !== "true"));
+      navigationLinks.addEventListener("click", (event) => {
+        if (event.target.closest("a")) setNavigationOpen(false);
+      });
+      document.addEventListener("click", (event) => {
+        if (!navigation.contains(event.target)) setNavigationOpen(false);
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && navigationToggle.getAttribute("aria-expanded") === "true") {
+          setNavigationOpen(false);
+          navigationToggle.focus();
+        }
+      });
 
       const progress = document.querySelector(".scroll-progress");
       const updateProgress = () => {
@@ -612,13 +698,54 @@
         progress.style.transform = `scaleX(${max > 0 ? window.scrollY / max : 0})`;
       };
       updateProgress();
-      addEventListener("scroll", updateProgress, { passive: true });
+      let progressFrame = 0;
+      addEventListener("scroll", () => {
+        if (progressFrame) return;
+        progressFrame = requestAnimationFrame(() => {
+          updateProgress();
+          progressFrame = 0;
+        });
+      }, { passive: true });
+
+      if ("IntersectionObserver" in window) {
+        const activeSections = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            const activeLink = navigationLinks.querySelector(`a[href="#${entry.target.id}"]`);
+            if (!entry.isIntersecting || !activeLink) return;
+            navigationLinks.querySelectorAll("a").forEach((link) => link.removeAttribute("aria-current"));
+            activeLink.setAttribute("aria-current", "location");
+          });
+        }, { rootMargin: "-20% 0px -65% 0px", threshold: 0 });
+        document.querySelectorAll("main section[id]").forEach((section) => activeSections.observe(section));
+      }
 
       const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
       const reveals = document.querySelectorAll(".reveal");
       if (reduced || !("IntersectionObserver" in window)) {
         reveals.forEach((item) => item.classList.add("is-visible"));
         return;
+      }
+      document.documentElement.classList.add("motion-ready");
+      const motionTargets = document.querySelectorAll(".blueprint-axis, .pipeline, .snapshot-row, .data-row, .model-stage");
+      const motionObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => entry.target.classList.toggle("motion-paused", !entry.isIntersecting));
+      }, { rootMargin: "60px 0px", threshold: 0 });
+      motionTargets.forEach((target) => {
+        target.classList.add("motion-paused");
+        motionObserver.observe(target);
+      });
+      const synchronizeMotionVisibility = () => document.documentElement.classList.toggle("motion-suspended", document.hidden);
+      document.addEventListener("visibilitychange", synchronizeMotionVisibility);
+      synchronizeMotionVisibility();
+      const motionTracks = document.querySelectorAll(".blueprint-axis, .pipeline");
+      const measureMotionTrack = (track) => {
+        track.style.setProperty("--travel-x", `${Math.max(0, track.clientWidth * 0.83)}px`);
+        track.style.setProperty("--travel-y", `${Math.max(0, track.clientHeight - 6)}px`);
+      };
+      motionTracks.forEach(measureMotionTrack);
+      if ("ResizeObserver" in window) {
+        const trackObserver = new ResizeObserver((entries) => entries.forEach((entry) => measureMotionTrack(entry.target)));
+        motionTracks.forEach((track) => trackObserver.observe(track));
       }
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
