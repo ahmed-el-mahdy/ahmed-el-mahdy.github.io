@@ -230,4 +230,21 @@ Remote, UAE, KSA, or Egypt-based
 
 ---
 
-*© 2026 Ahmed ElMahdy — Platform Engineer | AWS SAA • SC-300 • CKA-Ready • AZ-104-Ready*
+*© 2026 Ahmed ElMahdy — Platform Engineer | AWS SAA • SC-300 | CKA study paused • AZ-104 training completed*
+
+## Evidence and Publication Flow
+
+```mermaid
+flowchart LR
+	Source["Verified work and code scope"] --> Career["Career reference and STAR records"]
+	Career --> CV["Reviewed three-page CV"]
+	Career --> Page["Portfolio content"]
+	Page --> QA["Responsive, motion and accessibility checks"]
+	CV --> QA
+	QA --> Git["Reviewed personal Git commit"]
+	Git --> Pages["GitHub Pages publication"]
+```
+
+The public portfolio separates dated employer/client outcomes from personal reference implementations and team/training work. Private employment transitions, immigration details, raw history and confidential configuration belong outside public repositories. See [Career-Advance](https://github.com/ahmed-el-mahdy/Career-Advance) for the public evidence index.
+
+Review gates are independent: source accuracy, document formatting, static links/assets, browser behavior and deployed-page verification. A successful local page render is not proof of a successful Pages deployment. Current CKA review is paused at maintenance/certificates; historical course completion is not exam readiness or certification.
