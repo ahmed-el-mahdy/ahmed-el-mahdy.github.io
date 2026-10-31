@@ -26,7 +26,7 @@
 | 6 AKS Backend Services | 2 App Service Portals | 18 Verified CSI Keys | 91,724 Blobs Replicated | 24 Historical Workflow Branches | 18 Promotion Checks |
 |:-:|:-:|:-:|:-:|:-:|:-:|
 
-Reviewed 30 October 2026 against the Career-Advance evidence summary and canonical platform READMEs. Counts are dated implementation checkpoints, not current live inventory, uptime guarantees or tested regional recovery. [Career evidence and STAR stories](https://github.com/ahmed-el-mahdy/Career-Advance/tree/main/progress).
+Reviewed 30 October 2026 against the private career-evidence summary and canonical platform READMEs. Counts are dated implementation checkpoints, not current live inventory, uptime guarantees or tested regional recovery. The public summary is the [impact PDF](Ahmed%20Elmahdy%20Work%20Impact.pdf) served with the portfolio.
 
 ---
 
@@ -245,6 +245,6 @@ flowchart LR
 	Git --> Pages["GitHub Pages publication"]
 ```
 
-The public portfolio separates dated employer/client outcomes from personal reference implementations and team/training work. Private employment transitions, immigration details, raw history and confidential configuration belong outside public repositories. See [Career-Advance](https://github.com/ahmed-el-mahdy/Career-Advance) for the public evidence index.
+The public portfolio separates dated employer/client outcomes from personal reference implementations and team/training work. Private employment transitions, immigration details, raw history and confidential configuration belong outside public repositories. Career evidence and STAR stories are maintained in a private repository; the public summary is the portfolio page and its impact PDF.
 
 Review gates are independent: source accuracy, document formatting, static links/assets, browser behavior and deployed-page verification. A successful local page render is not proof of a successful Pages deployment. Current CKA review is paused at maintenance/certificates; historical course completion is not exam readiness or certification.
