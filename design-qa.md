@@ -187,3 +187,14 @@ The source composition is preserved while replacing illustrative mock copy with 
 - Main screenshot updates use the existing desktop/mobile overview paths. Other comparison images above remain dated history, not current-release screenshots. Temporary HTTP fixtures and headless browser processes are closed after validation.
 
 final result: passed
+
+### 31 October 2026 Evidence Interactions Release
+
+- Added a hero evidence console that types four command/result lines; every figure restates a value already published on the page. It pauses off-screen and in hidden tabs, and reduced-motion users get a static fully-rendered first line.
+- Added count-up metrics for the 16 numeric proof and snapshot values. Animation is one-shot per element on 60% visibility, eases out over 1.1 s, and always lands on the exact authored text (grouping and decimals preserved). Skipped entirely under reduced motion.
+- Added a pointer-following teal glow on snapshot and data rows, gated to hover-capable fine-pointer devices, rendered as an opacity-transitioned radial gradient on an existing overlay pseudo-element.
+- Added a fourth outcome row and matching casework article: Documentation as code (15 guides, 16 diagrams, 12 repositories, October 2026) with approach/validated/boundary disclosure.
+- Repointed the outcomes "Experience notes" link to the in-repo impact PDF because the Career-Advance repository is now private; verified HTTP 200 locally.
+- Validation: zero console/page errors; metrics land on exact authored values; desktop 1440 and mobile 390 show no horizontal overflow; reduced-motion renders static content; #case-docs anchor navigates correctly.
+
+final result: passed

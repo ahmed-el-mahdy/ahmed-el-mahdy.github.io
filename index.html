@@ -145,6 +145,12 @@
     .btn.primary { color: var(--teal); border-color: var(--teal); background: rgba(38, 215, 194, 0.06); }
     .btn.primary:hover, .btn.primary:focus-visible { color: #031211; background: var(--teal); }
 
+    .hero-console { display: flex; align-items: center; gap: 9px; max-width: 580px; margin-top: 18px; padding: 10px 14px; border: 1px solid var(--line); background: rgba(3, 12, 13, 0.72); font-family: "Cascadia Code", Consolas, monospace; font-size: 12px; white-space: nowrap; overflow: hidden; }
+    .hero-console .console-prompt { color: var(--teal); font-weight: 800; }
+    .hero-console .console-line { color: #c5d2d0; overflow: hidden; text-overflow: ellipsis; }
+    .hero-console .console-ok { color: var(--green); }
+    .hero-console .console-caret { flex: none; width: 7px; height: 14px; background: var(--teal); animation: consoleBlink 1.1s steps(1) infinite; }
+
     .blueprint-axis { align-self: stretch; position: relative; margin-left: 58px; border-left: 1px solid rgba(125, 211, 252, 0.22); pointer-events: none; }
     .axis-label { position: absolute; left: 20px; color: #b6c8c5; font-family: "Cascadia Code", Consolas, monospace; font-size: 10px; text-transform: uppercase; }
     .axis-label::before { content: ""; position: absolute; left: -22px; top: 50%; width: 12px; height: 1px; background: var(--cyan); }
@@ -325,6 +331,12 @@
     @keyframes rowSignal { 0%, 18% { transform: translateX(0); opacity: 0; } 24%, 42% { opacity: 1; } 56%, 100% { transform: translateX(515%); opacity: 0; } }
     @keyframes snapshotSignal { 0%, 16% { transform: translateX(0); opacity: 0; } 22%, 46% { opacity: 1; } 62%, 100% { transform: translateX(567%); opacity: 0; } }
     @keyframes nodePulse { 0%, 100% { opacity: 0.45; transform: scale(0.82); } 50% { opacity: 1; transform: scale(1.12); } }
+    @keyframes consoleBlink { 50% { opacity: 0; } }
+
+    @media (hover: hover) and (pointer: fine) {
+      .snapshot-row::after, .data-row::after { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity 0.3s ease; background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 50%), rgba(38, 215, 194, 0.07), transparent 65%); }
+      .snapshot-row:hover::after, .data-row:hover::after { opacity: 1; }
+    }
 
     @media (max-width: 1100px) {
       .snapshot-layout { grid-template-columns: 1fr; gap: 26px; }
@@ -455,6 +467,9 @@
           <h1>Ahmed<br>ElMahdy</h1>
           <p class="role-line"><strong>Senior Cloud DevOps</strong> / Platform Engineer</p>
           <p class="hero-summary">I make inherited Azure platforms safer to change through controlled migrations, repeatable delivery, and workload-to-data troubleshooting across AKS, Terraform, GitHub Actions, APIM, and Key Vault.</p>
+          <div class="hero-console" aria-hidden="true">
+            <span class="console-prompt">$</span><span class="console-line"></span><span class="console-caret"></span>
+          </div>
           <div class="actions">
             <a class="btn primary" href="mailto:a.elmahdy.mail@gmail.com"><i data-lucide="mail" aria-hidden="true"></i>Contact Ahmed</a>
             <a class="btn" href="https://github.com/ahmed-el-mahdy" target="_blank" rel="noopener"><img class="tool-logo github-logo" src="assets/icons/github.svg" alt="" aria-hidden="true">GitHub</a>
@@ -498,7 +513,7 @@
           <span class="micro-label">Evidence, not claims</span>
           <h2>Selected delivery outcomes.</h2>
           <p>2026 implementation checkpoints, with the scope and validation behind each result.</p>
-          <a class="text-link" href="https://github.com/ahmed-el-mahdy/Career-Advance/tree/main/progress" target="_blank" rel="noopener noreferrer">Experience notes<i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
+          <a class="text-link" href="Ahmed%20Elmahdy%20Work%20Impact.pdf" target="_blank" rel="noopener">Impact summary (PDF)<i data-lucide="arrow-up-right" aria-hidden="true"></i></a>
         </div>
         <div class="snapshot-board reveal" aria-label="Selected casework and measurable outcomes">
           <div class="snapshot-labels" aria-hidden="true"><span>What I did</span><span>Measurable outcome</span><span></span></div>
@@ -516,6 +531,11 @@
             <div class="snapshot-case"><span class="row-icon"><img class="tool-logo" src="assets/icons/mongodb.svg" alt="" aria-hidden="true"></span><div><h3>Data and delivery modernization</h3><p>Separated RU/serverless and DocumentDB vCore migration stages, resolved database egress blocking, and standardized delivery workflows.</p></div></div>
             <div class="snapshot-metrics"><div class="snapshot-metric"><strong>2</strong><span>Database migration stages</span></div><div class="snapshot-metric"><strong>24</strong><span>Historical branch alignment</span></div><div class="snapshot-metric"><strong>18</strong><span>Clean merge dry-runs</span></div></div>
             <a class="snapshot-link" href="#case-database" aria-label="Read the database migration case"><i data-lucide="arrow-right" aria-hidden="true"></i></a>
+          </article>
+          <article class="snapshot-row" style="--delay:9s">
+            <div class="snapshot-case"><span class="row-icon"><img class="tool-logo github-logo" src="assets/icons/github.svg" alt="" aria-hidden="true"></span><div><h3>Documentation as code</h3><p>Rebuilt platform guides from parsed Terraform, rendered overlays, and workflow definitions, gated by automated Markdown, diagram, and link validation.</p></div></div>
+            <div class="snapshot-metrics"><div class="snapshot-metric"><strong>15</strong><span>Guides rebuilt</span></div><div class="snapshot-metric"><strong>16</strong><span>Diagrams validated</span></div><div class="snapshot-metric"><strong>12</strong><span>Repositories covered</span></div></div>
+            <a class="snapshot-link" href="#case-docs" aria-label="Read the documentation-as-code case"><i data-lucide="arrow-right" aria-hidden="true"></i></a>
           </article>
         </div>
       </div>
@@ -548,6 +568,7 @@
           <article class="data-row" style="--delay:4s"><div class="row-title"><span class="row-icon"><img class="tool-logo" src="assets/icons/azure-monitor.svg" alt="" aria-hidden="true"></span><div><small>Observability</small><h3>Operational visibility</h3></div></div><div class="row-copy"><p>Built monitoring and reporting around Application Insights, Grafana, Prometheus, availability tests, alert rules, and performance assessments.</p><div class="tags"><span>Grafana</span><span>Prometheus</span><span>App Insights</span><span>KQL</span></div></div></article>
           <article class="data-row" id="case-database" style="--delay:6s"><div class="row-title"><span class="row-icon"><img class="tool-logo" src="assets/icons/mongodb.svg" alt="" aria-hidden="true"></span><div><small>Data and networking</small><h3>Managed database migration</h3></div></div><div class="row-copy"><p>Moved the production data layer in separate stages from self-hosted MongoDB to Cosmos DB MongoDB API (RU/serverless), then DocumentDB vCore. Traced blocked node traffic to firewall port 10260 and verified real application reads after the secret cutover.</p><div class="tags"><span>DocumentDB vCore</span><span>Cosmos DB</span><span>Azure Firewall</span><span>Key Vault</span></div><details class="case-detail"><summary>Validation and recovery<i data-lucide="chevron-down" aria-hidden="true"></i></summary><div class="detail-copy"><p><strong>Approach:</strong> Treat RU/serverless and vCore as separate targets. Trace workload egress rather than assuming a healthy resource is reachable from a pod.</p><p><strong>Validated:</strong> Recorded data checks for the RU stage and real application reads after the vCore connection cutover, with source and connection recovery anchors retained for the agreed window.</p><p><strong>Boundary:</strong> Declared high availability and a regional replica do not establish tested restore, regional failover, RPO, or RTO.</p></div></details></div></article>
           <article class="data-row" style="--delay:8s"><div class="row-title"><span class="row-icon"><img class="tool-logo" src="assets/icons/github-actions.svg" alt="" aria-hidden="true"></span><div><small>Durable automation</small><h3>Workflow and API contract safeguards</h3></div></div><div class="row-copy"><p>Aligned six repositories across four branches and validated 18 promotion merge paths at the recorded checkpoint. Added a later five-branch source-contract guard before cloud login, and made Swagger publishing repeatable with five imported operations and a scoped public-server rewrite.</p><div class="tags"><span>GitHub Actions</span><span>Source contracts</span><span>OpenAPI</span><span>APIM</span></div></div></article>
+          <article class="data-row" id="case-docs" style="--delay:10s"><div class="row-title"><span class="row-icon"><img class="tool-logo github-logo" src="assets/icons/github.svg" alt="" aria-hidden="true"></span><div><small>Documentation as code</small><h3>Guides derived from source, not memory</h3></div></div><div class="row-copy"><p>Rebuilt 15 platform README guides across 12 repositories in October 2026 by parsing active Terraform, rendering every Kustomize overlay, and reading workflow definitions, then gated the result with automated Markdown, diagram, and link validation.</p><div class="tags"><span>Terraform</span><span>Kustomize</span><span>Mermaid</span><span>Docs as code</span></div><details class="case-detail"><summary>Why it mattered<i data-lucide="chevron-down" aria-hidden="true"></i></summary><div class="detail-copy"><p><strong>Approach:</strong> Treat documentation claims like code: derive them from parsed configuration, exclude commented legacy blocks, and validate diagrams and links automatically.</p><p><strong>Validated:</strong> 16 architecture diagrams parsed by the real Mermaid engine; tables, links, and source-consistency assertions passed across all 15 guides.</p><p><strong>Boundary:</strong> The rebuild surfaced a routing-ownership conflict between infrastructure and manifests before it could cause a failed deployment, documented for reconciliation rather than silently patched.</p></div></details></div></article>
         </div>
       </div>
     </section>
@@ -717,6 +738,96 @@
           });
         }, { rootMargin: "-20% 0px -65% 0px", threshold: 0 });
         document.querySelectorAll("main section[id]").forEach((section) => activeSections.observe(section));
+      }
+
+      const prefersReducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+      // Evidence console: lines restate figures already published on this page.
+      const consoleLine = document.querySelector(".hero-console .console-line");
+      if (consoleLine) {
+        const consoleEntries = [
+          { command: "verify blob-parity --containers 3", result: "91,724 matched" },
+          { command: "check csi-secrets --env staging2", result: "18/18 keys delivered" },
+          { command: "align workflows --repos 6", result: "18 clean dry-runs" },
+          { command: "migrate database --stages 2", result: "reads validated" }
+        ];
+        const renderConsoleEntry = (entry) => {
+          consoleLine.textContent = `${entry.command} `;
+          const ok = document.createElement("span");
+          ok.className = "console-ok";
+          ok.textContent = `\u2713 ${entry.result}`;
+          consoleLine.appendChild(ok);
+        };
+        if (prefersReducedMotion) {
+          renderConsoleEntry(consoleEntries[0]);
+        } else {
+          let consoleIndex = 0;
+          let consoleOnScreen = true;
+          if ("IntersectionObserver" in window) {
+            new IntersectionObserver((entries) => {
+              entries.forEach((entry) => { consoleOnScreen = entry.isIntersecting; });
+            }, { threshold: 0 }).observe(consoleLine.parentElement);
+          }
+          const typeConsoleEntry = () => {
+            if (document.hidden || !consoleOnScreen) { setTimeout(typeConsoleEntry, 500); return; }
+            const entry = consoleEntries[consoleIndex % consoleEntries.length];
+            consoleIndex += 1;
+            const text = entry.command;
+            let position = 0;
+            consoleLine.textContent = "";
+            const typeCharacter = () => {
+              if (position <= text.length) {
+                consoleLine.textContent = text.slice(0, position);
+                position += 1;
+                setTimeout(typeCharacter, 26);
+              } else {
+                renderConsoleEntry(entry);
+                setTimeout(typeConsoleEntry, 2600);
+              }
+            };
+            typeCharacter();
+          };
+          setTimeout(typeConsoleEntry, 900);
+        }
+      }
+
+      // Count-up metrics preserve the authored text exactly at completion.
+      const metricNumbers = [...document.querySelectorAll(".proof strong, .snapshot-metric strong")].filter((el) => /^[\d,.]+$/.test(el.textContent.trim()));
+      if (!prefersReducedMotion && "IntersectionObserver" in window && metricNumbers.length) {
+        const animateMetric = (el) => {
+          const raw = el.textContent.trim();
+          const target = parseFloat(raw.replace(/,/g, ""));
+          const decimals = (raw.split(".")[1] || "").length;
+          const format = new Intl.NumberFormat("en-US", { minimumFractionDigits: decimals, maximumFractionDigits: decimals, useGrouping: raw.includes(",") });
+          const started = performance.now();
+          const duration = 1100;
+          const step = (now) => {
+            const progress = Math.min(1, (now - started) / duration);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            el.textContent = progress < 1 ? format.format(target * eased) : raw;
+            if (progress < 1) requestAnimationFrame(step);
+          };
+          requestAnimationFrame(step);
+        };
+        const metricObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            animateMetric(entry.target);
+            metricObserver.unobserve(entry.target);
+          });
+        }, { threshold: 0.6 });
+        metricNumbers.forEach((el) => metricObserver.observe(el));
+      }
+
+      // Pointer glow feeds the CSS hover gradient position.
+      if (!prefersReducedMotion && matchMedia("(hover: hover) and (pointer: fine)").matches) {
+        document.querySelectorAll(".snapshot-row, .data-row").forEach((row) => {
+          row.addEventListener("pointermove", (event) => {
+            const bounds = row.getBoundingClientRect();
+            row.style.setProperty("--mx", `${event.clientX - bounds.left}px`);
+            row.style.setProperty("--my", `${event.clientY - bounds.top}px`);
+          }, { passive: true });
+        });
       }
 
       const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
